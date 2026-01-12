@@ -28,7 +28,7 @@
         "tab": "Welcome",
         "groups": [
           {
-            "group": "What Strip Does",
+            "group": "Welcome",
             "expanded": true,
             "pages": [
               "index",
