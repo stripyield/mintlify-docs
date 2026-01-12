@@ -32,15 +32,16 @@
             "expanded": true,
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "quickstart"
             ]
           },
           {
-            "group": "Customization",
+            "group": "System Architecture",
             "expanded": true,
             "pages": [
               "essentials/settings",
+              "essentials/settings-copied-1",
+              "essentials/settings-copied-2",
               "essentials/navigation"
             ]
           },
