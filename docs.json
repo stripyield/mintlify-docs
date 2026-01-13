@@ -7,7 +7,7 @@
     "light": "#FE2B00",
     "dark": "#FE2B00"
   },
-  "favicon": "/images/STRIP-ICON-BEIGE.png",
+  "favicon": "/images/STRIP-LOGOTYPE-BEIGE.png",
   "navigation": {
     "global": {
       "anchors": [
@@ -37,7 +37,7 @@
               "documentation/flywheel",
               "documentation/emissions",
               "documentation/token-design",
-              "untitled-tab/untitled-page-copied-3"
+              "documentation/game-theory"
             ]
           }
         ]
@@ -76,6 +76,7 @@
   },
   "logo": "/images/STRIP-LOGOTYPE-RED.png",
   "appearance": {
-    "default": "dark"
+    "default": "dark",
+    "strict": true
   }
 }
