@@ -12,7 +12,7 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Twitter",
+          "anchor": "X (Twitter)",
           "icon": "square-t",
           "href": "https://x.com/stripyield"
         },
@@ -23,7 +23,7 @@
         },
         {
           "anchor": "Telegram",
-          "icon": "square-d",
+          "icon": "square-t",
           "href": "https://t.me/+BfCjwJUOLiY5MmY0"
         }
       ]
