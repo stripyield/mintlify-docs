@@ -23,16 +23,22 @@
         }
       ]
     },
-    "tabs": [
+    "anchors": [
       {
-        "tab": "Documentation",
-        "pages": [
-          "untitled-tab/untitled-page",
-          "untitled-tab/untitled-page-copied-2",
-          "untitled-tab/untitled-page-copied-3",
-          "untitled-tab/untitled-page-copied-5",
-          "untitled-tab/untitled-page-copied-6",
-          "untitled-tab/untitled-page-copied-7"
+        "anchor": "Untitled Product",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "pages": [
+              "untitled-tab/untitled-page",
+              "untitled-tab/untitled-page-copied-2",
+              "untitled-tab/untitled-page-copied-5",
+              "untitled-tab/untitled-page-copied-6",
+              "untitled-tab/untitled-page-copied-7",
+              "untitled-tab/untitled-page-copied-1",
+              "untitled-tab/untitled-page-copied-3"
+            ]
+          }
         ]
       }
     ]
