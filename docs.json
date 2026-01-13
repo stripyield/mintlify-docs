@@ -38,7 +38,8 @@
               "documentation/emissions",
               "documentation/token-design",
               "documentation/game-theory",
-              "documentation/features-overview"
+              "documentation/features-overview",
+              "documentation/faq"
             ]
           }
         ]
