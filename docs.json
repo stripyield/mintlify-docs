@@ -31,12 +31,12 @@
             "group": "Documentation",
             "expanded": true,
             "pages": [
-              "documentation/lockless-boost",
               "documentation/welcome",
               "documentation/system-architecture",
               "documentation/flywheel",
               "documentation/emissions",
               "documentation/token-design",
+              "documentation/lockless-boost",
               "documentation/game-theory",
               "documentation/features-overview",
               "documentation/faq"
