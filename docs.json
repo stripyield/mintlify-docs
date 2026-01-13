@@ -12,9 +12,8 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "icon": "book-open-cover",
-          "href": "https://mintlify.com/docs"
+          "anchor": "Twitter",
+          "href": "https://x.com/stripyield"
         },
         {
           "anchor": "Blog",
@@ -41,46 +40,16 @@
             "pages": [
               "essentials/settings",
               "essentials/settings-copied-1",
-              "essentials/settings-copied-2",
-              "essentials/navigation"
+              "essentials/settings-copied-2"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Flywheel",
             "expanded": true,
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "essentials-copied-1/settings",
+              "essentials-copied-1/settings-copied-1",
+              "essentials-copied-1/settings-copied-2"
             ]
           }
         ]
