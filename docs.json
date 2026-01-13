@@ -8,49 +8,32 @@
     "dark": "#FE2B00"
   },
   "favicon": "/images/STRIP-LOGOTYPE-BEIGE.png",
-  "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "X ",
-          "icon": "square-t",
-          "href": "https://x.com/stripyield"
-        },
-        {
-          "anchor": "Discord",
-          "icon": "square-d",
-          "href": "https://discord.gg/r3nfwftS"
-        },
-        {
-          "anchor": "Telegram",
-          "icon": "square-t",
-          "href": "https://t.me/+BfCjwJUOLiY5MmY0"
-        }
-      ]
-    },
-    "products": [
-      {
-        "product": "Strip",
-        "groups": [
-          {
-            "group": "Content",
-            "expanded": true,
-            "pages": [
-              "content/welcome",
-              "content/system-architecture",
-              "content/flywheel",
-              "content/emissions",
-              "content/token-design",
-              "content/lockless-boost",
-              "content/game-theory",
-              "content/features-overview",
-              "content/faq"
-            ]
-          }
-        ]
-      }
+"navigation": {
+  "global": {
+    "anchors": [
+      { "anchor": "X", "icon": "square-t", "href": "https://x.com/stripyield" },
+      { "anchor": "Discord", "icon": "square-d", "href": "https://discord.gg/r3nfwftS" },
+      { "anchor": "Telegram", "icon": "square-t", "href": "https://t.me/+BfCjwJUOLiY5MmY0" }
     ]
   },
+  "groups": [
+    {
+      "group": "Content",
+      "expanded": true,
+      "pages": [
+        "content/welcome",
+        "content/system-architecture",
+        "content/flywheel",
+        "content/emissions",
+        "content/token-design",
+        "content/lockless-boost",
+        "content/game-theory",
+        "content/features-overview",
+        "content/faq"
+      ]
+    }
+  ]
+},
   "navbar": {
     "links": [],
     "primary": {
