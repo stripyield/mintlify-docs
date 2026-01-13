@@ -1,0 +1,43 @@
+---
+title: "Emissions"
+---
+
+### **The Emission Curve**
+
+STRIP emissions follow an exponential decay, starting high and declining smoothly over time.
+
+![Strip Emission Schedule Presentation Transparent](/images/strip_emission_schedule_presentation_transparent.png)
+
+**Formula:**
+
+- Daily emission rate: `E(t) = E₀ × exp(−λ × t)`
+- Where: `E₀ = 900,000 STRIP per day` (initial rate)
+- And: `λ = 0.001 per day` (decay constant)
+
+**What this means:**
+
+- Day 1: 900,000 STRIP per day
+- Year 1: ~750,000 STRIP per day average
+- Year 3: ~200,000 STRIP per day average
+- Year 5: ~50,000 STRIP per day average
+- Total lifetime emissions: **900M STRIP**
+
+By year 5.5, 86.5% of all STRIP will have been distributed. The rest streams out gradually as a long tail.
+
+### **Where Emissions Go**
+
+**Phase 1 (Day 0-90):** All emissions go to PT stakers.
+
+**Phase 2 (Day 90+):** All emissions go to PT/STRIP pool liquidity providers.
+
+### **How Emissions Are Split Across Vaults**
+
+Emissions are allocated to pools based on **APR × TVL**. More productive vaults get more emissions.
+
+**Example:**
+
+- Vault A: \$10M TVL at 20% APR = \$2M productivity score
+- Vault B: \$20M TVL at 5% APR = \$1M productivity score
+- Result: Vault A gets 67% of emissions, Vault B gets 33%
+
+This keeps incentives aligned with value generation. Vaults that produce more yield for the system earn more rewards.
