@@ -23,12 +23,13 @@
         }
       ]
     },
-    "anchors": [
+    "products": [
       {
-        "anchor": "Untitled Product",
-        "tabs": [
+        "product": "Untitled Product",
+        "groups": [
           {
-            "tab": "Documentation",
+            "group": "Documentation",
+            "expanded": true,
             "pages": [
               "untitled-tab/untitled-page",
               "untitled-tab/untitled-page-copied-2",
