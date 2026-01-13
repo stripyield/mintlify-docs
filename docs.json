@@ -11,9 +11,9 @@
 "navigation": {
   "global": {
     "anchors": [
-      { "anchor": "X", "icon": "square-t", "href": "https://x.com/stripyield" },
-      { "anchor": "Discord", "icon": "square-d", "href": "https://discord.gg/r3nfwftS" },
-      { "anchor": "Telegram", "icon": "square-t", "href": "https://t.me/+BfCjwJUOLiY5MmY0" }
+      { "anchor": "X", "icon": "x-twitter", "href": "https://x.com/stripyield" },
+      { "anchor": "Discord", "icon": "discord", "href": "https://discord.gg/r3nfwftS" },
+      { "anchor": "Telegram", "icon": "telegram", "href": "https://t.me/+BfCjwJUOLiY5MmY0" }
     ]
   },
   "pages": [
