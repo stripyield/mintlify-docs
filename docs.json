@@ -13,48 +13,17 @@
       "anchors": [
         {
           "anchor": "Twitter",
+          "icon": "square-t",
           "href": "https://x.com/stripyield"
         },
         {
-          "anchor": "Blog",
-          "icon": "newspaper",
-          "href": "https://mintlify.com/blog"
+          "anchor": "Discord",
+          "icon": "square-d",
+          "href": "https://discord.gg/r3nfwftS"
         }
       ]
     },
-    "tabs": [
-      {
-        "tab": "Welcome",
-        "groups": [
-          {
-            "group": "Welcome",
-            "expanded": true,
-            "pages": [
-              "index",
-              "quickstart"
-            ]
-          },
-          {
-            "group": "System Architecture",
-            "expanded": true,
-            "pages": [
-              "essentials/settings",
-              "essentials/settings-copied-1",
-              "essentials/settings-copied-2"
-            ]
-          },
-          {
-            "group": "Flywheel",
-            "expanded": true,
-            "pages": [
-              "essentials-copied-1/settings",
-              "essentials-copied-1/settings-copied-1",
-              "essentials-copied-1/settings-copied-2"
-            ]
-          }
-        ]
-      }
-    ]
+    "groups": []
   },
   "logo": {
     "light": "/logo/light.svg",
