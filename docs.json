@@ -33,18 +33,18 @@
         "product": "Strip",
         "groups": [
           {
-            "group": "Documentation",
+            "group": "Content",
             "expanded": true,
             "pages": [
               "documentation/welcome",
-              "documentation/system-architecture",
-              "documentation/flywheel",
-              "documentation/emissions",
-              "documentation/token-design",
-              "documentation/lockless-boost",
-              "documentation/game-theory",
-              "documentation/features-overview",
-              "documentation/faq"
+              "content/system-architecture",
+              "content/flywheel",
+              "content/emissions",
+              "content/token-design",
+              "content/lockless-boost",
+              "content/game-theory",
+              "content/features-overview",
+              "content/faq"
             ]
           }
         ]
