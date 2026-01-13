@@ -2,27 +2,22 @@
 title: "System Architecture"
 ---
 
-### **How Strip Grows**
+### **How It Works**
 
-Strip doesn’t rely on external incentives. It feeds itself. Every vault’s yield is recycled through a closed loop that compounds collateral, buys back STRIP, and creates scarcity.**The cycle:**
+Strip uses **StripVaults** to manage deposits. Each vault accepts a yield-bearing asset (like sUSDe), gives you **PT** tokens, and handles the yield split. Every vault has its own **PT/STRIP pool** weighted 92/8.
 
-1. Vaults generate yield
-2. Half compounds (makes the base bigger)
-3. Half buys STRIP (reduces supply)
-4. Bigger base generates more yield next time
-5. More yield buys more STRIP
-6. Repeat forever
+### **What Happens When You Deposit**
 
-As TVL grows, yield grows, buybacks grow, STRIP gets scarcer, value increases, attracts more deposits. Each cycle strengthens the next.[**​**](https://strip.mintlify.app/essentials-copied-1/settings#the-three-phases)
+1. **Deposit** your yield-bearing tokens, receive **PT** equal to the dollar value deposited
+2. **Stake your PT** or **provide liquidity** in the PT/STRIP pool to earn STRIP
+3. The vault **harvests yield** and splits it:
+   - **50% Growth** - Stays in the vault, makes it bigger
+   - **49% Buybacks** - Used to buy STRIP from the market
+   - **1% Protocol Fee** - Covers operations, also used for STRIP buybacks
 
-### **The Three Phases**
+### **The Key Parts**
 
-\*\*Early Phase: \*\*Emissions are high, attracting liquidity and building TVL.
-
-\*\*Mid Phase: \*\*Compounding and buybacks start to match emissions in value.
-
-\*\*Late Phase: \*\*Emissions fade to near zero. Buybacks dominate. STRIP supply contracts while representing a larger yield base.The system naturally transitions from growth to scarcity without governance or manual intervention.
-
-### **Why This Works**[**​**](https://strip.mintlify.app/essentials-copied-1/settings#why-this-works)
-
-Unlike most protocols where emissions end and the system dies, Strip’s yield keeps compounding and buying back STRIP forever.The protocol doesn’t need new depositors to function. Even with zero growth, the existing base generates yield, compounds, and executes buybacks.Growth amplifies the effect, but sustainability doesn’t depend on it.
+- **StripVault** - Holds your deposits and manages yield.
+- **PT/STRIP Pool (92/8)** - Where PT and STRIP trade. Heavily weighted to PT for stability.
+- **Emission Routing** - STRIP rewards go to pools based on **APR × TVL** across vaults. More productive vaults get more emissions.
+- **Lockless Boost** - Rewards users who stay aligned with the protocol over time.
