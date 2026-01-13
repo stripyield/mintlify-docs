@@ -31,12 +31,12 @@
             "group": "Documentation",
             "expanded": true,
             "pages": [
+              "documentation/lockless-boost",
               "documentation/welcome",
               "documentation/system-architecture",
               "documentation/flywheel",
               "documentation/emissions",
               "documentation/token-design",
-              "documentation/lockless-boost",
               "untitled-tab/untitled-page-copied-3"
             ]
           }
@@ -67,11 +67,15 @@
   "footer": {
     "socials": {
       "x": "https://x.com/stripyield",
-      "github": "https://github.com/stripyield"
+      "github": "https://github.com/stripyield",
+      "discord": "https://discord.gg/Cx2eSzUM"
     }
   },
   "background": {
     "image": "/images/Group1073715280123456.png"
   },
-  "logo": "/images/STRIP-LOGOTYPE-RED.png"
+  "logo": "/images/STRIP-LOGOTYPE-RED.png",
+  "appearance": {
+    "default": "dark"
+  }
 }
