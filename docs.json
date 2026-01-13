@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Strip Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#FE2B00",
+    "light": "#FE2B00",
+    "dark": "#FE2B00"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -43,10 +43,6 @@
         ]
       }
     ]
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
   },
   "navbar": {
     "links": [],
