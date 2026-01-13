@@ -37,7 +37,8 @@
               "documentation/flywheel",
               "documentation/emissions",
               "documentation/token-design",
-              "documentation/game-theory"
+              "documentation/game-theory",
+              "documentation/features-overview"
             ]
           }
         ]

@@ -1,0 +1,46 @@
+---
+title: "Features Overview"
+---
+
+### **1. Perpetual Yield Stripping**
+
+Transforms yield-bearing collateral into two composable assets:
+
+- **PT (Principal Token)** - Redeemable for dollar value deposited
+- **STRIP (Yield Token)** - Perpetual claim on system-wide yield
+
+No expiry dates. Yield flows perpetually. STRIP becomes the universal yield token across all vaults, forming a unified claim on system-wide yield.
+
+### **2. Continuous Yield Routing**
+
+Every vault's yield is split into three flows:
+
+- **50% Growth** - Compounds vault principal, expands future yield capacity
+- **49% Buyback** - Buys STRIP from the market, creates scarcity
+- **1% Protocol Fee** - Also routed into STRIP buybacks
+
+These flows form a reflexive loop: growth leads to buybacks, buybacks create scarcity, scarcity drives value, value attracts deposits, deposits create more yield.
+
+### **3. Exponential Decay Emissions**
+
+Emissions start high and decline smoothly over time. The curve is predictable and deterministic.
+
+First 90 days: emissions go to PT stakers (coordination phase).
+
+After 90 days: emissions shift permanently to PT/STRIP LPs (competition phase).
+
+### **4. Merit-Based Emission Routing**
+
+Different vaults produce different yields. Emissions route based on **APR × TVL** so each pool receives rewards proportional to its productivity.
+
+This keeps incentives aligned and prevents unproductive capital from extracting value.
+
+### **5. Lockless Boost**
+
+A reputation system that rewards consistent alignment without requiring locked capital. Boost rises slowly while users stay aligned and resets instantly if they break alignment.
+
+Market price changes are ignored. Only user actions matter. Alignment replaces lockups.
+
+### **6. STRIP as Universal Yield Sink**
+
+STRIP is the universal yield token across all vaults. All protocol yield flows converge into STRIP through continuous buybacks. Its value reflects total network yield and activity, making STRIP a self-indexing asset where system growth directly increases scarcity.
