@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Strip Docs",
+  "name": "Strip",
   "colors": {
     "primary": "#FE2B00",
     "light": "#FE2B00",
@@ -69,5 +69,8 @@
       "x": "https://x.com/stripyield",
       "github": "https://github.com/stripyield"
     }
+  },
+  "background": {
+    "image": "/images/image4.png"
   }
 }
