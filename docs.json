@@ -37,8 +37,7 @@
     "lockless-boost",
     "game-theory",
     "features-overview",
-    "faq",
-    "lp-metrics"
+    "faq"
   ]
 },
   "navbar": {
