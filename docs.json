@@ -11,9 +11,21 @@
 "navigation": {
   "global": {
     "anchors": [
-      { "anchor": "Twitter", "icon": "x-twitter", "href": "https://x.com/stripyield" },
-      { "anchor": "Discord", "icon": "discord", "href": "https://discord.gg/r3nfwftS" },
-      { "anchor": "Telegram", "icon": "telegram", "href": "https://t.me/+BfCjwJUOLiY5MmY0" }
+      {
+        "anchor": "Twitter",
+        "icon": "x-twitter",
+        "href": "https://x.com/stripyield"
+      },
+      {
+        "anchor": "Discord",
+        "icon": "discord",
+        "href": "https://discord.gg/r3nfwftS"
+      },
+      {
+        "anchor": "Telegram",
+        "icon": "telegram",
+        "href": "https://t.me/+BfCjwJUOLiY5MmY0"
+      }
     ]
   },
   "pages": [
@@ -25,7 +37,8 @@
     "lockless-boost",
     "game-theory",
     "features-overview",
-    "faq"
+    "faq",
+    "lp-metrics"
   ]
 },
   "navbar": {
