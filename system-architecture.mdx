@@ -2,7 +2,7 @@
 title: "System Architecture"
 ---
 
-### **How It Works**
+### **Inner Workings**
 
 Strip uses **StripVaults** to manage deposits. Each vault accepts a yield-bearing asset (like sUSDe), gives you **PT** tokens, and handles the yield split. Every vault has its own **PT/STRIP pool** weighted 92/8.
 
@@ -15,9 +15,9 @@ Strip uses **StripVaults** to manage deposits. Each vault accepts a yield-bearin
    - **49% Buybacks** - Used to buy STRIP from the market
    - **1% Protocol Fee** - Covers operations
 
-### **Key Elements**
+### **Components**
 
 - **StripVault** - Holds your deposits and manages yield.
-- **PT/STRIP Pool (92/8)** - Where PT and STRIP trade. Heavily weighted to PT for stability.
+- **PT/STRIP Pools (92/8)** - Where PT and STRIP trade. Heavily weighted to PT for stability.
 - **Emission Routing** - STRIP rewards go to pools based on **APR × TVL** across vaults. More productive vaults get more emissions.
 - **Lockless Boost** - Rewards users who stay aligned with the protocol over time.
