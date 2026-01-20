@@ -22,23 +22,23 @@ title: "Trust Model"
 
 ### Operational Parameters
 
-Emissions
+**Emissions**
 
 - `setRewardRate()` - Adjust STRIP emissions per second
 - `addPool()` - Register new staking pools
 - `setAllocPoint()` - Update pool allocation weights (TVL × APR is calculated offchain, then applied here)
 - `setPoolEnabled()` - Enable or disable pools
 
-Oracle Parameters
+**Oracle Parameters**
 
 - `setMinRate()` - Set minimum acceptable oracle rate
 - `setMaxRateDropBps()` - Adjust rate drop tolerance (capped at 1%)
 - `resetHighWaterMark()` - Reset HWM within ±1% of current oracle rate
 
-Boost
+**Boost**
 
 - `setMerkleRoot()` - Publish new boost multiplier merkle roots
 
-Emergency
+**Emergency**
 
 - `pause()` / `unpause()` - Enable emergency mode during oracle failures
