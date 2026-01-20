@@ -2,7 +2,7 @@
 title: "Trust Model"
 ---
 
-**User deposits**: Users retain full control of their deposits. Only the depositor can withdraw by redeeming their PT shares. No admin function exists to move, withdraw, or redirect vault funds. 
+**User deposits**: Users retain full control of their deposits. Only the depositor can withdraw by redeeming their PT shares. No admin function exists to move, withdraw, or redirect vault funds.
 
 **Yield stripping**: The 50/49/1 split is hardcoded.
 
@@ -14,11 +14,11 @@ title: "Trust Model"
 
 ### Immutable Parameters
 
-- No access to user deposits
-- No changing of yield split ratios, boost bounds, reward duration, or token economics
-- No minting of arbitrary tokens (EmissionsController validates all mint requests against allocated rewards)
-- No bypassing of safety checks (HWM resets bounded to ±1% of oracle, rate tolerance capped at 1%)
-- No upgrades to contracts (no proxies)
+- Vault interactions
+- Yield split ratios, boost bounds, reward duration, token economics
+- Minting (EmissionsController validates all mint requests against allocated rewards)
+- Safety checks (HWM resets bounded to ±1% of oracle, rate tolerance capped at 1%)
+- Contract code (no proxies, no upgrade paths)
 
 ### Operational Parameters
 
