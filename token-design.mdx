@@ -7,14 +7,13 @@ title: "Token Design"
 - Perpetual exposure to system-wide yield
 - Demand driven by continuous buybacks from every vault and protocol fees
 - Market-tradable and LP-able in PT/STRIP pools
-- No governance rights (protocol is immutable)
 
 ### **PT - Principal Token**
 
-- Redeemable 1:1 for dollar value of vault collateral deposited
+- Redeemable 1:1 notional (the dollar value of deposit, not underlying token amount)
 - Serves as the stable asset in PT/STRIP pools
 - Composable for external integrations
-- Vault-specific (sUSDe-PT, stETH-PT, etc.)
+- Vault-specific (PTsUSDe, PTsUSDs, etc.)
 
 ### **Supply at Genesis**
 
