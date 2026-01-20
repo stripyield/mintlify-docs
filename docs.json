@@ -37,7 +37,15 @@
     "lockless-boost",
     "game-theory",
     "features-overview",
-    "faq"
+    "faq",
+    {
+      "group": "Security",
+      "pages": [
+        "security/trust-model",
+        "security/audits",
+        "security/contracts"
+      ]
+    }
   ]
 },
   "navbar": {
