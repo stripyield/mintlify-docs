@@ -6,7 +6,7 @@ title: "Trust Model"
 
 **Yield stripping**: The 50/49/1 split is hardcoded.
 
-**STRIP emissions**: Emissions are allocated to staking pools based on vault performance (TVL × APR), weight calculated offchain. Claiming is permissionless and tokens are minted directly to users when they claim.
+**STRIP emissions**: Emissions are allocated to staking pools based on vault performance (**TVL × APR**), weight calculated offchain. Claiming is permissionless and tokens are minted directly to users when they claim.
 
 **Boost multipliers**: Boost multipliers are updated offchain and published as merkle roots. The multiplier range (0.05x to 1x) is hardcoded.
 
@@ -16,7 +16,7 @@ title: "Trust Model"
 
 - Vault interactions
 - Yield split ratios, boost bounds, reward duration, token economics
-- Minting (EmissionsController validates all mint requests against allocated rewards)
+- Minting
 - Safety checks (HWM resets bounded to ±1% of oracle, rate tolerance capped at 1%)
 - Contract code (no proxies, no upgrade paths)
 
