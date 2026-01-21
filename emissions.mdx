@@ -2,6 +2,16 @@
 title: "Emissions"
 ---
 
+### **Emission Split**
+
+Emissions are allocated to pools based on **APR × TVL**. More productive vaults get more emissions. This keeps incentives aligned with value generation. Vaults that produce more yield for the system earn more rewards.
+
+### **Emission Recipients**
+
+**Phase 1:** All emissions go to PT single stakers.
+
+**Phase 2:** All emissions go to PT/STRIP pool liquidity providers.
+
 ### **Emission Curve**
 
 STRIP emissions follow an exponential decay, starting high and declining smoothly over time.
@@ -13,13 +23,3 @@ STRIP emissions follow an exponential decay, starting high and declining smoothl
 - Daily emission rate: `E(t) = E₀ × exp(−λ × t)`
 - Where: `E₀ = 900,000 STRIP per day` (initial rate)
 - And: `λ = 0.001 per day` (decay constant)
-
-### **Emission Recipients**
-
-**Phase 1 (Day 0-90):** All emissions go to PT stakers.
-
-**Phase 2 (Day 90+):** All emissions go to PT/STRIP pool liquidity providers.
-
-### **Emission Split**
-
-Emissions are allocated to pools based on **APR × TVL**. More productive vaults get more emissions. This keeps incentives aligned with value generation. Vaults that produce more yield for the system earn more rewards.
