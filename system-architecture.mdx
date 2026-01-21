@@ -4,7 +4,7 @@ title: "System Architecture"
 
 ### **Inner Workings**
 
-Strip uses **StripVaults** to manage deposits. Each vault accepts a yield-bearing asset (like sUSDe), gives you **PT** tokens, and handles the yield split. Every vault has its own **PT/STRIP pool** weighted 92/8.
+Strip uses **StripVaults** to manage deposits. Each vault accepts a yield-bearing asset (like sUSDe), gives you **PT** tokens, and handles the yield split. Every vault has its own **PT/STRIP pool** weighted 90/10.
 
 ### **Deposit Flow**
 
@@ -18,6 +18,6 @@ Strip uses **StripVaults** to manage deposits. Each vault accepts a yield-bearin
 ### **Components**
 
 - **StripVault** - Holds your deposits and manages yield.
-- **PT/STRIP Pools (92/8)** - Where PT and STRIP trade. Heavily weighted to PT for stability.
+- **PT/STRIP Pools (90/10)** - Where PT and STRIP trade. Heavily weighted to PT for stability.
 - **Emission Routing** - STRIP rewards go to pools based on **APR × TVL** across vaults. More productive vaults get more emissions.
 - **Lockless Boost** - Rewards users who stay aligned with the protocol over time.
