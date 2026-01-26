@@ -11,17 +11,16 @@ title: "Token Design"
 
 ### **STRIP - Yield Token**
 
-- Perpetual exposure to system-wide yield
-- Demand driven by continuous buybacks from every vault and protocol fees
-- Market-tradable and LP-able in PT/STRIP pools
-
-### **STRIP Supply**
-
-- 1 Billion total max supply
-- Emissions: **90%** (900M STRIP, exponential decay)
+- The total STRIP supply is capped at **1 billion** tokens.
+- Emissions: **90%** (900M STRIP, Emissions follow a deterministic exponential decay schedule.)
 - Team & Investors: **10%** (100M STRIP)
+- Perpetual exposure to system-wide yield
+- Market-tradable and LP-able in PT/STRIP pools
+- As emissions decay, STRIP value increasingly reflects recurring buybacks funded by realized yield rather than new issuance.
+- In steady state, STRIP represents a shrinking claim on a growing yield base.
 
 ### **STRIP Vesting Schedules**
 
 - Team - 12-month cliff, linear vesting over 36 months (fully vested at month 48)
 - Investors - 12-month cliff, linear vesting over 24 months (fully vested at month 36)
+- Vesting is enforced on-chain via time-locked contracts.
