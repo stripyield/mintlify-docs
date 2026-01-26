@@ -12,6 +12,11 @@
   "global": {
     "anchors": [
       {
+        "anchor": "Enter App",
+        "icon": "x-twitter",
+        "href": "https://stripyield.com"
+      },
+      {
         "anchor": "Twitter",
         "icon": "x-twitter",
         "href": "https://x.com/stripyield"
