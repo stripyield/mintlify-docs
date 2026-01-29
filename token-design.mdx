@@ -2,25 +2,30 @@
 title: "Token Design"
 ---
 
-### **PT - Principal Token  (i.e. PTsUSDe)**
+### PT – Principal Token (e.g. PTsUSDe)
 
-- Redeemable 1:1 notional (the dollar value of deposit)
-- Serves as the stable asset in PT/STRIP pools (i.e. PTsUSDe/STRIP)
+PT represents the principal value of a deposit.
+
+- Redeemable 1:1 for deposit notional
+- Serves as the stable leg in PT/STRIP pools
 - Composable for external integrations
-- Vault-specific (PTsUSDe, PTsUSDs, etc.)
+- Vault-specific by design
 
-### **STRIP - Yield Token**
+### STRIP – Yield Token
 
-- The total STRIP supply is capped at **1 billion** tokens.
-- Emissions: **90%** (900M STRIP, Emissions follow a deterministic exponential decay schedule.)
-- Team & Investors: **10%** (100M STRIP)
-- Perpetual exposure to system-wide yield
-- Market-tradable and LP-able in PT/STRIP pools
-- As emissions decay, STRIP value increasingly reflects recurring buybacks funded by realized yield rather than new issuance.
-- In steady state, STRIP represents a shrinking claim on a growing yield base.
+STRIP represents perpetual exposure to system-wide yield.
 
-### **STRIP Vesting Schedules**
+- Fixed supply of **1,000,000,000 STRIP**
+  - **900,000,000** allocated to emissions (exponential decay)
+  - **100,000,000** allocated to team and investors
+- Freely tradable and usable in liquidity pools
+- Backed by recurring buybacks funded by realized yield
 
-- Team - 12-month cliff, linear vesting over 36 months (fully vested at month 48)
-- Investors - 12-month cliff, linear vesting over 24 months (fully vested at month 36)
-- Vesting is enforced on-chain via time-locked contracts.
+As emissions decay, STRIP’s value shifts from issuance toward buybacks. In steady state, STRIP represents a shrinking claim on a growing yield base.
+
+### STRIP Vesting Schedules
+
+- **Team**: 12-month cliff, linear vesting over 36 months
+- **Investors**: 12-month cliff, linear vesting over 24 months
+
+All vesting is enforced on-chain via time-locked contracts.

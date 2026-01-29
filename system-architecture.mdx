@@ -2,22 +2,19 @@
 title: "System Architecture"
 ---
 
-### **Vaults & Pools**
+### Vaults and Pools
 
-Strip uses **StripVaults** to manage deposits. Each vault accepts a yield-bearing asset (like sUSDe), gives you **PT** tokens, and handles the yield split. Every vault has its own **PT/STRIP pool** weighted 90/10.
+Deposits are managed through **StripVaults**. Each vault accepts a specific yield-bearing asset, issues PT, and applies the protocol’s yield routing rules. Every vault is paired with its own PT/STRIP liquidity pool, weighted 90/10 in favor of PT to reduce volatility and anchor pricing around principal.
 
-### **Deposit Flow**
+### Deposit Lifecycle
 
-1. **Deposit** your yield-bearing tokens, receive **PT** equal to the dollar value deposited
-2. **Stake your PT** or **Provide Liquidity** in the PT/STRIP pool to earn STRIP
-3. The vault **harvests yield** and splits it:
-   - **50% Growth** - Stays in the vault, makes it bigger
-   - **49% Buybacks** - Used to buy STRIP from the market
-   - **1% Protocol Fee** - Covers operations
+A deposit begins by supplying a yield-bearing asset to a StripVault. The depositor receives PT equal to the dollar value of the deposit at entry. PT can then be staked or supplied as liquidity in the corresponding PT/STRIP pool to earn STRIP emissions.
 
-### **Components**
+As yield accrues, the vault harvests it and routes it through fixed flows. Growth remains in the vault and compounds the principal base. Buybacks are executed in the market to purchase and burn STRIP. A small protocol fee is retained for operations. These flows are immutable and apply uniformly across vaults.
 
-- **StripVault** - Holds your deposits and manages yield.
-- **PT/STRIP Pools (90/10)** - Where PT and STRIP trade. Heavily weighted to PT for stability.
-- **Emission Routing** - STRIP rewards go to pools based on **APR × TVL** across vaults. More productive vaults get more emissions.
-- **Lockless Boost** - Rewards users who stay aligned with the protocol over time.
+### Core Components
+
+- **StripVaults** hold deposits and manage yield routing
+- **PT/STRIP pools (90/10)** provide liquidity and price discovery
+- **Emission routing** allocates rewards based on APR × TVL
+- **Lockless Boost** adjusts reward share based on alignment over time
