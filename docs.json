@@ -46,7 +46,6 @@
     {
       "group": "Security",
       "pages": [
-        "security/trust-model",
         "security/audits",
         "security/contracts"
       ]
