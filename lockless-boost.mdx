@@ -2,21 +2,20 @@
 title: "Lockless Boost"
 ---
 
-### Boost Accounting
+### Accounting
 
 Lockless Boost is the protocol’s reputation layer. It determines the share of emissions earned by each participant based on long-term consistency, without requiring token locks or vote-escrow mechanics.
 
-### Boost Mechanics
+### Mechanics
 
-Each account has a boost multiplier ranging from 5% to 100%. Boost increases when a user holds STRIP, provides PT/STRIP liquidity, or stakes PT during the initial phase, and does so consistently over time.
+Each account has a boost multiplier ranging from 1x to 20x. Boost increases when a user holds STRIP, provides PT/STRIP liquidity, or stakes PT during the initial phase, and does so consistently over time.
 
 Boost resets instantly to the minimum if alignment is broken during active emission periods. Market price movements do not affect boost. Only user actions are considered.
 
-### Key Properties
+### Properties
 
 - Slow to build, instant to lose
 - Independent of price movements
-- Capital size alone is insufficient
-- Boost persists across phase transitions
-
-Boost rewards alignment and persistence rather than opportunistic behavior.
+- Independent of Capital size
+- Persists across phase transitions
+- Rewards alignment over opportunistic behavior
