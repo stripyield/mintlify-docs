@@ -4,17 +4,29 @@ title: "System Architecture"
 
 ### Vaults and Pools
 
-Deposits are managed through **StripVaults**. Each vault accepts a specific yield-bearing asset, issues PT, and applies the protocol’s yield routing rules. Every vault is paired with its own PT/STRIP liquidity pool, weighted 90/10 in favor of PT to reduce volatility and anchor pricing around principal.
+Deposits are managed through StripVaults. Each vault accepts a specific yield-bearing asset, issues PT, and applies the protocol's yield routing rules. Every vault is paired with its own PT/STRIP pool, weighted 90/10 in favor of PT to anchor pricing around principal and reduce volatility.
 
-### Deposit Lifecycle
+#### Deposit Lifecycle
 
 A deposit begins by supplying a yield-bearing asset to a StripVault. The depositor receives PT equal to the dollar value of the deposit at entry. PT can then be staked or supplied as liquidity in the corresponding PT/STRIP pool to earn STRIP emissions.
 
-As yield accrues, the vault harvests it and routes it through fixed flows. Growth remains in the vault and compounds the principal base (50%). Buybacks are executed in the market to purchase and burn STRIP (49%). A small protocol fee is retained for operations (1%).
+As yield accrues, the vault harvests it and routes it through two fixed flows. Half compounds permanently into the vault, expanding the principal base that generates the next cycle's yield. The other half executes market buybacks of STRIP, which are burned. Nothing is taken at the protocol level. Every dollar of realized yield either grows the base or removes STRIP from supply.
 
-### Core Components
+#### Liquidity Hook
+
+The PT/STRIP pool runs on a custom Uniswap v4 hook implementing a Balancer-style weighted curve, with v4 acting as the routing shell. The 90/10 weight is enforced by the curve math itself, not by active rebalancing.
+
+A separate PoolWrapper contract owns the canonical LP position and issues sWLP shares. sWLP is what LPs hold, and what gets staked in the StakingContract for emissions and boost. Deposits are proportional to the current pool ratio; the wrapper refunds any over-supplied side.
+
+The pool charges a fixed 0.3% swap fee on every trade. The fee splits three ways inside the hook: a portion stays in pool reserves accruing to LPs, a portion routes directly to the BuybackBurner, and a portion routes to a team treasury for operations. Every swap, including ordinary user trades, contributes to STRIP buybacks.
+
+The hook reads PT's redemption rate from the PrincipalToken on each swap and prices PT in value space using a high-water mark on the rate. This keeps pricing consistent as PT accrues underlying yield, and prevents sandwich attacks on temporary rate dips.
+
+#### Core Components
 
 - **StripVaults** hold deposits and manage yield routing
-- **PT/STRIP pools (90/10)** provide liquidity and price discovery
-- **Emission routing** allocates rewards based on APR × TVL
+- **PT/STRIP pools (90/10)** provide liquidity and price discovery, governed by the weighted hook
+- **PoolWrapper (sWLP)** issues fungible LP shares for staking
+- **BuybackBurner** redeems harvested yield and burns STRIP
+- **Emission routing** allocates rewards based on APR × TVL across vaults
 - **Lockless Boost** adjusts reward share based on alignment over time

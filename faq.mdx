@@ -3,7 +3,7 @@ title: "FAQ"
 ---
 
 **What is Strip in one sentence?**\
-A protocol that splits deposits into PT (principal) and STRIP (yield), routes 89% of yield to compounding, and uses 10% to buy back STRIP, a 1/10 structure that anchors token value to real yield indefinitely.
+A protocol that splits deposits into PT (principal) and STRIP (yield), then routes 100% of realized yield to two places: half compounds the base, half buys back and burns STRIP, anchoring the token to real yield with no protocol cut.
 
 **Do I lose yield when I deposit?**\
 You exchange individual yield for STRIP exposure. Outcomes depend on system growth, STRIP pricing, and alignment.
@@ -15,7 +15,7 @@ PT redemption is preserved, but principal remains exposed to underlying asset ri
 Emissions decay toward zero while buybacks persist, transitioning the system from inflationary to deflationary.
 
 **How are emissions routed?**\
-By APR × TVL, rewarding productive capital.
+First 30 days, all emissions go to PT stakers. This is the coordination phase that builds initial TVL. After that, emissions shift to liquidity providers in the PT/STRIP pools. Across vaults, allocation follows APR × TVL, so productive capital earns more.
 
 **Why give up my yield?**\
 You trade linear individual yield for a share of collective, compounding yield. If STRIP appreciates beyond what you would have earned individually, the trade is favorable.
