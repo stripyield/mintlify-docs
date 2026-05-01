@@ -36,12 +36,12 @@
   "pages": [
     "welcome",
     "system-architecture",
-    "flywheel",
+    "system-dynamics",
     "token-design",
     "emissions",
     "lockless-boost",
     "game-theory",
-    "game-theory-copied-1",
+    "protocol-properties",
     "faq",
     {
       "group": "Security",
