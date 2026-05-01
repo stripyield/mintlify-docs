@@ -14,7 +14,7 @@ As yield accrues, the vault harvests it and routes it through two fixed flows. H
 
 #### Liquidity Hook
 
-The PT/STRIP pool runs on a custom Uniswap v4 hook implementing a Balancer-style weighted curve, with v4 acting as the routing shell. The 90/10 weight is enforced by the curve math itself, not by active rebalancing.
+The PT/STRIP pool runs on a custom Uniswap v4 hook implementing a weighted curve, with v4 acting as the routing shell. The 90/10 weight is enforced by the curve math itself, not by active rebalancing.
 
 A separate PoolWrapper contract owns the canonical LP position and issues sWLP shares. sWLP is what LPs hold, and what gets staked in the StakingContract for emissions and boost. Deposits are proportional to the current pool ratio; the wrapper refunds any over-supplied side.
 
