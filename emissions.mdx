@@ -2,23 +2,30 @@
 title: "Emissions"
 ---
 
-### Emission Split
+### **Emissions**
 
-Emissions are allocated across vaults based on **APR × TVL**. Vaults that generate more yield for the system receive a larger share of emissions, aligning incentives with productivity.
+#### Allocation Across Vaults
 
-### Emission Distribution
+Each vault competes for emissions based on **APR × TVL**. Vaults that produce more yield per dollar of capital receive a larger share. As vaults grow, their share scales; as APRs shift, allocations adjust. The system rewards productive capital without manual rebalancing.
 
-- **Phase 1**: emissions are directed to PT single stakers
-- **Phase 2**: emissions shift to PT/STRIP liquidity providers
+#### Distribution Within a Vault
 
-### Emission Schedule
+Within each vault, emissions route differently depending on phase:
 
-STRIP emissions follow a deterministic exponential decay:
+- **Phase 1 (first 30 days):** all emissions go to PT single stakers. This bootstraps initial TVL and gives early participants the longest window to build boost.
+- **Phase 2 (day 30 onward):** emissions shift permanently to PT/STRIP liquidity providers, who stake sWLP to earn.
+
+Boost applies in both phases and carries across the transition. A user who builds boost staking PT in Phase 1 keeps that boost when they move to LP in Phase 2.
+
+#### Schedule
+
+STRIP emissions follow a fixed exponential decay:
 
 - **E(t) = E₀ × exp(−λ × t)**
 - Initial rate (**E₀**): 900,000 STRIP per day
 - Decay constant (**λ**): 0.001 per day
+- Half-life: roughly 693 days (~1.9 years)
 
-The schedule is transparent, predictable, and immutable.
+The schedule is set at deployment and cannot be changed.
 
 ![Strip Emission Schedule Presentation Transparent](/images/strip_emission_schedule_presentation_transparent.png)
