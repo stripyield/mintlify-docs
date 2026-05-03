@@ -9,30 +9,6 @@
   },
   "favicon": "/images/STRIP-LOGOTYPE-BEIGE.png",
 "navigation": {
-  "global": {
-    "anchors": [
-      {
-        "anchor": "stripyield.com",
-        "icon": "angles-right",
-        "href": "https://stripyield.com"
-      },
-      {
-        "anchor": "X",
-        "icon": "x-twitter",
-        "href": "https://x.com/stripyield"
-      },
-      {
-        "anchor": "Telegram",
-        "icon": "telegram",
-        "href": "https://t.me/+BfCjwJUOLiY5MmY0"
-      },
-      {
-        "anchor": "Discord",
-        "icon": "discord",
-        "href": "https://discord.gg/r3nfwftS"
-      }
-    ]
-  },
   "pages": [
     "welcome",
     "prime-vs-frontier",
