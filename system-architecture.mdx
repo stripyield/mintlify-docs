@@ -12,6 +12,10 @@ A deposit begins by supplying a yield-bearing asset to a StripVault. The deposit
 
 As yield accrues, the vault harvests it and routes it through two fixed flows. Half compounds permanently into the vault, expanding the principal base that generates the next cycle's yield. The other half executes market buybacks of STRIP, which are burned. Nothing is taken at the protocol level. Every dollar of realized yield either grows the base or removes STRIP from supply.
 
+### Self-Sustaining Growth
+
+The protocol grows through a closed compounding loop. Yield compounds the base that produces the next cycle's yield, and buybacks remove STRIP from circulation. A larger base produces more yield, which means more compounding and more buybacks, which means each cycle reinforces the next. The loop runs without external incentives. Even at zero growth, the existing base continues to generate yield, compound, and buy back STRIP indefinitely. Growth amplifies outcomes; sustainability does not depend on it.
+
 #### Liquidity Hook
 
 The PT/STRIP pool runs on a custom Uniswap v4 hook implementing a weighted curve, with v4 acting as the routing shell. The 90/10 weight is enforced by the curve math itself, not by active rebalancing.
@@ -20,7 +24,13 @@ A separate PoolWrapper contract owns the canonical LP position and issues sWLP s
 
 The pool charges a fixed 0.3% swap fee on every trade. The fee splits three ways inside the hook: a portion stays in pool reserves accruing to LPs, a portion routes directly to the BuybackBurner, and a portion routes to a team treasury for operations. Every swap, including ordinary user trades, contributes to STRIP buybacks.
 
-The hook reads PT's redemption rate from the PrincipalToken on each swap and prices PT in value space using a high-water mark on the rate. This keeps pricing consistent as PT accrues underlying yield, and prevents sandwich attacks on temporary rate dips.
+The hook reads PT's redemption rate from the PrincipalToken on each swap and prices PT in value space using a high-water mark on the rate. This keeps pricing consistent as PT accrues underlying yield, and prevents sandwich attacks on temporary rate dips.\
+\
+Depositing through the PoolWrapper is optional. Anyone can interact with the underlying Uniswap pools directly and provide liquidity at any ratio they choose, in or out of the canonical 90/10 weight.
+
+Direct LPs receive their share of swap fees from the pool reserves like any other LP. They do not receive sWLP. They do not earn STRIP emissions, since emissions require staking sWLP in the StakingContract.
+
+The PoolWrapper exists to make the canonical liquidity provision path simple, fungible, and stakeable. Users who prefer their own weighting, their own range, or just want to avoid the wrapper entirely can do so without restriction.
 
 #### Core Components
 
@@ -30,7 +40,3 @@ The hook reads PT's redemption rate from the PrincipalToken on each swap and pri
 - **BuybackBurner** redeems harvested yield and burns STRIP
 - **Emission routing** allocates rewards based on APR × TVL across vaults
 - **Lockless Boost** adjusts reward share based on alignment over time
-
-### Self-Sustaining Growth
-
-The protocol grows through a closed compounding loop. Yield compounds the base that produces the next cycle's yield, and buybacks remove STRIP from circulation. A larger base produces more yield, which means more compounding and more buybacks, which means each cycle reinforces the next. The loop runs without external incentives. Even at zero growth, the existing base continues to generate yield, compound, and buy back STRIP indefinitely. Growth amplifies outcomes; sustainability does not depend on it.
