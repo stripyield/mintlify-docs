@@ -10,7 +10,7 @@ Lockless Boost is the protocol's reputation layer. It determines each participan
 
 Each account has a boost multiplier ranging from 1x to 20x. The multiplier is applied on top of base emissions, so a user at 20x earns 20 times more STRIP per dollar staked than a user at 1x.
 
-Boost increases when an account holds STRIP, stakes PT during Phase 1, or stakes sWLP during Phase 2, and continues to do so without interruption. Building toward maximum boost takes weeks of consistent participation. Once earned, boost persists as long as the underlying behavior continues.
+Boost increases when an account holds STRIP, stakes PT, or stakes LP, and continues to do so without interruption. Building toward maximum boost takes weeks of consistent participation. Once earned, boost persists as long as the underlying behavior continues.
 
 Boost resets instantly to 1x if alignment is broken during an active emission period. Alignment breaks when a user:
 
@@ -22,16 +22,8 @@ Transferring STRIP to another wallet, exchange, or contract counts the same as s
 
 Market price movements do not affect boost. Only on-chain actions are considered.
 
-#### How It's Calculated
+#### Boost Calculation
 
 Boost is computed off-chain by a keeper that observes account behavior across each hourly epoch. At the end of every epoch, the keeper publishes a merkle root of all account boosts to the BoostController contract. When users claim, they submit a merkle proof and the contract verifies their boost on-chain.
 
 This means boost updates with one-hour granularity. An action taken now affects the boost that becomes claimable at the start of the next epoch.
-
-#### Properties
-
-- Slow to build, instant to lose
-- Independent of price movements
-- Independent of capital size
-- Carries across phase transitions. Boost earned by staking PT in Phase 1 transfers to sWLP staking in Phase 2 without reset.
-- Rewards alignment over opportunistic behavior
