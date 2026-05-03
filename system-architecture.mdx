@@ -30,3 +30,7 @@ The hook reads PT's redemption rate from the PrincipalToken on each swap and pri
 - **BuybackBurner** redeems harvested yield and burns STRIP
 - **Emission routing** allocates rewards based on APR × TVL across vaults
 - **Lockless Boost** adjusts reward share based on alignment over time
+
+### Self-Sustaining Growth
+
+The protocol grows through a closed compounding loop. Yield compounds the base that produces the next cycle's yield, and buybacks remove STRIP from circulation. A larger base produces more yield, which means more compounding and more buybacks, which means each cycle reinforces the next. The loop runs without external incentives. Even at zero growth, the existing base continues to generate yield, compound, and buy back STRIP indefinitely. Growth amplifies outcomes; sustainability does not depend on it.

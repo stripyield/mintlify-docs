@@ -15,7 +15,6 @@
       "group": "Design",
       "pages": [
         "system-architecture",
-        "system-dynamics",
         "token-design",
         "game-theory"
       ]
