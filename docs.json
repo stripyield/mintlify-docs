@@ -70,7 +70,7 @@
   "logo": "/images/STRIP-LOGOTYPE-BEIGE.png",
   "appearance": {
     "default": "dark",
-    "strict": true
+    "strict": false
   },
   "thumbnails": {
     "background": "/images/thumbnailmintlify123.png"
