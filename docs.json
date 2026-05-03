@@ -39,17 +39,14 @@
     "system-dynamics",
     "token-design",
     "emissions",
+    "emissions-copied-1",
     "lockless-boost",
     "game-theory",
     "protocol-properties",
-    "faq",
-    {
-      "group": "Security",
-      "pages": [
-        "security/audits",
-        "security/contracts"
-      ]
-    }
+    "security/transparency",
+    "security/contracts",
+    "security/audits",
+    "faq"
   ]
 },
   "navbar": {
