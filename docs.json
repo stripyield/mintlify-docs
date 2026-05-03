@@ -7,7 +7,6 @@
     "light": "#FE2B00",
     "dark": "#FE2B00"
   },
-  "favicon": "/images/STRIP-LOGOTYPE-BEIGE.png",
 "navigation": {
   "pages": [
     "welcome",
@@ -73,6 +72,6 @@
     "strict": false
   },
   "thumbnails": {
-    "background": "/images/thumbnailmintlify123.png"
+    "background": "/images/banner.png"
   }
 }
