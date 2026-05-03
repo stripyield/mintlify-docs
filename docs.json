@@ -35,6 +35,7 @@
   },
   "pages": [
     "welcome",
+    "prime-vs-frontier",
     "system-architecture",
     "system-dynamics",
     "token-design",
