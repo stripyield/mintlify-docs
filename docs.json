@@ -24,6 +24,7 @@
       "group": "Incentives",
       "pages": [
         "emissions",
+        "staking-lp",
         "lockless-boost"
       ]
     },
