@@ -8,15 +8,6 @@ title: "Emissions"
 
 Each vault competes for emissions based on **APR × TVL**. Vaults that produce more yield per dollar of capital receive a larger share. As vaults grow, their share scales; as APRs shift, allocations adjust. The system rewards productive capital without manual rebalancing.
 
-#### Distribution Within a Vault
-
-Within each vault, emissions route differently depending on phase:
-
-- **Phase 1 (first 30 days):** all emissions go to PT single stakers. This bootstraps initial TVL and gives early participants the longest window to build boost.
-- **Phase 2 (day 30 onward):** emissions shift permanently to PT/STRIP liquidity providers, who stake sWLP to earn.
-
-Boost applies in both phases and carries across the transition. A user who builds boost staking PT in Phase 1 keeps that boost when they move to LP in Phase 2.
-
 #### Schedule
 
 STRIP emissions follow a fixed exponential decay:
@@ -29,3 +20,21 @@ STRIP emissions follow a fixed exponential decay:
 The schedule is set at deployment and cannot be changed.
 
 ![Strip Emission Schedule Presentation Transparent](/images/strip_emission_schedule_presentation_transparent.png)
+
+#### Staking vs LP Split
+
+Emissions split between PT single stakers and PT/STRIP liquidity providers. The split follows a 90-day glide:
+
+| Day | LP | PT Staking |
+| :-- | :-- | :-- |
+| 0 | 5% | 95% |
+| 15 | 12% | 88% |
+| 30 | 28% | 72% |
+| 45 | 50% | 50% |
+| 60 | 72% | 28% |
+| 75 | 88% | 12% |
+| 90\+ | 95% | 5% |
+
+Days 0 to 30, STRIP primarily enters circulation through staking emissions, LP allocation stays small. Days 30 to 90, the glide accelerates as STRIP becomes widely held and users move into LP positions. From day 90, steady state at 95/5.
+
+Boost applies on both sides and carries across. A user who builds boost staking PT early keeps that boost when they move to LP later.
