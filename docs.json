@@ -12,42 +12,56 @@
   "global": {
     "anchors": [
       {
-        "anchor": "Enter App",
+        "anchor": "stripyield.com",
         "icon": "angles-right",
         "href": "https://stripyield.com"
       },
       {
-        "anchor": "Twitter",
+        "anchor": "X",
         "icon": "x-twitter",
         "href": "https://x.com/stripyield"
-      },
-      {
-        "anchor": "Discord",
-        "icon": "discord",
-        "href": "https://discord.gg/r3nfwftS"
       },
       {
         "anchor": "Telegram",
         "icon": "telegram",
         "href": "https://t.me/+BfCjwJUOLiY5MmY0"
+      },
+      {
+        "anchor": "Discord",
+        "icon": "discord",
+        "href": "https://discord.gg/r3nfwftS"
       }
     ]
   },
   "pages": [
     "welcome",
     "prime-vs-frontier",
-    "system-architecture",
-    "system-dynamics",
-    "token-design",
-    "emissions",
-    "fees",
-    "lockless-boost",
-    "game-theory",
-    "protocol-properties",
-    "transparency",
-    "contract-addresses",
-    "security/audits",
-    "faq"
+    {
+      "group": "Design",
+      "pages": [
+        "system-architecture",
+        "system-dynamics",
+        "token-design",
+        "game-theory"
+      ]
+    },
+    {
+      "group": "Incentives",
+      "pages": [
+        "emissions",
+        "lockless-boost"
+      ]
+    },
+    {
+      "group": "Reference",
+      "pages": [
+        "fees",
+        "transparency",
+        "contract-addresses",
+        "contract-addresses-copied-1",
+        "faq"
+      ]
+    }
   ]
 },
   "navbar": {
