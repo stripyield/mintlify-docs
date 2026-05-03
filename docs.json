@@ -33,6 +33,7 @@
       "pages": [
         "fees",
         "transparency",
+        "trust-assumptions",
         "contract-addresses",
         "contract-addresses-copied-1",
         "faq"

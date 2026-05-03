@@ -2,4 +2,73 @@
 title: "Transparency"
 ---
 
-yes
+Strip publishes its operating data so that anyone can verify what the protocol is actually doing, not just what the docs claim it does. The transparency dashboards at [prime.stripyield.com/transparency](https://prime.stripyield.com/transparency) and [frontier.stripyield.com/transparency](https://frontier.stripyield.com/transparency) are the live source. This page describes what each section shows and how to read it.
+
+### Yieldstripping Events
+
+Every yield harvest is recorded as a yieldstripping event. Each row shows the vault that harvested, the dollar value of yield stripped, the number of yield shares minted in exchange, and the redemption rate at the time of the strip. The transaction hash links to a block explorer. This is the raw input to everything else on the page: no yield, no buybacks, no emissions.
+
+### Yield Routing
+
+A summary of where stripped yield went. Half compounds into the vault as Growth, expanding the productive base. Half routes to Buybacks, which acquire STRIP from the market and burn it. Nothing is taken at the protocol level, so the two columns sum to the total yield stripped.
+
+### Buyback & Burn
+
+A log of every buyback the protocol has executed. Each row shows the path taken (V4 pool or external aggregator), the amount of STRIP burned, and the yield shares consumed. The Contract link points to the BuybackBurner address, where the same data is verifiable on-chain.
+
+### Total Yield Stripped
+
+The cumulative dollar value of all yield ever stripped, across every vault. This is the headline number for protocol activity. As TVL and vault APRs grow, this figure compounds.
+
+### Vault Parameters
+
+The current operating parameters for each vault, including:
+
+- **Status:** active or paused
+- **Assets:** total deposit value
+- **PT Supply:** outstanding principal tokens
+- **HWM Rate:** the high-water-mark redemption rate used by the v4 hook to price PT
+- **Oracle:** the price feed contract for the underlying
+- **Min Rate, Max Drop, Max Increase:** safety bounds on rate movement, used to detect oracle anomalies and pause the vault if needed
+
+Each row links to the vault's deployed contract for direct verification.
+
+### Emission Routing History
+
+A timeline of emission allocation decisions. Each entry shows when emissions were rerouted, the amount allocated, and the block at which the change took effect. Routing follows APR × TVL across vaults, so allocations shift as vaults grow or yields move.
+
+### Pool Weights
+
+The current allocation point distribution across staking pools. This is the operational view of incentive routing: how today's emissions are being split right now between PT staking pools and PT/STRIP LP pools.
+
+### Boost Snapshot History and Boost Status
+
+Boost is computed off-chain and published hourly as a merkle root to the BoostController. The snapshot history is the log of every published epoch root. Boost Status shows the current epoch and any pending root publications. Together they let any user verify that their claimed boost matches what the protocol attests to.
+
+### Trust assumptions
+
+Strip's economic rules are fixed in code. The 50/50 yield split, the emission decay curve, the boost range, and the PT redemption mechanics cannot be changed without redeploying the protocol. There's no governance vote that rewrites them and no upgrade path that touches them.
+
+Most importantly for users: vault deposits and withdrawals are not gated by any admin. Once you deposit, no one can prevent you from withdrawing. If a deposit cap is lowered below current TVL, it blocks new deposits but existing depositors still exit normally.
+
+Operational parameters fall into three tiers, each with different controls.
+
+**Owner-direct (no delay).** Used for actions that need immediate response. The owner is a multisig, and the relevant addresses are listed under Contract Addresses.
+
+- Emergency pause/unpause of vaults
+- Setting deposit caps (raising or lowering)
+- Setting the claims-enabled timestamp for emissions
+
+**Long-delay timelock (24 hours).** Used for sensitive parameter changes where the community should have time to detect and react before the change takes effect. The multisig proposes; anyone can execute after 24 hours.
+
+- Adding or removing emission pools
+- Setting allocation points outside the operator's bounded range
+- Adjusting rate-protection parameters (min rate, max rate drop, max rate increase)
+- Resetting the high-water mark on PT redemption
+- Approving allocation signers
+
+**Operator-controlled (rate-limited).** Used for routine emissions tuning by an automated bot. Subject to hard caps that the bot cannot exceed.
+
+- Updating allocation points across enabled pools, capped at 20% change per update, 50% maximum per pool, with a 1-hour cooldown between updates
+
+Every action across all three tiers emits an on-chain event. The transparency dashboard surfaces these events in real time, so any change is visible the moment it happens, and the 24-hour timelock window means the most sensitive changes can never take effect without warning.

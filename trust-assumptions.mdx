@@ -1,0 +1,27 @@
+---
+title: "Trust Assumptions"
+---
+
+#### Economic Rules
+
+Strip's economic rules are fixed in code. The 50/50 yield split, the emission decay curve, the boost range, and the PT redemption mechanics cannot be changed without redeploying the protocol. 
+
+#### Deposits and Withdrawals
+
+Vault deposits and withdrawals are not gated by any admin. Once you deposit, no one can prevent you from withdrawing. If a deposit cap is lowered below current TVL, it blocks new deposits but existing depositors still exit normally.
+
+#### Privileged Roles
+
+Three privileged roles run the protocol's day-to-day operations.
+
+**Owner (multisig).** The owner is a multisig whose address is listed under Contract Addresses. It can pause and unpause vaults, set deposit caps, manage operator and signer permissions, configure cross-chain messaging, and recover stray tokens that aren't part of any vault's core assets.
+
+**Owner \+ Timelock (24 hours).** A 24-hour delay sits between the multisig and Strip's most sensitive parameters. Adding or removing emission pools, changing allocation point bounds, adjusting PT rate-protection, resetting the high-water mark, and approving signers all flow through this path. The multisig proposes a change; anyone can execute it after the delay. The window exists so that any sensitive change is visible on-chain for a full day before it takes effect.
+
+**Keeper (bot).** Two automated keepers handle the protocol's routine execution. The boost keeper publishes merkle root to the BoostController; once published, a root is immutable and cannot be overwritten. A separate operator keeper triggers buybacks, burns STRIP accumulated from swap fees, redeems yield from PT into the BuybackBurner, runs emissions distribution, and updates allocation points across pools. Allocation updates are rate-limited (20% maximum change per call, 50% cap per pool, 1-hour cooldown) so that even a fully-compromised keeper key can't redirect emissions sharply. Both keepers can be revoked or replaced by the multisig at any time.
+
+A fourth path exists as redundancy: approved off-chain signers can submit signed allocation updates subject to the same rate limits. Adding or removing approved signers requires a timelocked owner action.
+
+#### Verification
+
+Every action across every role emits an on-chain event. The transparency dashboard surfaces these in real time, so any change is visible the moment it happens.
