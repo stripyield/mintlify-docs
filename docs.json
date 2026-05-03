@@ -40,12 +40,12 @@
     "system-dynamics",
     "token-design",
     "emissions",
-    "emissions-copied-1",
+    "fees",
     "lockless-boost",
     "game-theory",
     "protocol-properties",
-    "security/transparency",
-    "security/contracts",
+    "transparency",
+    "contract-addresses",
     "security/audits",
     "faq"
   ]
