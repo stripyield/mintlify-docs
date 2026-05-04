@@ -2,23 +2,22 @@
 title: "Lockless Boost"
 ---
 
-#### Overview
+### Overview
 
 Lockless Boost is the protocol's reputation layer. It determines each participant's share of emissions based on consistent STRIP exposure over time, without requiring token locks or vote-escrow mechanics.
 
-#### Mechanics
+### Mechanics
 
 Each account has a boost multiplier ranging from 1x to 20x. The multiplier is applied per epoch, so a user at 20x earns 20 times more STRIP per dollar staked than a user at 1x for that epoch's emissions.
 
-Boost is determined by your **STRIP exposure**, which the keeper measures across three forms:
+Boost is determined by your **STRIP exposure**, which the keeper measures across two forms:
 
 - STRIP held in your wallet
-- STRIP locked inside your PT/STRIP LP position
-- STRIP you're on track to earn staking or lp.
+- STRIP committed to LP, when your sWLP is staked
 
-STRIP in wallet, in LP, or earned through staking all count equally. What matters is how much exposure you maintain, and for how long.
+What matters is how much exposure you maintain, and for how long. Market price movements do not affect your boost — only your on-chain actions do.
 
-#### Climb
+### Climb
 
 Boost climbs linearly from 1x to 20x over 60 days of consistent exposure. After 30 days at a given exposure level, you're at roughly 10x. After 60 days, you're at max.
 
@@ -26,36 +25,49 @@ What "consistent" means: the keeper tracks your exposure floor over the trailing
 
 Reducing exposure resets your boost. The floor drops to your new lower exposure level, your boost returns to 1x, and you begin rebuilding the 60-day climb against the smaller position. The size of the reduction doesn't matter; any drop below your prior floor restarts the climb.
 
-#### Per-Epoch Integration
+### Per-Epoch Integration
 
-Each epoch's reward is computed at your boost during that epoch, not your peak boost or your average. A user who climbs from 1x to 20x over 60 days then exits has earned the integrated value across the climb, not the value of staying at 20x. 
+Each epoch's reward is computed at your boost during that epoch, not your peak boost or your average. A user who climbs from 1x to 20x over 60 days then exits has earned the integrated value across the climb, not the value of staying at 20x.
 
-#### Exposure Changes
+### How LP Exposure is Measured
 
-Anything that reduces your STRIP exposure across all three forms drops your floor:
+When you stake sWLP, the keeper records your STRIP-side contribution to the pool at that moment. That value becomes your LP exposure and stays fixed until you unstake.
+
+This means:
+
+- Arbs rebalancing the pool do not affect your boost
+- STRIP price movements do not affect your boost
+- Anyone else trading against the pool does not affect your boost
+
+Your LP exposure only changes when you yourself stake or unstake. Staking more sWLP grows your anchor; unstaking proportionally drains it.
+
+Unstaked sWLP held in your wallet does not count toward boost. sWLP must be actively staked to contribute. LP positions outside the protocol's hook — raw Uniswap pools, custom weights, third-party wrappers — do not count at all.
+
+### Exposure Changes
+
+Anything that reduces your STRIP exposure across both forms drops your floor:
 
 - Selling STRIP
 - Transferring STRIP to another wallet, exchange, or contract
-- Unstaking PT or sWLP without redirecting the position
-- Withdrawing from LP without re-pairing
+- Unstaking sWLP
 
 What doesn't reduce exposure:
 
-- Claiming rewards and re-pairing into LP (your STRIP exposure increased)
-- Claiming rewards and holding them in your wallet (exposure unchanged)
-- Moving STRIP from wallet to LP or back (exposure unchanged, just changed form)
-- Atomic operations (unstake and re-stake within the same window are smoothed)
+- Claiming rewards into your wallet — STRIP just moved from "earned" to "held"
+- Adding liquidity and staking the resulting sWLP — wallet drops, LP anchor grows by the same STRIP amount
+- Pool rebalancing from arbs or other users' trades
+- STRIP price movements
 
-Market price movements do not affect boost. Only your on-chain actions are considered.
-
-#### Scope
+### Scope
 
 Boost is per-wallet. A wallet receiving STRIP from elsewhere starts at 1x and builds boost from its own activity. Boost does not transfer with STRIP.
 
+Wallets that share clear on-chain associations — common funder, repeated transfers, MEV co-occurrence — may be treated as a single cluster for boost purposes. This prevents splitting a position across two wallets to mine boost on one while selling from the other. Cluster decisions are conservative and reviewable.
+
 Boost is also per-deployment. Building max boost on Prime does not give you boost on Frontier, or vice versa. The two systems run independently.
 
-#### Calculation
+### Calculation
 
 Boost is computed off-chain by a keeper that observes account behavior across each epoch. At the end of every epoch, the keeper publishes a merkle root of all account boosts to the BoostController contract. When users claim, they submit a merkle proof and the contract verifies their boost on-chain.
 
-Once a root is published it cannot be changed. 
+Once a root is published it cannot be changed.
