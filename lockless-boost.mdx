@@ -15,7 +15,7 @@ Boost is determined by your **STRIP exposure**, which the keeper measures across
 - STRIP held in your wallet
 - STRIP committed to LP, when your sWLP is staked
 
-What matters is how much exposure you maintain, and for how long. Market price movements do not affect your boost — only your on-chain actions do.
+What matters is how much exposure you maintain, and for how long. Market price movements do not affect your boost. Only your on-chain actions do.
 
 ### Climb
 
@@ -41,7 +41,7 @@ This means:
 
 Your LP exposure only changes when you yourself stake or unstake. Staking more sWLP grows your anchor; unstaking proportionally drains it.
 
-Unstaked sWLP held in your wallet does not count toward boost. sWLP must be actively staked to contribute. LP positions outside the protocol's hook — raw Uniswap pools, custom weights, third-party wrappers — do not count at all.
+Unstaked sWLP held in your wallet does not count toward boost. sWLP must be actively staked to contribute. LP positions outside the protocol's hook, such as raw Uniswap pools, custom weights, or third-party wrappers, do not count at all.
 
 ### Exposure Changes
 
@@ -53,8 +53,8 @@ Anything that reduces your STRIP exposure across both forms drops your floor:
 
 What doesn't reduce exposure:
 
-- Claiming rewards into your wallet — STRIP just moved from "earned" to "held"
-- Adding liquidity and staking the resulting sWLP — wallet drops, LP anchor grows by the same STRIP amount
+- Claiming rewards into your wallet. STRIP just moved from "earned" to "held"
+- Adding liquidity and staking the resulting sWLP. Wallet drops, LP anchor grows by the same STRIP amount
 - Pool rebalancing from arbs or other users' trades
 - STRIP price movements
 
@@ -62,7 +62,7 @@ What doesn't reduce exposure:
 
 Boost is per-wallet. A wallet receiving STRIP from elsewhere starts at 1x and builds boost from its own activity. Boost does not transfer with STRIP.
 
-Wallets that share clear on-chain associations — common funder, repeated transfers, MEV co-occurrence — may be treated as a single cluster for boost purposes. This prevents splitting a position across two wallets to mine boost on one while selling from the other. Cluster decisions are conservative and reviewable.
+Wallets that share clear on-chain associations, such as a common funder, repeated transfers, or MEV co-occurrence, may be treated as a single cluster for boost purposes. This prevents splitting a position across two wallets to mine boost on one while selling from the other. Cluster decisions are conservative and reviewable.
 
 Boost is also per-deployment. Building max boost on Prime does not give you boost on Frontier, or vice versa. The two systems run independently.
 
