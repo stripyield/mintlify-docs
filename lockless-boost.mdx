@@ -15,7 +15,7 @@ Boost is determined by your **STRIP exposure**, which the keeper measures across
 - STRIP held in your wallet
 - STRIP committed to LP, when your sWLP is staked
 
-What matters is how much exposure you maintain, and for how long. Market price movements do not affect your boost. Only your on-chain actions do.
+What matters is how much exposure you maintain, and for how long. Market price movements do not affect your boost while you are staked. Only your on-chain actions do.
 
 ### Climb
 
@@ -33,7 +33,7 @@ Each epoch's reward is computed at your boost during that epoch, not your peak b
 
 When you stake sWLP, the keeper records your STRIP-side contribution to the pool at that moment. That value becomes your LP exposure and stays fixed until you unstake.
 
-This means:
+While you are staked:
 
 - Arbs rebalancing the pool do not affect your boost
 - STRIP price movements do not affect your boost
@@ -43,28 +43,40 @@ Your LP exposure only changes when you yourself stake or unstake. Staking more s
 
 Unstaked sWLP held in your wallet does not count toward boost. sWLP must be actively staked to contribute. LP positions outside the protocol's hook, such as raw Uniswap pools, custom weights, or third-party wrappers, do not count at all.
 
+### Unstaking and Exit
+
+When you unstake, your LP anchor releases and the wallet pillar takes over with whatever STRIP actually came out of the pool.
+
+LP in this pool earns fees and rebalances with the market. Your sWLP shares represent a claim on pool reserves that grows from accumulated trading fees, but also shifts as arbs trade against the pool. The STRIP you receive at unstake reflects both: fee accumulation in your favor, plus rebalancing that may have moved STRIP out of your share if STRIP appreciated.
+
+Three outcomes:
+
+- **STRIP roughly flat or down**: you exit with your committed STRIP plus accumulated fees. Wallet pillar picks this up at or above your anchor. Floor preserved.
+- **STRIP appreciated significantly**: the pool sold some of your STRIP into the rally as part of normal AMM rebalancing. You exit with less STRIP but more PT than you put in, plus fees. Wallet pillar picks up the actual STRIP, which may be below your anchor. Floor drops accordingly.
+- **STRIP depreciated significantly**: the pool absorbed STRIP into your share. You exit with more STRIP than you put in. Wallet pillar reflects the larger amount.
+
+Boost tracks STRIP exposure honestly. If your LP strategy results in a STRIP-heavy outcome, your boost reflects that. If it results in a PT-heavy outcome, your boost reflects the reduction. Holding the position keeps both the fee accumulation and the boost; exiting realizes whatever your strategy produced.
+
 ### Exposure Changes
 
 Anything that reduces your STRIP exposure across both forms drops your floor:
 
 - Selling STRIP
 - Transferring STRIP to another wallet, exchange, or contract
-- Unstaking sWLP
+- Unstaking sWLP into a STRIP-reduced position
 
 What doesn't reduce exposure:
 
 - Claiming rewards into your wallet. STRIP just moved from "earned" to "held"
 - Adding liquidity and staking the resulting sWLP. Wallet drops, LP anchor grows by the same STRIP amount
-- Pool rebalancing from arbs or other users' trades
-- STRIP price movements
+- Pool rebalancing while you remain staked
+- STRIP price movements while you remain staked
 
 ### Scope
 
 Boost is per-wallet. A wallet receiving STRIP from elsewhere starts at 1x and builds boost from its own activity. Boost does not transfer with STRIP.
 
-Wallets that share clear on-chain associations, such as a common funder, repeated transfers, or MEV co-occurrence, may be treated as a single cluster for boost purposes. This prevents splitting a position across two wallets to mine boost on one while selling from the other. Cluster decisions are conservative and reviewable.
-
-Boost is also per-deployment. Building max boost on Prime does not give you boost on Frontier, or vice versa. The two systems run independently.
+Boost is per-deployment. Building max boost on Prime does not give you boost on Frontier, or vice versa. The two systems run independently.
 
 ### Calculation
 
