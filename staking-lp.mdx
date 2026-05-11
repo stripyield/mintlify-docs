@@ -1,21 +1,49 @@
 ---
-title: "Staking & LP"
+title: "Staking vs LP"
 ---
 
-### Split
+### Emission Distribution
 
-Emissions split between PT single stakers and PT/STRIP liquidity providers. The split follows a 90-day glide:
+Emissions split between PT single stakers and PT/STRIP liquidity providers. The split follows a 60-day glide: 30 days flat at PT-dominant, then a 30-day transition to LP-dominant steady state.\
+\
+Days 0 to 30, emissions stay PT-dominant at 95/5. New depositors stake PT and climb boost from 5% to 100% over 60 days. The flat window protects the climb, so PT APR comes entirely from boost growth rather than racing against falling allocation. STRIP enters circulation through staking emissions during this phase.
+
+Days 30 to 60, the glide accelerates. PT allocation drops as LP allocation grows, reaching the LP-dominant 5/95 split by day 60. This window is when first-cohort users hit max boost and rotate to LP. PT staking APR falls, LP staking APR rises, and the math naturally drives the rotation.
+
+From day 60, steady state at 5/95. PT staking persists as the perpetual onboarding ramp for new depositors who want to build boost before LPing. LP carries the bulk of emissions, supporting the deep PT/STRIP pool that anchors STRIP price discovery and buyback execution.
+
+Boost applies on both sides and carries across. A user who builds boost staking PT during the first 30 days keeps that boost when they rotate to LP at day 30\+.
 
 | Day | LP | PT Staking |
 | :-- | :-- | :-- |
 | 0 | 5% | 95% |
-| 15 | 12% | 88% |
-| 30 | 28% | 72% |
-| 45 | 50% | 50% |
-| 60 | 72% | 28% |
-| 75 | 88% | 12% |
-| 90\+ | 95% | 5% |
-
-Days 0 to 30, STRIP primarily enters circulation through staking emissions, LP allocation stays small. Days 30 to 90, the glide accelerates as STRIP becomes widely held and users move into LP positions. From day 90, steady state at 95/5.
-
-Boost applies on both sides and carries across. A user who builds boost staking PT early keeps that boost when they move to LP later.
+| 2 | 5% | 95% |
+| 4 | 5% | 95% |
+| 6 | 5% | 95% |
+| 8 | 5% | 95% |
+| 10 | 5% | 95% |
+| 12 | 5% | 95% |
+| 14 | 5% | 95% |
+| 16 | 5% | 95% |
+| 18 | 5% | 95% |
+| 20 | 5% | 95% |
+| 22 | 5% | 95% |
+| 24 | 5% | 95% |
+| 26 | 5% | 95% |
+| 28 | 5% | 95% |
+| 30 | 5% | 95% |
+| 32 | 11% | 89% |
+| 34 | 17% | 83% |
+| 36 | 23% | 77% |
+| 38 | 29% | 71% |
+| 40 | 35% | 65% |
+| 42 | 41% | 59% |
+| 44 | 47% | 53% |
+| 46 | 53% | 47% |
+| 48 | 59% | 41% |
+| 50 | 65% | 35% |
+| 52 | 71% | 29% |
+| 54 | 77% | 23% |
+| 56 | 83% | 17% |
+| 58 | 89% | 11% |
+| 60\+ | 95% | 5% |
