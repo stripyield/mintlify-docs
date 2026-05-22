@@ -2,15 +2,23 @@
 title: "Staking vs LP"
 ---
 
-### Emission Distribution
+STRIP rewards three distinct activities, each serving a different audience.
 
-Emissions split between PT single stakers and PT/STRIP liquidity providers. The split follows a 60-day glide: 30 days flat at PT-dominant, then a 30-day transition to LP-dominant steady state.\
-\
-Days 0 to 30, emissions stay PT-dominant at 95/5. New depositors stake PT and climb boost from 5% to 100% over 60 days. The flat window protects the climb, so PT APR comes entirely from boost growth rather than racing against falling allocation. STRIP enters circulation through staking emissions during this phase.
+- PT staking is for users entering with yield-bearing assets who haven't acquired STRIP yet, or who want STRIP emissions without IL exposure. Receives the bulk of emissions during the first 30 days, then tapers as users rotate to LP. At steady state (5% of emissions), serves as the perpetual onboarding ramp for new depositors.
+- LP token staking is for users providing canonical 90/10 pool liquidity. Receives the largest emissions allocation at steady state (95%), plus 10% of all trading fees, plus boost.
+- stSTRIP receives 70% of all trading fees, paid in STRIP, plus boost. Lockless. Funded by trading volume.
 
-Days 30 to 60, the glide accelerates. PT allocation drops as LP allocation grows, reaching the LP-dominant 5/95 split by day 60. This window is when first-cohort users hit max boost and rotate to LP. PT staking APR falls, LP staking APR rises, and the math naturally drives the rotation.
+Boost applies across all three venues.
 
-From day 60, steady state at 5/95. PT staking persists as the perpetual onboarding ramp for new depositors who want to build boost before LPing. LP carries the bulk of emissions, supporting the deep PT/STRIP pool that anchors STRIP price discovery and buyback execution.
+### **Emission Distribution**
+
+Emissions split between PT single stakers and PT/STRIP liquidity providers. stSTRIP is funded separately by trading fees and is not part of the emissions glide. The split follows a 60-day glide: 30 days flat at PT-dominant, then a 30-day transition to LP-dominant steady state.
+
+Days 0 to 30, emissions stay PT-dominant at 95/5. New depositors stake PT and climb boost from 5% to 100% over 60 days. The flat window protects the climb, so PT allocation remains stable during this period. STRIP enters circulation through staking emissions during this phase.
+
+Days 30 to 60, the glide accelerates. PT allocation drops as LP allocation grows, reaching the LP-dominant 5/95 split by day 60. This window is when first-cohort users hit max boost. PT staking allocation falls, LP staking allocation rises.
+
+From day 60, steady state at 5/95. PT staking persists as the perpetual onboarding ramp for new depositors who want to build boost before LPing. LP carries the bulk of emissions, supporting the PT/STRIP pool that anchors STRIP buyback execution.
 
 Boost applies on both sides and carries across. A user who builds boost staking PT during the first 30 days keeps that boost when they rotate to LP at day 30\+.
 
