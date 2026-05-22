@@ -2,34 +2,16 @@
 title: "Fees"
 ---
 
-#### No Protocol Fees
-
 Strip does not charge a protocol fee on deposits, withdrawals, or yield. Every dollar of realized yield from a vault is split between compounding the principal base and buying back STRIP. Nothing is charged at the protocol level.
 
-The treasury earns only when the protocol generates economic activity. There is no flat fee, no management fee, no performance fee on yield.
+The treasury earns only when the protocol generates economic activity. There is no management fee and no performance fee on yield.
 
-#### LP Fee Split
+**Swap fees in Liquidity Pools**
 
-The PT/STRIP pools charge a fixed 0.3% swap fee on every trade. The hook splits that fee three ways:
+PT/STRIP liquidity pools charge a fixed 0.3% swap fee on every trade. The hook splits that fee three ways:
 
-- **50% to STRIP buyback and burn** — flows directly to the BuybackBurner, adding to the buying pressure already created by vault yield
-- **25% to LPs** — stays in pool reserves, accruing to sWLP holders as compensation for the asymmetric exposure of providing liquidity in a 90/10 weighted pool
-- **25% to the team treasury** — funds protocol operations and ongoing development
+- 70% to stSTRIP, distributed to staked STRIP holders, paid in STRIP.
+- 20% to team treasury, funding protocol operations and ongoing development.
+- 10% to LPs, staying in pool reserves and accruing to sWLP holders as additional compensation alongside STRIP emissions.
 
 The split is enforced by the hook on every swap. There is no manual claiming or governance distribution.
-
-#### Rationale
-
-The 50% buyback share means every trade in the pools reinforces the same flywheel that vault yield drives. STRIP scarcity grows from two independent sources: yield-driven buybacks (continuous, scales with TVL) and trade-driven buybacks (proportional to volume). A pool with deep liquidity and active trading compounds STRIP scarcity faster than yield alone could.
-
-The 25% LP share recognizes that even in a 90/10 pool, LPs carry some amount of impermanent loss exposure. The potential for IL is smaller compared to a 50/50 pool, but it isn't zero. A direct fee share gives LPs predictable compensation that doesn't depend on STRIP price action.
-
-The 25% treasury share is the only revenue Strip earns. It scales with pool activity, which means the team is paid when the protocol is being used and earns nothing when it isn't. This aligns the team with the same metric users care about: real economic activity through the system.
-
-#### Direct Pool Access
-
-Depositing through the PoolWrapper is optional. Anyone can interact with the underlying Uniswap pools directly and provide liquidity at any ratio they choose, in or out of the canonical 90/10 weight.
-
-Direct LPs receive their share of swap fees from the pool reserves like any other LP. They do not receive sWLP. They do not earn STRIP emissions, since emissions require staking sWLP in the StakingContract.
-
-The PoolWrapper exists to make the canonical liquidity provision path simple, fungible, and stakeable. Users who prefer their own weighting, their own range, or just want to avoid the wrapper entirely can do so without restriction.
