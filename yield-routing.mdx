@@ -2,26 +2,16 @@
 title: "Yield Routing"
 ---
 
-Strip does not create yield.
-
-It controls where realized yield goes.
+Strip does not create yield, it controls where realized yield goes.
 
 Supported collateral produces output over time. When that output is harvested, Strip routes it through a fixed split: one part into STRIP demand, one part back into the collateral base.
 
-Half of realized yield is used to buy and burn STRIP.
+Half of realized yield is used to buy and burn STRIP. This turns productive collateral into recurring demand for the token. Yield is no longer only a payout. It becomes buy pressure, then supply reduction.
 
-This turns productive collateral into recurring demand for the token. Yield is no longer only a payout. It becomes buy pressure, then supply reduction.
+The other half compounds. This keeps part of the output inside the system. The collateral base grows, future yield capacity increases, and the next cycle starts from a larger base.
 
-The other half compounds.
+Routing is what connects collateral to STRIP. Without routing, yield remains separate from the token. With routing, every supported asset becomes part of the same demand path. Different collateral types can produce different kinds of yield, but the destination is unified.
 
-This keeps part of the output inside the system. The collateral base grows, future yield capacity increases, and the next cycle starts from a larger base.
-
-Routing is what connects collateral to STRIP.
-
-Without routing, yield remains separate from the token. With routing, every supported asset becomes part of the same demand path. Different collateral types can produce different kinds of yield, but the destination is unified.
-
-STRIP is the asset that absorbs the routed output.
-
-The mechanism is deliberately direct: harvest yield, split yield, buy and burn STRIP, compound the rest.
+STRIP is the asset that absorbs the routed output. The mechanism is deliberately direct: harvest yield, split yield, buy and burn STRIP, compound the rest.
 
 Productive collateral creates the output. Yield routing gives that output a purpose.

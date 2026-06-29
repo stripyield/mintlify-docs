@@ -35,10 +35,10 @@
       "group": "Reference",
       "pages": [
         "fees-and-allocations",
-        "transparency-new",
-        "trust-assumptions-new",
-        "faq-new",
+        "transparency",
+        "trust-assumptions",
         "risks",
+        "faq",
         "glossary"
       ]
     }
