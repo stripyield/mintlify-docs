@@ -12,31 +12,34 @@
     "welcome",
     "prime-vs-frontier",
     {
-      "group": "Design",
+      "group": "Start Here",
       "pages": [
-        "system-architecture",
-        "token-design",
-        "game-theory"
+        "why-strip-exists",
+        "how-strip-works"
       ]
     },
     {
-      "group": "Incentives",
+      "group": "Mechanism Design",
       "pages": [
-        "emissions",
-        "staking-lp",
-        "lockless-boost",
-        "ststrip"
+        "system-architecture",
+        "yield-routing",
+        "principal-tokens",
+        "strip-token",
+        "supply-dynamics",
+        "pt-strip-liquidity",
+        "st-strip",
+        "lockless-boost"
       ]
     },
     {
       "group": "Reference",
       "pages": [
-        "fees",
-        "transparency",
-        "trust-assumptions",
-        "contract-addresses",
-        "contract-addresses-copied-1",
-        "faq"
+        "fees-and-allocations",
+        "transparency-new",
+        "trust-assumptions-new",
+        "faq-new",
+        "risks",
+        "glossary"
       ]
     }
   ]

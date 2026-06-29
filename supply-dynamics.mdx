@@ -1,0 +1,46 @@
+---
+title: "Supply Dynamics"
+---
+
+STRIP supply is shaped by two forces: Emissions distribute STRIP and buybacks remove STRIP.
+
+Both exist by design. Emissions allocate ownership to users who strengthen the system. Buyback and burn routes realized yield back into STRIP and removes supply from circulation.
+
+The important number is not emissions alone, it is net supply.
+
+If emissions are greater than burn, supply expands. If burn offsets emissions, supply stabilizes. If burn exceeds emissions, net supply contracts. \
+\
+STRIP emissions follow a fixed exponential decay. The schedule starts at 900,000 STRIP per day and decays at 0.001 per day, giving emissions a half-life of roughly 693 days. The schedule is set at deployment and cannot be changed.\
+\
+This is the supply path Strip is designed around:
+
+```text
+E(t) = E₀ × exp(-λ × t)
+
+E₀ = 900,000 STRIP per day
+
+λ = 0.001 per day
+```
+
+<Frame>
+  ![Schedule](/images/schedule.png)
+</Frame>
+
+Early emissions distribute STRIP to the users who build the system’s base: Principal Token stakers and PT/STRIP liquidity providers. These emissions are scheduled. They are not arbitrary. They create a known distribution path for participants competing to own the loop.
+
+Burn is not scheduled in the same way. It is driven by realized yield. As supported collateral generates output, Strip routes part of that output into STRIP buybacks. Bought STRIP is burned.
+
+In the distribution phase, emissions are the dominant supply force. STRIP is distributed to aligned participants while productive collateral and liquidity grow.
+
+In the crossover phase, routed yield becomes large enough to meaningfully offset emissions. STRIP is still being distributed, but it is also being consistently bought and removed.
+
+In the contraction phase, burn can become the stronger force. If routed yield exceeds new emissions, net supply decreases.
+
+The system does not rely on fixed scarcity from day one, it creates a path toward earned scarcity: productive collateral generates yield, yield creates STRIP demand, demand removes supply, and incentives direct ownership toward users who strengthen the loop.\
+\
+The supply path can be understood in four phases:
+
+- In the coordination phase, emissions distribute STRIP to early aligned participants and help establish the productive base.
+- In the competition phase, STRIP enters circulation and users compete across PT staking, PT/STRIP liquidity, and stSTRIP. Boost becomes more important because participants with similar capital can earn different reward shares depending on sustained alignment.
+- In the crossover phase, routed yield can begin to meaningfully offset new emissions. STRIP is still being distributed, but it is also being consistently bought and burned.
+- In the scarcity phase, emissions decline toward residual levels and burn can become the stronger force. If burn exceeds new emissions, net circulating supply contracts.

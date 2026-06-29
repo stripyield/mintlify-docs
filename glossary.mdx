@@ -1,0 +1,71 @@
+---
+title: "Glossary"
+---
+
+## STRIP
+
+The token at the center of the Strip loop. Realized yield routes into STRIP buyback and burn, while emissions distribute STRIP to users who strengthen the system.
+
+## stSTRIP
+
+The staking layer for STRIP. 70% of PT/STRIP swap fees route to stSTRIP and are distributed to staked STRIP holders, paid in STRIP.
+
+## Principal Token
+
+A token representing deposited value inside a StripVault. Principal Tokens are the user’s claim on principal. They are not a lockup, not a maturity product, and not a withdrawal queue.
+
+## StripVault
+
+A vault that accepts a supported yield-bearing asset, issues Principal Tokens, and applies the protocol’s yield routing rules.
+
+## Yield Routing
+
+The process that directs realized yield through Strip. Half compounds back into the vault. Half is used to buy and burn STRIP.
+
+## Buyback and Burn
+
+The mechanism that uses routed yield to acquire STRIP from the market and remove it from circulation.
+
+## Compounding Base
+
+The portion of realized yield that remains inside the vault, increasing the productive base that can generate future yield.
+
+## PT/STRIP Pool
+
+A liquidity pool pairing a vault’s Principal Token with STRIP. The pool creates liquidity between the principal claim and the token absorbing the system’s routed output.
+
+## PoolWrapper
+
+The wrapper contract for canonical PT/STRIP liquidity provision. It owns the canonical LP position and issues sWLP.
+
+## sWLP
+
+The fungible wrapper token received by users who provide canonical PT/STRIP liquidity through the PoolWrapper. Staked sWLP earns STRIP emissions and can receive Lockless Boost.
+
+## Emissions
+
+Scheduled STRIP distribution to aligned participants. Emissions follow a fixed decay curve and are allocated across vaults based on productivity.
+
+## APR × TVL
+
+The allocation formula used to route emissions across vaults. Vaults producing more yield per dollar of capital receive a larger share.
+
+## Lockless Boost
+
+The boost system for sustained alignment. Eligible positions start at 1x and grow over time, reaching a maximum of 20x after 60 days. If alignment breaks, the boost resets to 1x.
+
+## Alignment
+
+Sustained exposure to incentivized parts of the Strip system. Alignment can come from staking Principal Tokens, staking sWLP, or staking STRIP into stSTRIP.
+
+## BuybackBurner
+
+The contract responsible for routing yield and fee flows into STRIP buyback and burn.
+
+## Circulating Supply
+
+The amount of STRIP currently in circulation. STRIP has a fixed maximum supply, but circulating supply changes as emissions distribute tokens and buyback and burn removes them.
+
+## Net Circulating Supply
+
+The supply measure after accounting for both emissions and burn. If emissions exceed burn, circulating supply expands. If burn exceeds emissions, circulating supply contracts.

@@ -1,0 +1,109 @@
+---
+title: "FAQ new"
+---
+
+## What is Strip?
+
+Strip turns productive collateral into recurring STRIP demand.
+
+Users deposit supported yield-bearing assets and receive Principal Tokens representing deposited value. The principal remains liquid. The yield is routed through the system.
+
+Half of realized yield compounds back into the vault. Half is used to buy and burn STRIP.
+
+## What happens to my principal?
+
+Your principal is represented by Principal Tokens.
+
+Principal Tokens are your claim on notional deposited value. They are not a lockup, not a maturity product, and not a withdrawal queue. They can be held, staked, transferred, or supplied as liquidity.
+
+The principal claim stays with the user. The yield is what moves through Strip.
+
+## Am I giving up my yield?
+
+You are choosing where the yield goes.
+
+In a normal yield system, realized yield is paid directly to the depositor. In Strip, realized yield is routed into the protocol loop: half compounds back into the vault, and half buys and burns STRIP.
+
+In return, users compete for STRIP emissions through PT staking and PT/STRIP liquidity.
+
+## Where does STRIP demand come from?
+
+STRIP demand comes from routed yield and market activity.
+
+When vault yield is realized, half is used to buy and burn STRIP. When PT/STRIP pools generate swap fees, part of those fees also routes into STRIP-aligned flows. Productive collateral creates the output. Routing turns part of that output into STRIP demand.
+
+## Are deposits locked?
+
+No.
+
+Strip does not use lockups, withdrawal queues, or maturity dates. Users can exit through the vault mechanics attached to their Principal Tokens.
+
+Lockless Boost rewards sustained alignment, but it does not trap capital.
+
+## How does Lockless Boost work?
+
+Eligible positions start at 1x.
+
+As alignment continues, the boost multiplier increases over time. After 60 days of sustained alignment, the position reaches the maximum boost of 20x. If alignment breaks, the boost resets to 1x.
+
+The point is to reward continuity without forcing lockups.
+
+## What counts as alignment?
+
+Alignment means maintaining exposure in the parts of the system that receive incentives.
+
+That can include staking Principal Tokens, providing canonical PT/STRIP liquidity through sWLP, staking STRIP into stSTRIP or simply holding STRIP. Boost applies across incentive venues through one alignment clock per user.
+
+## How are emissions allocated?
+
+Emissions are allocated across vaults based on productivity.
+
+The system uses APR × TVL, so vaults producing more yield per dollar of capital receive a larger share. As vaults grow or yields move, allocation adjusts.
+
+Within each vault, emissions flow to the incentive venues attached to that vault, including PT staking and PT/STRIP liquidity.
+
+## What is PT/STRIP liquidity?
+
+Each vault has a corresponding PT/STRIP liquidity pool.
+
+The pool connects the principal side of Strip to the token side of Strip. Principal Tokens represent deposited value. STRIP is the asset that absorbs routed output. PT/STRIP liquidity creates a market between them.
+
+Canonical liquidity is provided through the PoolWrapper, which issues sWLP. Staked sWLP earns STRIP emissions and can receive Lockless Boost.
+
+## How do liquidity providers earn?
+
+Liquidity providers can earn through several paths.
+
+They receive the LP share of PT/STRIP swap fees through pool reserves. If they provide canonical liquidity through sWLP and stake it, they can also earn STRIP emissions and Lockless Boost.
+
+If they want to capture the larger fee flow routed to stSTRIP, they need to stake earned or acquired STRIP into stSTRIP.
+
+## What is stSTRIP?
+
+stSTRIP is the staking layer for STRIP.
+
+PT/STRIP pools charge a fixed 0.3% swap fee on every trade. 70% of that fee is routed to stSTRIP and distributed to staked STRIP holders. Fees collected in PT are converted to STRIP before distribution, so stSTRIP rewards are paid in STRIP.
+
+## Is STRIP supply fixed?
+
+Yes. STRIP has a fixed maximum supply.
+
+What changes over time is circulating supply.
+
+Emissions distribute STRIP from the fixed supply to aligned participants. Buyback and burn removes STRIP from circulation. The supply path is therefore shaped by two forces: scheduled emissions increasing circulation, and burn reducing it.
+
+The important number is net circulating supply. If emissions exceed burn, circulating supply expands. If burn offsets emissions, circulating supply stabilizes. If burn exceeds emissions, circulating supply contracts.
+
+## Can the team change the core rules?
+
+The core economic rules are fixed in code.
+
+The 50/50 yield split, emission decay curve, boost range, and Principal Token redemption mechanics cannot be changed without redeploying the protocol.
+
+Operational roles exist for routine execution and safety, but they do not custody user principal or rewrite the core economic structure.
+
+## What are the main risks?
+
+Strip has smart contract risk, collateral risk, liquidity risk, oracle and rate risk, keeper execution risk, incentive risk, and market risk.
+
+The protocol makes the economic flows visible, but visibility is not the same as certainty. Users should understand the underlying collateral, the vault mechanics, the liquidity pools, and the STRIP market before participating.

@@ -1,0 +1,51 @@
+---
+title: "Trust Assumptions new"
+---
+
+Strip fixes its core economic rules in code.
+
+The 50/50 yield split, the emission decay curve, the boost range, and the Principal Token redemption mechanics cannot be changed without redeploying the protocol. These are not governance parameters. They are part of the system’s operating structure.
+
+Principal Token vault deposits and withdrawals are user-controlled contract interactions. Admins do not custody user principal, approve individual deposits, gate withdrawals, or decide who can exit. Once a user holds Principal Tokens, the principal claim is theirs to redeem through the vault mechanics.
+
+The protocol does have privileged roles.
+
+Those roles exist for operation, safety, and routine execution. They do not rewrite the core economic rules, control user principal, or manually decide the movement of vault deposits and withdrawals.
+
+## Owner
+
+The owner is a multisig. Its address is listed under Contract Addresses.
+
+The owner can manage operator and signer permissions and configure supported operational settings.
+
+These powers are operational. They exist so the protocol can rotate permissions, maintain infrastructure, and respond to issues. They do not give the owner custody over user principal or control over Principal Token redemption.
+
+## Owner \+ Timelock
+
+The most sensitive parameter changes pass through a 24-hour timelock.
+
+This path is used for adding or removing emission pools, changing allocation point bounds, adjusting Principal Token rate-protection parameters, resetting the high-water mark, and approving allocation signers.
+
+The multisig proposes the change. Anyone can execute it after the delay. The point of the delay is visibility: sensitive changes sit onchain for a full day before they can take effect.
+
+## Keepers
+
+Two automated keepers handle routine execution.
+
+The boost keeper publishes Merkle roots to the BoostController. 
+
+The operator keeper handles regular system actions: triggering buybacks, burning STRIP accumulated from swap fees, redeeming yield into the BuybackBurner, running emissions distribution, and updating allocation points across pools.
+
+Allocation updates are rate-limited. A single update can change allocation points by at most 20%, no pool can receive more than 50%, and updates have a 1-hour cooldown. These limits are designed so that even a compromised keeper cannot sharply redirect emissions in one move.
+
+Both keepers can be revoked or replaced by the multisig.
+
+## Signer Redundancy
+
+Approved offchain signers provide a fallback path for allocation updates. They can submit signed allocation changes subject to the same rate limits as the keeper.
+
+Adding or removing approved signers requires a timelocked owner action.
+
+## Verification
+
+Every action across every privileged role emits an onchain event. The transparency dashboard surfaces these events in real time, so users can see changes when they happen.
