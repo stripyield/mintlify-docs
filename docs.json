@@ -10,7 +10,6 @@
 "navigation": {
   "pages": [
     "welcome",
-    "prime-vs-frontier",
     {
       "group": "Start Here",
       "pages": [
