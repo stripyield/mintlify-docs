@@ -1,16 +1,26 @@
 ---
 title: "Principal Tokens"
+description: "A liquid claim on principal, with the yield routed through the system."
 ---
 
-Strip separates principal from yield.
+When a user deposits supported collateral into Strip, they receive **Principal Tokens (PT)** representing their deposited value. The Principal Token is the user's claim on principal: nothing more, and nothing less.
 
-When a depositor deposits supported collateral into Strip, they receive Principal Tokens representing their deposited value. Each vault issues its own Principal Token. PTs are vault-specific and never pooled across different underlyings. The Principal Token is the user’s claim on the principal. It is not a lockup. It is not a maturity product. It is not a withdrawal queue.
+### What a Principal Token is
 
-Principal stays liquid, the collateral continues to generate yield inside the system. That yield is separated from the principal and routed through Strip. The user keeps exposure to notional deposited value through the Principal Token while the yield becomes the system’s input.
+- **A liquid claim.** Principal remains withdrawable through the vault. There is no maturity date, no expiry, and no withdrawal queue.
+- **Vault-specific.** Each vault issues its own Principal Token. PTs are never pooled across different underlyings, so a PT's risk profile is exactly the risk profile of its own collateral.
+- **Composable.** PTs can be held, transferred, staked for STRIP emissions, or supplied as PT/STRIP liquidity.
 
-This is the core distinction: Most yield systems ask users to deposit capital and wait. Strip gives the depositor a liquid claim on principal and routes the output of that capital into the STRIP loop.
+### What a Principal Token is not
 
-Principal Tokens can be held, staked, or supplied as liquidity. Staked PTs compete for STRIP emissions. PT/STRIP liquidity providers help deepen the market around deposited collateral and STRIP.
+- **Not a lockup.** Deposits can exit at any time via the vault mechanics.
+- **Not a maturity product.** There is no fixed term and nothing to roll over.
+- **Not a yield-bearing wrapper.** While the collateral continues to generate yield inside the system, that yield is separated from the principal and routed through Strip; it does not accrue to the PT.
 
-The principal claim remains intact. The yield does the work.\
-\
+### The core distinction
+
+Most yield systems ask users to deposit capital and wait for the payout. Strip inverts this: the depositor keeps a liquid claim on principal, and the *output* of that capital is routed into the STRIP loop: half to buyback and burn, half compounding the collateral base.
+
+In exchange for routing their yield, PT holders compete for STRIP emissions. Staked PTs earn emissions directly; PTs supplied as [PT/STRIP liquidity](/pt-strip-liquidity) deepen the market around deposited collateral and STRIP.
+
+The principal claim remains intact. The yield does the work.

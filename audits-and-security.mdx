@@ -1,0 +1,34 @@
+---
+title: "Audits & Security"
+description: "How the protocol is reviewed, and how to report vulnerabilities."
+---
+
+Strip treats security as an ongoing process, not a checkbox. The protocol's core economic rules are fixed in code, sensitive parameter changes pass through a 24-hour timelock, and keeper permissions are rate-limited onchain (see [Trust Assumptions](/trust-assumptions) for the full model). This page covers external review of the code itself.
+
+## Audits
+
+| Scope | Auditor | Date | Report |
+|---|---|---|---|
+| Core protocol (vaults, emissions, staking, boost) | `TBA` | `TBA` | `TBA` |
+| WeightedPoolHook + PoolWrapper (Uniswap v4 AMM) | `TBA` | `TBA` | `TBA` |
+| stSTRIP (FundedStakingContract) and fee routing | `TBA` | `TBA` | `TBA` |
+
+Final audit reports will be linked here in full. Audits reduce risk; they do not eliminate it. Read [Risks](/risks) before participating.
+
+## Internal review
+
+Beyond external audits, the codebase goes through continuous internal review: an extensive Foundry test suite, end-to-end integration tests that deploy the full protocol stack against a local chain and exercise the live keeper code, and repeated adversarial review rounds during development. Findings from these rounds are fixed before deployment and tracked in the repository.
+
+## Bug bounty
+
+`TBA`. Bounty scope, tiers, and submission process will be published here.
+
+In the meantime, suspected vulnerabilities can be reported privately to the team via `TBA`. Please do not disclose potential vulnerabilities publicly before the team has had a reasonable opportunity to investigate and remediate.
+
+## Verifying the protocol yourself
+
+- **Source code:** [github.com/stripyield](https://github.com/stripyield)
+- **Deployed addresses:** [Contract Addresses](/contract-addresses)
+- **Live protocol activity:** the [transparency dashboard](/transparency) surfaces every harvest, buyback, burn, emission allocation, and boost root in real time.
+
+Strip's position is simple: users should not have to trust claims they cannot check. The code is public, the addresses are canonical, and the protocol's output is observable onchain.

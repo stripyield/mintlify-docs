@@ -1,0 +1,42 @@
+---
+title: "Deposit & Withdraw"
+description: "Turn yield-bearing collateral into a liquid Principal Token position."
+---
+
+Depositing into Strip converts a supported yield-bearing asset into that vault's Principal Token. Your principal claim stays liquid the entire time: there is no lockup, no maturity, and no withdrawal queue.
+
+## Deposit
+
+<Steps>
+  <Step title="Open the app">
+    Go to [app.stripyield.com](https://app.stripyield.com) and connect your wallet.
+  </Step>
+  <Step title="Choose a vault">
+    Select the vault for the asset you want to deposit (for example, sUSDE). Each vault accepts one asset and issues its own Principal Token; PTs are never pooled across underlyings.
+  </Step>
+  <Step title="Approve and deposit">
+    Enter the amount, approve the token if prompted, and confirm the deposit. You receive Principal Tokens equal to the value of your deposit at entry.
+  </Step>
+  <Step title="Optional: stake in the same transaction">
+    The app can route your deposit through the DepositRouter, which deposits and stakes the resulting PTs atomically in one transaction. This is useful if your goal is earning emissions from day one.
+  </Step>
+</Steps>
+
+Once deposited, your collateral keeps producing yield inside the system. That yield is separated from your principal and routed by the protocol: half compounding the vault, half buying and burning STRIP. See [Yield Routing](/yield-routing).
+
+## Withdraw
+
+<Steps>
+  <Step title="Unstake if needed">
+    If your PTs are staked, unstake them first. Note that unstaking breaks alignment and resets your [Lockless Boost](/lockless-boost) to 1x.
+  </Step>
+  <Step title="Redeem">
+    In the vault view, enter the amount of PT to redeem and confirm. Redemption goes through the vault mechanics directly, with no admin approval and no queue.
+  </Step>
+</Steps>
+
+## Good to know
+
+- **Withdrawals are user-controlled.** Admins cannot gate, delay, or approve redemptions. See [Trust Assumptions](/trust-assumptions).
+- **PTs are transferable.** You can also exit by selling PT into the [PT/STRIP pool](/pt-strip-liquidity) instead of redeeming, subject to pool pricing and liquidity.
+- **Vault activity can pause on oracle anomalies.** Rate-protection bounds may temporarily pause deposits and withdrawals if rate data behaves incorrectly. See [Risks](/risks).

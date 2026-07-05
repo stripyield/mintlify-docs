@@ -1,0 +1,36 @@
+---
+title: "Claim Rewards"
+description: "How emissions accrue, how boost applies, and how claiming works."
+---
+
+STRIP emissions accrue continuously to staked PT and staked sWLP positions, bucketed into daily epochs. Each epoch's rewards are claimed with that epoch's boost: the multiplier you had when the rewards were earned, not the one you have when you claim.
+
+## Claim
+
+<Steps>
+  <Step title="Open your positions">
+    In the app, your claimable STRIP is shown per staking pool, along with the boost applied to each unclaimed epoch.
+  </Step>
+  <Step title="Claim">
+    Confirm the claim transaction. The app automatically fetches the boost proofs for each epoch you're claiming; no manual proof handling is required. You can claim multiple epochs in one transaction.
+  </Step>
+  <Step title="Receive STRIP">
+    STRIP is minted directly to your wallet at claim time. Claimed STRIP can be held, staked into [stSTRIP](/guides/stake-strip), or used for [PT/STRIP liquidity](/guides/provide-liquidity), all of which count as continued alignment.
+  </Step>
+</Steps>
+
+## How boost applies to claims
+
+Boost is computed offchain after each daily epoch closes and published onchain as an immutable Merkle root. When you claim, the proof attests the boost you held during each specific epoch:
+
+- **Epoch-locked.** Rewards earned in an epoch can only ever use that epoch's boost. Waiting to claim cannot retroactively improve past rewards.
+- **Verifiable.** Every published root appears on the [transparency dashboard](/transparency), so you can check that your claimed boost matches the protocol's attested data.
+
+## stSTRIP claims
+
+Claims from stSTRIP are simpler: no epochs, no proofs, no boost gating. A single claim pays your full pro-rata accrual of fee-funded STRIP.
+
+## Good to know
+
+- **Claiming doesn't break alignment.** Claiming rewards is not an exit; your boost clock continues as long as your aligned exposure is maintained.
+- **Unclaimed rewards are safe.** Rewards are allocated per epoch and wait for you; claiming later just batches more epochs into one transaction.

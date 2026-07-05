@@ -1,19 +1,39 @@
 ---
-title: "How Strip works"
+title: "How Strip Works"
+description: "From deposit to burn: the lifecycle of capital inside Strip."
 ---
 
-A supported yield-bearing asset enters the system. The depositor receives Principal Tokens representing the deposited value. Principal remains withdrawable. The collateral remains productive. The yield becomes the input.
+Strip is deliberately direct: keep principal liquid, route yield into STRIP demand, compound part of the output, and distribute incentives to the users who reinforce the system. This page walks the full lifecycle.
 
-When yield is realized, the system splits it by design. Half is used to buy and burn STRIP. Half compounds back into the collateral base.
+### 1. Deposit
 
-The first half creates recurring STRIP demand. Productive collateral becomes a source of buy pressure for the token. STRIP is accumulated and removed from circulation through buyback and burn.
+A supported yield-bearing asset enters a StripVault. The depositor receives **Principal Tokens (PT)** representing the deposited value. Principal remains withdrawable through the vault at any time. The collateral remains productive inside the system.
 
-The second half increases the productive base. More collateral remains inside the system, generating more yield for future cycles. Growth is not only distributed. It is retained.
+### 2. Yield is stripped
 
-This creates the core loop where productive collateral generates yield. Yield creates STRIP demand. Compounded collateral increases future yield. Incentives direct participation toward the parts of the system that strengthen the loop.
+As the collateral earns, the vault harvests the realized yield and separates it from principal. The depositor's claim on principal is untouched; the yield becomes the system's input.
 
-Principal Token holders can stake PTs to receive STRIP emissions. Liquidity providers can supply PT/STRIP liquidity to deepen the market around deposited collateral and STRIP. Both compete for incentives through sustained alignment.
+### 3. Yield is routed 50/50
 
-Strip does not rely on lockups to hold capital in place. Capital can leave. Boost multipliers reward the behavior of staying aligned, not the act of being trapped.
+Every harvest follows the same fixed split:
 
-The mechanism is direct: keep principal liquid, route yield into STRIP demand, compound part of the output, and distribute incentives to the users who reinforce the system.
+- **Buyback and burn.** Half of realized yield buys STRIP from the market and burns it. Productive collateral becomes a recurring source of buy pressure and supply reduction.
+- **Compounding.** Half is retained in the vault, growing the productive base so the next cycle harvests more yield from a larger foundation. Growth is not only distributed; it is retained.
+
+See [Yield Routing](/yield-routing) for the full mechanics.
+
+### 4. Participants compete for emissions
+
+STRIP emissions distribute ownership of the loop to the users who strengthen it:
+
+- **PT stakers** support the productive base and earn STRIP emissions.
+- **PT/STRIP liquidity providers** deepen the market between principal claims and STRIP, earning emissions through staked [sWLP](/pt-strip-liquidity).
+- **STRIP stakers** stake into [stSTRIP](/st-strip) to capture the protocol's share of swap fees.
+
+### 5. Alignment is rewarded, not enforced
+
+Strip does not rely on lockups to hold capital in place. Capital can leave at any time. [Lockless Boost](/lockless-boost) multipliers reward the behavior of staying aligned, not the state of being trapped. Sustained participants compete more efficiently for the same emissions; leaving resets the advantage, not the principal.
+
+### The loop, end to end
+
+Productive collateral generates yield → routed yield creates STRIP demand and burns supply → compounded yield enlarges the base → incentives direct participation back into the parts of the system that keep the loop turning.

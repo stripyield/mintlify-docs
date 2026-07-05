@@ -7,60 +7,72 @@
     "light": "#FE2B00",
     "dark": "#FE2B00"
   },
-"navigation": {
-  "pages": [
-    "welcome",
-    {
-      "group": "Start Here",
-      "pages": [
-        "why-strip-exists",
-        "how-strip-works"
-      ]
-    },
-    {
-      "group": "Mechanism Design",
-      "pages": [
-        "system-architecture",
-        "yield-routing",
-        "principal-tokens",
-        "strip-token",
-        "supply-dynamics",
-        "pt-strip-liquidity",
-        "st-strip",
-        "lockless-boost"
-      ]
-    },
-    {
-      "group": "Reference",
-      "pages": [
-        "fees-and-allocations",
-        "transparency",
-        "trust-assumptions",
-        "risks",
-        "faq"
-      ]
-    }
-  ]
-},
+  "navigation": {
+    "pages": [
+      "welcome",
+      {
+        "group": "Start Here",
+        "pages": [
+          "why-strip-exists",
+          "how-strip-works"
+        ]
+      },
+      {
+        "group": "Mechanism Design",
+        "pages": [
+          "system-architecture",
+          "yield-routing",
+          "principal-tokens",
+          "strip-token",
+          "supply-dynamics",
+          "pt-strip-liquidity",
+          "st-strip",
+          "lockless-boost"
+        ]
+      },
+      {
+        "group": "Guides",
+        "pages": [
+          "guides/deposit-and-withdraw",
+          "guides/stake-principal-tokens",
+          "guides/provide-liquidity",
+          "guides/stake-strip",
+          "guides/claim-rewards"
+        ]
+      },
+      {
+        "group": "Reference",
+        "pages": [
+          "fees-and-allocations",
+          "transparency",
+          "trust-assumptions",
+          "risks",
+          "contract-addresses",
+          "audits-and-security",
+          "faq"
+        ]
+      }
+    ]
+  },
   "navbar": {
     "links": [],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Launch App",
+      "href": "https://app.stripyield.com"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {

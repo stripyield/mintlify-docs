@@ -1,18 +1,30 @@
 ---
 title: "Welcome"
+description: "Strip turns productive collateral into recurring STRIP demand."
 ---
 
 ### Strip turns productive collateral into recurring STRIP demand.
 
-Productive collateral is the base layer of onchain capital. It earns while it sits. But most yield is treated as income, not coordination. It leaves the asset, leaves the protocol, and leaves no persistent bid behind.
+Productive collateral is the base layer of onchain capital. It earns while it sits. But most yield is treated as income, not coordination: it leaves the asset, leaves the protocol, and leaves no persistent bid behind.
 
-Strip turns that output into demand. Depositors place supported yield-bearing collateral into Strip and receive Principal Tokens representing their deposited value. Principal stays liquid. There are no expiries, lockups, or withdrawal queues. The yield is what moves.
+Strip changes the destination. Depositors place supported yield-bearing collateral into Strip and receive **Principal Tokens (PT)** representing their deposited value. Principal stays liquid: there are no expiries, no lockups, and no withdrawal queues. The yield is what moves.
 
-Realized yield is split by design. Half is routed into STRIP through buyback and burn. The other half compounds back into the collateral base, increasing the amount of yield the system can produce next cycle.
+### The core loop
 
-Productive collateral creates yield. Yield creates STRIP demand. Compounded collateral increases future yield. The loop repeats.
+Realized yield is split by a fixed rule:
 
-STRIP incentives allocate ownership of that loop. Principal Token holders and PT/STRIP liquidity providers compete for emissions by staying aligned with the system.
+- **50% buys and burns STRIP**, converting protocol output into recurring token demand and supply reduction.
+- **50% compounds back into the collateral base**, increasing the yield the system can produce next cycle.
 
-Alignment is measured by behavior, not lockups. Boost multipliers grow with sustained participation and reset when alignment breaks. Capital can leave. The advantage belongs to users who stay.\
-\
+Collateral creates yield. Yield creates STRIP demand. Compounded collateral increases future yield. The loop repeats, and STRIP emissions allocate ownership of it to the participants who keep it running.
+
+### Alignment without lockups
+
+Principal Token stakers and PT/STRIP liquidity providers compete for emissions. Their share is amplified by [Lockless Boost](/lockless-boost): multipliers that grow with sustained participation and reset the moment alignment breaks. Capital can always leave. The advantage belongs to users who stay.
+
+### Where to go next
+
+- [Why Strip Exists](/why-strip-exists): the thesis in two minutes.
+- [How Strip Works](/how-strip-works): the deposit-to-burn lifecycle.
+- [System Architecture](/system-architecture): every component and how they connect.
+- [Trust Assumptions](/trust-assumptions) and [Risks](/risks): what is fixed in code, what is not, and what can go wrong.

@@ -1,0 +1,55 @@
+---
+title: "Contract Addresses"
+description: "Canonical deployed addresses for the Strip Protocol."
+---
+
+The addresses below are the canonical Strip Protocol deployments. Always verify addresses against this page before interacting with contracts directly. Strip will never ask you to approve or send funds to an address not listed here.
+
+<Warning>
+Addresses will be published here at launch. Any address circulating before it appears on this page should be treated as unofficial.
+</Warning>
+
+## Core protocol (Arbitrum One)
+
+| Contract | Description | Address |
+|---|---|---|
+| STRIP Token | Protocol token (LayerZero OFT) | `TBA` |
+| EmissionsController | Emission schedule and pool allocation | `TBA` |
+| BoostController | Per-epoch boost verification | `TBA` |
+| BuybackBurner | Yield redemption, buyback, burn, and fee forwarding | `TBA` |
+| DepositRouter | Atomic deposit + stake routing | `TBA` |
+| RewardDistributor | Merkle-based reward distribution | `TBA` |
+
+## Vaults
+
+| Contract | Description | Address |
+|---|---|---|
+| pSUSDE PrincipalToken | Principal Token vault for sUSDE | `TBA` |
+| Rate Oracle (sUSDE) | Redemption-rate feed for pSUSDE | `TBA` |
+
+Additional vaults will be listed here as they launch.
+
+## Staking
+
+| Contract | Description | Address |
+|---|---|---|
+| pSUSDE StakingContract | Stake pSUSDE for STRIP emissions | `TBA` |
+| sWLP StakingContract | Stake sWLP (PT/STRIP LP) for STRIP emissions | `TBA` |
+| stSTRIP (FundedStakingContract) | Stake STRIP for swap-fee flow | `TBA` |
+
+## Liquidity
+
+| Contract | Description | Address |
+|---|---|---|
+| WeightedPoolHook | Uniswap v4 hook enforcing the 90/10 PT/STRIP curve | `TBA` |
+| PoolWrapper | Canonical LP position; issues sWLP | `TBA` |
+
+## Governance and operations
+
+| Role | Description | Address |
+|---|---|---|
+| Owner Multisig | Operational owner of protocol contracts | `TBA` |
+| Timelock | 24-hour delay for sensitive parameter changes | `TBA` |
+| Team Treasury | Receives the operations share of swap fees | `TBA` |
+
+For what each role can and cannot do, see [Trust Assumptions](/trust-assumptions). Every privileged action emits an onchain event surfaced on the [transparency dashboard](/transparency).

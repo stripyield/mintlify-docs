@@ -1,21 +1,38 @@
 ---
 title: "Fees & Allocations"
+description: "No protocol fee on yield. Swap fees are split by the hook, automatically."
 ---
 
-Strip does not charge a protocol fee on deposits, withdrawals, or harvested yield. Principal enters through StripVaults, Principal Tokens represent deposited value, and realized yield follows the protocol’s routing rule: half compounds back into the vault, and half is used to buy and burn STRIP.
+### No fees on deposits, withdrawals, or yield
 
-Yield is not taxed at the protocol level. It is routed. The treasury earns only when the system generates market activity. There is no management fee and no performance fee on yield. The protocol does not take a cut from the vault yield stream.
+Strip does not charge a protocol fee on deposits, withdrawals, or harvested yield. There is no management fee and no performance fee. Principal enters through StripVaults, Principal Tokens represent deposited value, and realized yield follows the fixed routing rule: half compounds back into the vault, half buys and burns STRIP.
 
-Swap fees are separate from harvested yield. PT/STRIP liquidity pools charge a fixed 0.3% swap fee on every trade, and the hook splits that fee inside the pool on each swap.
+Yield is not taxed at the protocol level; it is routed. The treasury earns only when the system generates market activity.
 
-- 70% routes to stSTRIP, where it is distributed to staked STRIP holders.
-- 20% routes to the team treasury, funding protocol operations and ongoing development.
-- 10% remains in pool reserves, accruing to liquidity providers.
+### Swap fees
 
-This creates two different income paths for liquidity providers. Their PT/STRIP liquidity earns the LP share of swap fees through pool reserves. Their staked sWLP position competes for STRIP emissions and Lockless Boost. The STRIP they earn can then be staked into stSTRIP to capture the larger fee flow routed to STRIP stakers.
+PT/STRIP pools charge a fixed **0.3% swap fee** on every trade. The v4 hook splits the fee inside the pool, on every swap, with no manual claiming and no governance distribution step:
 
-Liquidity earns STRIP. Staked STRIP captures protocol fee flow. That distinction matters. LPs are not automatically entitled to the 70% stSTRIP flow by providing liquidity alone. They capture it by turning earned STRIP into stSTRIP, adding another layer of alignment between liquidity provision, STRIP ownership, and protocol activity.
+| Share | Destination | Purpose |
+|---|---|---|
+| 70% | [stSTRIP](/st-strip) | Distributed to staked STRIP holders |
+| 20% | Team treasury | Protocol operations and ongoing development |
+| 10% | Pool reserves | Accrues to liquidity providers |
 
-The split is enforced by the hook. There is no manual claiming process for the protocol to decide later, and no governance distribution step. Fees are routed when activity happens.
+Fees are routed the moment activity happens. The split is enforced by the hook; there is nothing for the protocol to decide later.
 
-Strip separates the flows because they serve different jobs. Deposits create principal claims. Yield creates STRIP demand and collateral growth. Swap activity creates fees for STRIP stakers, liquidity providers and operations. Emissions allocate STRIP to users strengthening the system.
+### Two income paths for liquidity providers
+
+The split creates a deliberate distinction. LPs earn the 10% reserve share through their PT/STRIP liquidity, and their staked sWLP competes for STRIP emissions and [Lockless Boost](/lockless-boost). But LPs are **not** automatically entitled to the 70% stSTRIP flow by providing liquidity alone; they capture it by staking earned or acquired STRIP into stSTRIP.
+
+Liquidity earns STRIP. Staked STRIP captures protocol fee flow. This adds a layer of alignment between liquidity provision, STRIP ownership, and protocol activity.
+
+### Emissions allocation
+
+STRIP emissions are allocated across vaults by productivity: **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. Within each vault, emissions flow to that vault's incentive venues: PT staking and PT/STRIP liquidity.
+
+Allocation updates are bounded by onchain safeguards: a single update can move allocation points by at most 20%, no pool can exceed 50% of emissions, and updates have a one-hour cooldown. See [Trust Assumptions](/trust-assumptions).
+
+### The separation, summarized
+
+Each flow has one job. Deposits create principal claims. Yield creates STRIP demand and collateral growth. Swap activity creates fees for STRIP stakers, liquidity providers, and operations. Emissions allocate STRIP to the users strengthening the system.

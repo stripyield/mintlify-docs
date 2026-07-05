@@ -1,17 +1,26 @@
 ---
 title: "Yield Routing"
+description: "Strip does not create yield. It controls where realized yield goes."
 ---
 
-Strip does not create yield, it controls where realized yield goes.
+Supported collateral produces output over time. When that output is harvested, Strip routes it through a fixed split: one half into STRIP demand, one half back into the collateral base. The rule is set in code and applies identically to every vault.
 
-Supported collateral produces output over time. When that output is harvested, Strip routes it through a fixed split: one part into STRIP demand, one part back into the collateral base.
+### Half buys and burns STRIP
 
-Half of realized yield is used to buy and burn STRIP. This turns productive collateral into recurring demand for the token. Yield is no longer only a payout. It becomes buy pressure, then supply reduction.
+50% of realized yield is used to buy STRIP from the market and burn it. This turns productive collateral into recurring demand for the token: yield is no longer only a payout; it becomes buy pressure, then supply reduction.
 
-The other half compounds. This keeps part of the output inside the system. The collateral base grows, future yield capacity increases, and the next cycle starts from a larger base.
+The buyback is executed by the BuybackBurner, which redeems accumulated yield, swaps it to STRIP through whitelisted routes, and burns the result. Every execution is recorded onchain and surfaced on the [transparency dashboard](/transparency).
 
-Routing is what connects collateral to STRIP. Without routing, yield remains separate from the token. With routing, every supported asset becomes part of the same demand path. Different collateral types can produce different kinds of yield, but the destination is unified.
+### Half compounds
 
-STRIP is the asset that absorbs the routed output. The mechanism is deliberately direct: harvest yield, split yield, buy and burn STRIP, compound the rest.
+The other 50% is retained inside the vault. The collateral base grows, future yield capacity increases, and the next harvest starts from a larger foundation. This is the part of the loop that makes the demand recurring rather than one-off: a vault that compounds produces more routed output every cycle.
 
-Productive collateral creates the output. Yield routing gives that output a purpose.
+### Why the split is fixed
+
+Routing is what connects collateral to STRIP. A discretionary split would make the connection a governance decision; a fixed split makes it a property of the system. Different collateral types can produce different kinds of yield, but the destination is unified: every supported asset feeds the same demand path.
+
+The 50/50 rule cannot be changed without redeploying the protocol. See [Trust Assumptions](/trust-assumptions).
+
+### What routing runs on
+
+Strip runs on **realized** yield, not projected APR. A harvest only routes what the collateral actually produced. If underlying yields fall, routed output falls with them; see [Risks](/risks) for how yield risk propagates through the system.

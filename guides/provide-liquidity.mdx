@@ -1,0 +1,40 @@
+---
+title: "Provide Liquidity"
+description: "Supply canonical PT/STRIP liquidity through the PoolWrapper and stake sWLP."
+---
+
+PT/STRIP liquidity providers deepen the market between principal claims and STRIP. The incentivized path runs through the **PoolWrapper**, which issues **sWLP**, the fungible, stakeable LP token. Only wrapper liquidity earns STRIP emissions and boost.
+
+## Provide canonical liquidity
+
+<Steps>
+  <Step title="Hold both sides">
+    You'll deposit PT and STRIP proportional to the current pool ratio. The pool is weighted 90/10 in favor of PT. See [PT/STRIP Liquidity](/pt-strip-liquidity).
+  </Step>
+  <Step title="Deposit through the PoolWrapper">
+    In the app's liquidity view, enter your deposit. The wrapper takes both tokens at the prevailing ratio and mints sWLP representing your share of the canonical LP position.
+  </Step>
+  <Step title="Stake your sWLP">
+    Stake sWLP in the LP staking pool to earn STRIP emissions and become eligible for [Lockless Boost](/lockless-boost). Unstaked sWLP still represents your LP share and earns the LP portion of swap fees, but it does not earn emissions.
+  </Step>
+</Steps>
+
+## What LP positions earn
+
+| Income | Source | Requirement |
+|---|---|---|
+| LP share of swap fees | 10% of the 0.3% fee, accruing in pool reserves | Hold the LP position |
+| STRIP emissions + boost | Emission schedule | Stake sWLP |
+| stSTRIP fee flow | 70% of the fee | Stake earned STRIP into [stSTRIP](/guides/stake-strip) |
+
+## Exit
+
+Unstake your sWLP (this resets boost to 1x) and redeem it through the wrapper. sWLP redeems back into PT and STRIP at the prevailing pool ratio.
+
+## Direct LPs
+
+You can provide liquidity to the underlying Uniswap v4 pool directly, at any weighting you choose. Direct LPs earn their share of pool fees like any other LP, but receive no sWLP, no emissions, and no boost. If you want the incentivized path, use the wrapper.
+
+<Warning>
+LP positions carry two-sided market exposure, including impermanent loss. Read [Risks](/risks) before providing liquidity.
+</Warning>

@@ -1,17 +1,40 @@
 ---
 title: "Lockless Boost"
+description: "Time becomes advantage without capital becoming a hostage."
 ---
 
-Strip does not use lockups to force alignment. Lockups trap capital. They make commitment visible, but they also make exit artificial. Strip uses a different signal.
+Strip does not use lockups to force alignment. Lockups trap capital: they make commitment visible, but they also make exit artificial. Strip uses a different signal: **sustained participation**.
 
-Alignment is measured by sustained participation. Every new user starts at a 1x boost. As alignment continues, the multiplier increases over time. After 60 days of sustained alignment, the position reaches the maximum boost of 20x.
+### The mechanic
 
-Capital can always leave, however: when alignment breaks, the boost resets to 1x. A user can withdraw, unstake, or remove liquidity, but the accumulated multiplier does not follow them out. The system does not punish exit by locking capital. It rewards continuity by making time valuable.
+- Every eligible position starts at a **1x** boost.
+- As alignment continues, the multiplier grows over time.
+- After **60 days** of sustained alignment, the position reaches the maximum boost of **20x**.
+- If alignment breaks, the boost resets to **1x**.
 
-Boost applies to STRIP incentive distribution. A user with sustained alignment competes more efficiently for emissions than a user who enters briefly, extracts rewards, and leaves.
+Boost applies to STRIP incentive distribution. A user with sustained alignment competes far more efficiently for emissions than a user who enters briefly, extracts rewards, and leaves. Capital can always exit, but the accumulated multiplier does not follow it out.
 
-This creates a different incentive structure. Users are not rewarded for being unable to exit. They are rewarded for choosing not to. Liquidity remains free, but advantage compounds around behavior that stays aligned with the system.
+### What counts as alignment
 
-The mechanic is deliberately unforgiving. Alignment grows over time and resets instantly. The path to maximum boost is clear: stay aligned. The cost of breaking alignment is also clear: return to 1x.
+Alignment means maintaining exposure in the parts of the system that receive incentives:
 
-Lockless Boost turns time into advantage without turning capital into a hostage.
+- Staking Principal Tokens
+- Providing canonical PT/STRIP liquidity through staked sWLP
+- Staking STRIP into [stSTRIP](/st-strip)
+- Holding STRIP
+
+There is **one alignment clock per user**, applied across every venue where that user is exposed to STRIP. Moving STRIP between aligned positions, such as staking wallet STRIP into stSTRIP, does not break alignment.
+
+### Deliberately unforgiving
+
+The mechanic is simple on purpose. Alignment grows over time and resets instantly. The path to maximum boost is clear: stay aligned. The cost of breaking alignment is equally clear: return to 1x and start over.
+
+This creates a different incentive structure from lockups. Users are not rewarded for being *unable* to exit; they are rewarded for *choosing not to*. Liquidity stays free, and advantage compounds around behavior that stays aligned with the system.
+
+### Verification
+
+Boost is computed offchain from onchain exposure data and published onchain as a per-epoch Merkle root. Every published root is visible on the [transparency dashboard](/transparency), so users can verify that their claimed boost matches the data attested by the protocol.
+
+<Note>
+The 1x to 20x boost curve described here is the target Lockless Boost mechanic. During the initial rollout, boost is computed proportionally from total STRIP exposure; the full 60-day sustained-alignment curve activates with the boost keeper upgrade.
+</Note>

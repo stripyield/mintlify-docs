@@ -1,15 +1,36 @@
 ---
 title: "PT/STRIP Liquidity"
+description: "The market that connects principal claims to the token absorbing their yield."
 ---
 
-Principal Tokens make deposited collateral liquid. PT/STRIP liquidity makes that liquidity useful.
+Principal Tokens make deposited collateral liquid. PT/STRIP liquidity makes that liquidity useful. Each vault has a corresponding PT/STRIP pool that connects the principal side of Strip to the token side of Strip.
 
-When a depositor receives Principal Tokens, they hold a claim on deposited value. That claim can be held, staked, or supplied into a PT/STRIP pool. The pool connects the principal side of Strip to the token side of Strip.
+### Why this market matters
 
-This matters because Strip has two markets to strengthen: One market is the productive base: collateral enters, yield is harvested, and Principal Tokens represent the claim on deposited value. The other market is STRIP: yield is routed into buybacks, emissions are distributed to aligned participants, and supply is removed through burn.
+Strip has two markets to strengthen. One is the **productive base**: collateral enters, yield is harvested, and Principal Tokens represent the claim on deposited value. The other is **STRIP**: yield is routed into buybacks, emissions are distributed to aligned participants, and supply is removed through burn.
 
-Liquidity providers supply both sides of the loop. They deepen the market around Principal Tokens and STRIP, making entry and exit more efficient while helping the system price the relationship between deposited collateral and the token absorbing its yield.
+PT/STRIP liquidity providers supply both sides of the loop at once. They deepen the market around Principal Tokens and STRIP, make entry and exit more efficient, and help the system price the relationship between deposited collateral and the token absorbing its yield.
 
-A user who supplies PT/STRIP liquidity is not only depositing capital. They are supporting the market structure that allows the loop to operate with depth. Productive collateral creates yield. Routed yield creates STRIP demand. PT/STRIP liquidity connects the claim on principal to the asset that receives the output.\
-\
-sWLP is the ERC20 share token issued by the PoolWrapper for canonical PT/STRIP liquidity. It represents the LP position users receive after depositing into the wrapper. sWLP can be staked to earn STRIP emissions and receive Lockless Boost. It redeems back into PT and STRIP at the prevailing pool ratio.
+### The 90/10 pool
+
+Each pool is weighted 90/10 in favor of PT, enforced by a custom Uniswap v4 hook's curve math rather than active rebalancing. The heavy PT weighting anchors the market around principal value: the pool offers deep, low-slippage execution for STRIP holders buying into principal claims, which is the dominant flow the system is designed around.
+
+Every trade pays a fixed 0.3% swap fee, split by the hook between STRIP stakers, operations, and LP reserves. See [Fees & Allocations](/fees-and-allocations).
+
+### sWLP: canonical liquidity
+
+**sWLP** is the ERC-20 share token issued by the PoolWrapper for canonical PT/STRIP liquidity. Deposits through the wrapper are proportional to the current pool ratio, and sWLP redeems back into PT and STRIP at the prevailing ratio.
+
+sWLP is the incentivized path: staked sWLP earns STRIP emissions and is eligible for [Lockless Boost](/lockless-boost).
+
+### Direct LPs
+
+Users can still provide liquidity directly to the underlying Uniswap pool at any weighting they choose. Direct LPs earn their share of pool fees like any other LP, but they do not receive sWLP, do not earn STRIP emissions, and do not receive boost. Emissions are reserved for the canonical wrapper path.
+
+### How LPs earn
+
+| Path | Source | Requirement |
+|---|---|---|
+| LP share of swap fees | Pool reserves (10% of each fee) | Provide PT/STRIP liquidity |
+| STRIP emissions + boost | Emission schedule | Provide via PoolWrapper and stake sWLP |
+| stSTRIP fee flow | 70% of each swap fee | Stake earned or acquired STRIP into [stSTRIP](/st-strip) |

@@ -1,61 +1,40 @@
 ---
 title: "Transparency"
+description: "The accounting surface of the protocol."
 ---
 
-Strip publishes its operating data so anyone can verify what the protocol is doing, not only what the docs say it does. The live transparency dashboards at prime.stripyield.com/transparency and frontier.stripyield.com/transparency are the source of truth for protocol activity.
+Strip publishes its operating data so anyone can verify what the protocol is doing, not only what the docs say it does. The live transparency dashboards at [prime.stripyield.com/transparency](https://prime.stripyield.com/transparency) and [frontier.stripyield.com/transparency](https://frontier.stripyield.com/transparency) are the source of truth for protocol activity.
 
 The dashboard follows the same path as the system itself: collateral enters vaults, yield is stripped, yield is routed, STRIP is bought and burned, emissions are allocated, and boost data is published.
 
-## Yieldstripping Events
+### Yieldstripping events
 
-Every yield harvest is recorded as a yieldstripping event. Each entry shows the vault that harvested, the dollar value of yield stripped, the number of yield shares minted in exchange, the redemption rate at the time of the strip, and the transaction hash linking the event to a block explorer.
+Every yield harvest is recorded. Each entry shows the vault that harvested, the dollar value of yield stripped, the yield shares minted in exchange, the redemption rate at the time of the strip, and the transaction hash linking the event to a block explorer. This is the raw input to everything downstream: without realized yield, there is no routed output and no yield-driven buyback.
 
-This is the raw input to the rest of the system. Without realized yield, there is no routed vault output and no yield-driven buyback.
+### Yield routing
 
-## Yield Routing
+Shows where stripped yield went after harvest: half compounding into the vault as growth, half routing to buybacks. The two paths are meant to be read together: one increases future yield capacity, the other turns realized yield into STRIP demand and supply reduction.
 
-Yield routing shows where stripped yield went after harvest. Half compounds into the vault as growth, expanding the productive base. Half routes to buybacks, where it is used to acquire STRIP from the market and burn it.
+### Buyback & burn
 
-The two paths are meant to be read together. One side increases future yield capacity. The other side turns realized yield into STRIP demand and supply reduction.
+A log of every buyback executed by the protocol: execution path, STRIP burned, and yield shares consumed, with a contract link to the BuybackBurner where the same data can be verified onchain. This is where the core thesis becomes measurable: the burn log shows when routed demand actually reached the token.
 
-## Buyback & Burn
+### Total yield stripped
 
-The buyback and burn log records every buyback executed by the protocol. Each row shows the execution path, the amount of STRIP burned, and the yield shares consumed. The contract link points to the BuybackBurner address, where the same data can be verified onchain.
+The cumulative dollar value of all yield harvested across every vault: the headline measure of protocol output. TVL alone does not show what Strip is doing; stripped yield is the realized output that feeds compounding and buybacks.
 
-This is where the core thesis becomes measurable. Strip turns productive collateral into recurring STRIP demand, and the burn log shows when that demand actually reached the token.
+### Vault parameters
 
-## Total Yield Stripped
+The current operating state of each vault: status, total deposit value, PT supply, high-water-mark redemption rate, oracle address, and rate-protection bounds. These matter because PT pricing depends on the redemption rate: the high-water mark is used by the v4 hook to price PT in value space, and rate bounds help detect oracle anomalies and pause vault activity if needed.
 
-Total Yield Stripped is the cumulative dollar value of all yield harvested across every vault. It is the headline measure of protocol output.
+### Emission routing history and pool weights
 
-TVL alone does not show what Strip is doing. Deposited capital matters because it can produce yield, but stripped yield is the realized output that feeds compounding and buybacks.
+Emission routing history records every reallocation of STRIP emissions: when, how much, and at which block. Pool weights show the current allocation point distribution across staking pools: the operational view of how today's emissions are split between PT staking and PT/STRIP liquidity.
 
-## Vault Parameters
+### Boost snapshots
 
-Vault parameters show the current operating state of each vault: status, total deposit value, PT supply, high-water-mark redemption rate, oracle address, and rate-protection bounds.
+Boost is computed offchain and published onchain as a per-epoch Merkle root. The snapshot history records every published root; the status section shows the current epoch and any pending publications. Users can verify that their claimed boost matches the data attested by the protocol.
 
-These parameters matter because PT pricing depends on the redemption rate. The high-water mark is used by the v4 hook to price PT in value space, while rate bounds help detect oracle anomalies and pause vault activity if needed.
+---
 
-## Emission Routing History
-
-Emission routing history shows how STRIP emissions have been allocated over time. Each entry records when emissions were rerouted, the amount allocated, and the block at which the change took effect.
-
-Routing follows APR × TVL across vaults, so allocation changes as vaults grow or yields move. The history makes those changes visible instead of leaving them as an invisible incentive layer.
-
-## Pool Weights
-
-Pool weights show the current allocation point distribution across staking pools. This is the operational view of incentives: how today’s emissions are split between PT staking pools and PT/STRIP liquidity pools.
-
-The system rewards different forms of participation, but the dashboard shows exactly where emissions are going.
-
-## Boost Snapshots
-
-Boost is computed offchain and published onchain as a Merkle root. The snapshot history records every published epoch root, while the boost status section shows the current epoch and any pending root publications.
-
-This lets users verify that their claimed boost matches the boost data attested by the protocol. Lockless Boost depends on sustained alignment, and the transparency surface shows how that alignment is being accounted for.
-
-Transparency is not a marketing layer.
-
-It is the accounting surface of the protocol. Users should be able to see the productive base, the yield it produced, the STRIP it bought, the STRIP it burned, the emissions it distributed, and the boost data used to allocate rewards.
-
-Strip’s mechanism is only valuable if its output can be observed.
+Transparency is not a marketing layer. It is the accounting surface of the protocol. Users should be able to see the productive base, the yield it produced, the STRIP it bought, the STRIP it burned, the emissions it distributed, and the boost data used to allocate rewards. Strip's mechanism is only valuable if its output can be observed.
