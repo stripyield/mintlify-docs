@@ -13,7 +13,7 @@ Your alignment clock tracks one thing: your **sustained STRIP exposure**. Three 
 
 - STRIP held in your wallet
 - STRIP staked in [stSTRIP](/st-strip)
-- The STRIP inside your staked [sWLP](/pt-strip-liquidity) position
+- The STRIP inside your staked [sWLP](/pt-strip-liquidity) positions, summed across every vault's pool
 
 The clock records the lowest level of exposure you have sustained (your **floor**) and counts the consecutive days you have held it. Growing your exposure raises what your floor can become; dropping below your sustained floor resets the clock to 1x. Adding to positions never hurts you, and taking profits above your floor never hurts you; only reducing your sustained exposure resets you.
 
@@ -35,7 +35,7 @@ There is **one alignment clock per user**, and the multiplier it produces applie
 | Staking or unstaking Principal Tokens (boost-neutral: PT positions earn emissions but do not move the clock) | |
 
 <Warning>
-Assets held by third-party contracts are outside the boost system. If you deposit STRIP or sWLP into a lending market, bridge, or exchange, that exposure is no longer attributed to your address, and your clock treats it as a reduction. Integrations may be recognized in the future; until one is explicitly listed, assume it is not.
+Assets held by contracts outside the recognized venues do not count. If you deposit STRIP or sWLP into a lending market, bridge, or exchange, that exposure is no longer attributed to your address, and your clock treats it as a reduction. This includes the protocol-seeded STRIP/USDC convenience pool: it exists for routing and visibility, not alignment, and STRIP moved into it reads as a reduction. Integrations may be recognized in the future; until one is explicitly listed, assume it is not.
 </Warning>
 
 ### How boost is computed and enforced

@@ -3,7 +3,7 @@ title: "PT/STRIP Liquidity"
 description: "The market that connects principal claims to the token absorbing their yield."
 ---
 
-Principal Tokens make deposited collateral liquid. PT/STRIP liquidity makes that liquidity useful. Each vault has a corresponding PT/STRIP pool that connects the principal side of Strip to the token side of Strip.
+Principal Tokens make deposited collateral liquid. PT/STRIP liquidity makes that liquidity useful. Every vault has its own PT/STRIP pool connecting the principal side of Strip to the token side; the docs say PT/STRIP for simplicity, and everything on this page applies to each vault's pool.
 
 ### Why this market matters
 
@@ -19,13 +19,17 @@ Every trade pays a fixed 0.3% swap fee, split by the hook between STRIP stakers,
 
 ### sWLP: the only LP position
 
-**sWLP** is the ERC-20 share token issued by the PoolWrapper. All liquidity in the canonical pool flows through the wrapper: it is the sole address authorized to add or remove liquidity, enforced by the hook itself. There is no separate or "direct" LP position on this pool; sWLP **is** the LP position.
+Each pool has its own PoolWrapper, and each wrapper issues its own **sWLP**: the ERC-20 share token for that vault's pool. All liquidity in a canonical pool flows through its wrapper: the wrapper is the sole address authorized to add or remove liquidity, enforced by the hook itself. There is no separate or "direct" LP position on any canonical pool; sWLP **is** the LP position.
 
 This is a solvency boundary, not a toll. The hook maintains its own reserve accounting for the 90/10 curve, and the wrapper is the single, atomic path through which that accounting changes. One canonical position, fungible shares, no parallel liquidity that the pool's math cannot see.
 
-Deposits through the wrapper are proportional to the current pool ratio, and sWLP redeems back into PT and STRIP at the prevailing ratio. Staked sWLP earns STRIP emissions and is eligible for [Lockless Boost](/lockless-boost).
+Deposits through a wrapper are proportional to that pool's current ratio, and sWLP redeems back into its pool's PT and STRIP at the prevailing ratio. Staked sWLP earns STRIP emissions and is eligible for [Lockless Boost](/lockless-boost); exposure across every pool's staked sWLP counts toward the same single alignment clock.
 
-Anyone remains free to create independent PT/STRIP pools elsewhere (Uniswap is permissionless), but such pools are not canonical: they receive no emissions, do not feed the protocol fee split, and are not part of the system described in these docs.
+### Canonical pools and convenience venues
+
+The PT/STRIP pools are the canonical venues: hook-enforced 90/10 curves, the fee split above, emissions, and boost. Alongside them, the protocol seeds one small **STRIP/USDC convenience pool** at launch, funded by the treasury as unstaked protocol-owned liquidity. It exists for aggregator routing and price visibility: a stable-quoted pair gives indexers a clean USD reference and routers a common leg between the PT pools. It is deliberately kept outside the incentive system: no hook, no fee split, no emissions, and it does not count as an alignment venue for [Lockless Boost](/lockless-boost). The protocol never relies on it as a price source.
+
+Anyone remains free to create independent pools elsewhere (Uniswap is permissionless), but such pools are not canonical: they receive no emissions, do not feed the protocol fee split, and are not part of the system described in these docs.
 
 ### How LPs earn
 

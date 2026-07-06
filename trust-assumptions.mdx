@@ -19,24 +19,25 @@ The owner is a multisig. It can manage operator and signer permissions and confi
 
 The most sensitive parameter changes pass through a **24-hour timelock**:
 
-- Adding or removing emission pools
-- **Changing the emission split between staking pools**
+- **Adding or removing emission pools**
 - Adjusting Principal Token rate-protection parameters
 - Resetting the high-water mark
 - Approving allocation signers
 
 The multisig proposes the change; anyone can execute it after the delay. The point of the delay is visibility: sensitive changes sit onchain for a full day before they can take effect.
 
-The emission split deserves emphasis because it is the lever participants care about most. There are no hard caps on where the split can move; the [published policy](/launch-phases) governs where it *should* move, but no change can take effect without 24 hours of onchain notice. Flexibility in destination, zero flexibility in visibility.
+The pool registry is timelocked for a precise reason: it is the only place emissions could be redirected outside the system. A new pool is a new destination for minted STRIP, so no destination can be added without a full day of onchain notice.
+
+The **split between registered pools** is deliberately not timelocked. Steering emissions among registered venues is an operational action, executed immediately and logged onchain the moment it happens. The worst a wrong or malicious split change can do is misallocate rewards among PT staking and sWLP staking venues; it cannot move emissions anywhere else, it is publicly visible in the same block, and it is reversible just as fast. The [published policy](/launch-phases) governs where the split should sit; the event log shows where it does.
 
 ### Keepers
 
 Two automated keepers handle routine execution:
 
 - **The boost keeper** computes and publishes per-epoch boost data (see below).
-- **The operator keeper** handles regular system actions: triggering buybacks, burning STRIP, redeeming yield into the BuybackBurner, forwarding trading fees to stSTRIP, and running emissions distribution.
+- **The operator keeper** handles regular system actions: triggering buybacks, burning STRIP, redeeming yield into the BuybackBurner, forwarding trading fees to stSTRIP, running emissions distribution, and executing emission-split updates under the published policy.
 
-Keepers execute routine flows; they do not set the emission split, which is timelock-gated as described above. Both keepers can be revoked or replaced by the multisig.
+Keepers execute routine flows; they cannot add or remove pools, which is timelock-gated as described above. Both keepers can be revoked or replaced by the multisig.
 
 ### Boost computation
 
@@ -52,7 +53,7 @@ Every published root is visible on the [transparency dashboard](/transparency), 
 
 ### Signer redundancy
 
-Approved offchain signers provide a fallback path for emission-split updates, subject to the same timelock visibility. Adding or removing approved signers requires a timelocked owner action.
+Approved offchain signers provide a fallback path for emission-split updates if the operator keeper is unavailable. Adding or removing approved signers requires a timelocked owner action.
 
 ### Verification
 

@@ -3,13 +3,13 @@ title: "Provide Liquidity"
 description: "Supply canonical PT/STRIP liquidity through the PoolWrapper and stake sWLP."
 ---
 
-PT/STRIP liquidity providers deepen the market between principal claims and STRIP. All liquidity flows through the **PoolWrapper**, which issues **sWLP**, the fungible, stakeable LP token and the only LP position that exists on the canonical pool.
+PT/STRIP liquidity providers deepen the market between principal claims and STRIP. Every vault has its own PT/STRIP pool, and each pool's liquidity flows through that pool's **PoolWrapper**, which issues its own **sWLP**: the fungible, stakeable LP token and the only LP position that exists on that pool.
 
 ## Provide canonical liquidity
 
 <Steps>
-  <Step title="Hold both sides">
-    You'll deposit PT and STRIP proportional to the current pool ratio. The pool is weighted 90/10 in favor of PT. See [PT/STRIP Liquidity](/pt-strip-liquidity).
+  <Step title="Choose a pool and hold both sides">
+    Pick the vault whose pool you want to supply, then deposit that vault's PT and STRIP proportional to the current pool ratio. Every pool is weighted 90/10 in favor of PT. See [PT/STRIP Liquidity](/pt-strip-liquidity). Note that the STRIP/USDC convenience pool is not an emissions or boost venue; canonical liquidity means the PT/STRIP pools.
   </Step>
   <Step title="Deposit through the PoolWrapper">
     In the app's liquidity view, enter your deposit. The wrapper takes both tokens at the prevailing ratio and mints sWLP representing your share of the canonical LP position.

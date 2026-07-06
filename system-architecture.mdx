@@ -21,9 +21,9 @@ Every trade pays a fixed swap fee, split inside the hook: one portion remains in
 
 ### PoolWrapper and sWLP
 
-The PoolWrapper owns the pool's single canonical liquidity position and issues **sWLP**, the fungible ERC-20 share token LPs hold and stake to earn STRIP emissions and boost. Deposits through the wrapper are proportional to the current pool ratio.
+Each pool has its own PoolWrapper, which owns that pool's single canonical liquidity position and issues that pool's **sWLP**: the fungible ERC-20 share token LPs hold and stake to earn STRIP emissions and boost. Deposits through a wrapper are proportional to that pool's current ratio.
 
-**All liquidity flows through the wrapper.** The hook authorizes only the PoolWrapper to add or remove liquidity; sWLP is the only LP position that exists on the canonical pool. This is a solvency boundary: the hook keeps its own reserve accounting for the weighted curve, and gating liquidity through one atomic path guarantees that accounting always matches what the pool actually holds. Independent PT/STRIP pools can exist elsewhere, but they are not canonical, earn no emissions, and sit outside the protocol's fee routing.
+**All liquidity flows through the wrappers.** Each hook authorizes only its pool's wrapper to add or remove liquidity; sWLP is the only LP position that exists on any canonical pool. This is a solvency boundary: the hook keeps its own reserve accounting for the weighted curve, and gating liquidity through one atomic path guarantees that accounting always matches what the pool actually holds. Independent pools can exist elsewhere, but they are not canonical, earn no emissions, and sit outside the protocol's fee routing. The one protocol-seeded exception is a small STRIP/USDC convenience pool for aggregator routing and price visibility: plain pool, no hook, no fee split, no emissions. See [PT/STRIP Liquidity](/pt-strip-liquidity).
 
 ### BuybackBurner
 
@@ -31,6 +31,6 @@ The BuybackBurner is the destination for routed value. It redeems harvested yiel
 
 ### Emissions and Boost
 
-STRIP emissions are distributed across vaults by productivity: allocation follows **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. Within each vault, the split between PT staking and sWLP staking follows the published policy described in [Launch Phases](/launch-phases); every split change passes through a 24-hour timelock before it can take effect.
+STRIP emissions are allocated in two layers, and they flow only to staking venues, never to vaults themselves. First, each vault's productivity, **APR × TVL**, sets the combined share of emissions its two venues receive, so vaults producing more yield per dollar of capital command larger budgets. Second, that budget splits between the vault's PT staking pool and its sWLP staking pool following the published policy described in [Launch Phases](/launch-phases); the second layer never moves emissions between one vault's venues and another's. Split changes execute immediately and are logged onchain, while adding or removing pools is timelock-gated.
 
 [Lockless Boost](/lockless-boost) modifies distribution, not custody. Users can exit, liquidity can move, and capital is never trapped; boost only changes how efficiently sustained participants compete for STRIP incentives.

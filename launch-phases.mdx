@@ -42,38 +42,40 @@ Rather than inventing a price, the app shows your accrued STRIP directly and let
 
 ### Emissions during the Accrual Period
 
-During Phase 1, **100% of emissions flow to PT staking**. The sWLP liquidity venue is not yet registered as an emissions pool, for a simple reason: no participant holds STRIP yet, so no participant could provide PT/STRIP liquidity. Registering the LP venue before claims open would route emissions to a venue only the protocol itself could occupy.
+During Phase 1, **100% of emissions flow to PT staking**, with each launch vault's staking pool receiving the share set by the standard productivity rule (that vault's APR × TVL). The sWLP liquidity venues are not yet registered as emissions pools, for a simple reason: no participant holds STRIP yet, so no participant could provide PT/STRIP liquidity. Registering LP venues before claims open would route emissions to venues only the protocol itself could occupy.
 
 ### Phase 2: Claims open (day 30 onward)
 
 When `claimsEnabledTimestamp` passes:
 
-1. **The canonical PT/STRIP pool is seeded** and the [sWLP](/pt-strip-liquidity) venue is registered for emissions. STRIP has a market for the first time.
+1. **The canonical PT/STRIP pools are seeded**, one per vault, and their [sWLP](/pt-strip-liquidity) venues are registered for emissions. STRIP has a market for the first time. A small STRIP/USDC convenience pool is also seeded for aggregator routing and price visibility; it is not an emissions venue and does not count toward boost.
 2. **Claims open.** Accrued rewards are claimable per epoch, each at the multiplier it was earned with. See [Claim Rewards](/guides/claim-rewards).
 3. **Carried multipliers keep climbing.** Participants who claim and keep their STRIP aligned continue from their Accrual Period level toward 20x; newcomers start at 1x.
-4. **The emission split moves to half PT staking, half sWLP staking** for an absorption window of approximately 6-8 weeks, tuned further toward liquidity if depth builds slower than expected.
+4. **The emission split in each vault moves to half PT staking, half sWLP staking** for an absorption window of approximately 6-8 weeks, tuned further toward liquidity if depth builds slower than expected.
 
-The absorption window is deliberate. Freshly claimed STRIP needs a productive destination, and the highest-yield destination in this window is the pool itself: pairing claimed STRIP with PT into sWLP deepens the market, and every sWLP position is 90% PT, so liquidity provision is itself demand for principal claims. Heavy LP incentives at exactly this moment convert the claim unlock into depth formation, and carried multipliers reward the STRIP that stays.
+The absorption window is deliberate. Freshly claimed STRIP needs a productive destination, and the highest-yield destination in this window is the pools themselves: pairing claimed STRIP with any vault's PT into that pool's sWLP deepens the market, and every sWLP position is 90% PT, so liquidity provision is itself demand for principal claims. Heavy LP incentives at exactly this moment convert the claim unlock into depth formation, and carried multipliers reward the STRIP that stays.
 
 ### Phase 3: Steady state and the depth-target policy
 
-After the absorption window, the split between PT staking and sWLP staking follows a published policy rather than discretion:
+Allocation is layered, and the first layer never changes: **each vault's performance, APR × TVL, sets the share of emissions its venues receive**. Emissions never flow to a vault itself; the vault is the measuring stick. Its realized productivity determines the combined budget for its two venues, PT staking and sWLP staking, so the vaults earning the most yield for the system command the largest budgets. Everything below governs only the second layer: how that combined budget divides between the two venues. After the absorption window, that split follows a published policy rather than discretion:
 
 | Parameter | Value |
 |---|---|
-| Target metric | **Depth ratio**: STRIP held in canonical pool reserves ÷ circulating STRIP |
-| Target band | 10-15% |
-| Review cadence | Weekly |
-| Rule | Below the band → shift emissions toward sWLP staking. Above the band → shift toward PT staking. Inside the band → no change. |
+| Objective | The canonical pools can absorb the flow of newly claimed STRIP and provide stock liquidity at acceptable price impact |
+| Target | Aggregate STRIP reserves across all canonical pools at or above the **greater** of: roughly 21 days of realized claim flow, or 10% of circulating STRIP |
+| Rule | Materially below target → shift emissions toward sWLP staking. Materially above → shift toward PT staking. |
+| Review | Steered weekly; the calibration itself is reviewed as the market matures |
 
-The logic: both venues hold Principal Tokens (an sWLP position is 90% PT), so both grow demand for the productive base. What distinguishes them is that sWLP additionally supplies STRIP-side market depth. The policy allocates to liquidity exactly as much as depth requires, measured rather than guessed, and routes the remainder to PT staking, the lowest-friction venue for new capital entering the system. Over time this is expected to settle around roughly two-thirds staking, one-third liquidity, but the target is the depth ratio, not any fixed split.
+The target has two legs because the pool has two jobs that dominate at different times. Early, when emissions are at their highest and claims are the main source of sell flow, the pool's job is absorption, so reserves are sized against realized claim flow (STRIP actually claimed per day, measurable onchain). Later, as emissions decay and circulating supply grows, the pool's job becomes stock liquidity, and the floor of 10% of circulating takes over. The target is measured in aggregate: STRIP depth across all canonical pools together, against total circulating supply. But it is pursued strictly within the second layer: closing a depth gap means tilting individual vaults' internal splits toward their LP venues, never moving budget between vaults, which belongs to the productivity rule alone. Depth therefore concentrates naturally in the most productive vaults' pools, since they hold the largest budgets to tilt. That is the intended shape: concentration absorbs better than fragmentation, arbitrage plus aggregator routing keep STRIP pricing consistent across pools, and a pool that stays thin because its vault earns little is the signal working, not the policy failing. The numbers are the current calibration, not a constitutional constant: the objective is the commitment, and the calibration is expected to relax as the market matures. Every input is public: daily claimed STRIP, pool reserves, and circulating supply are all onchain and shown on the [transparency dashboard](/transparency).
 
-There are no hard caps on where the split can move; what is fixed is **how** it moves. Every emission-split change passes through the 24-hour timelock: proposed onchain, visible for a full day, then executable. The current weights and the full reallocation history are always on the [transparency dashboard](/transparency). See [Trust Assumptions](/trust-assumptions).
+The logic behind routing the remainder to staking: both venues hold Principal Tokens (an sWLP position is 90% PT), so both grow demand for the productive base. What distinguishes them is that sWLP additionally supplies STRIP-side market depth. The policy allocates to liquidity exactly as much as the depth objective requires, measured rather than guessed, and routes the rest to PT staking, the lowest-friction venue for new capital entering the system.
+
+There are no hard caps on where the split can move, and no delay on moving it: steering emissions among registered venues is an operational action, executed immediately and logged onchain the moment it happens. The worst a wrong move can do is misallocate among legitimate venues, and it is visible and reversible just as fast. What passes through the 24-hour timelock is changing **which pools exist**, because the pool registry is the only place emissions could be redirected outside the system. See [Trust Assumptions](/trust-assumptions).
 
 ### What you can verify yourself
 
 - **The claims date:** read `claimsEnabledTimestamp` on the EmissionsController.
 - **Your accrued rewards:** per-epoch accrual is onchain in the staking contracts.
 - **The emission schedule:** initialized once, immutable; see [Supply Dynamics](/supply-dynamics).
-- **The current emission split:** pool allocation points onchain, plus any pending timelocked change.
+- **The current emission split:** pool allocation points onchain, with every change logged as an event.
 - **The first burns:** the BuybackBurner's execution log, before and after claims open.

@@ -19,7 +19,7 @@ PT/STRIP pools charge a fixed **0.3% swap fee** on every trade. The v4 hook spli
 | 20% | Team treasury | Protocol operations and ongoing development |
 | 10% | Pool reserves | Accrues to liquidity providers |
 
-Fees are routed the moment activity happens. The split is enforced by the hook; there is nothing for the protocol to decide later.
+Fees are routed the moment activity happens. The split is enforced by the hook; there is nothing for the protocol to decide later. This split applies to the canonical PT/STRIP pools. The protocol-seeded STRIP/USDC convenience pool is a plain pool with no hook: its fees accrue to the position itself, and it receives no emissions. See [PT/STRIP Liquidity](/pt-strip-liquidity).
 
 ### Two income paths for liquidity providers
 
@@ -27,19 +27,19 @@ The split creates a deliberate distinction. LPs earn the 10% reserve share throu
 
 Liquidity earns STRIP. Staked STRIP captures protocol fee flow. This adds a layer of alignment between liquidity provision, STRIP ownership, and protocol activity.
 
-### Emissions allocation across vaults
+### The first layer: vault performance sets each budget
 
-STRIP emissions are allocated across vaults by productivity: **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. As vaults grow or yields move, allocation adjusts.
+Allocation is layered, and emissions only ever flow to staking venues, never to vaults themselves. The first layer is a measurement: each vault's productivity, **APR × TVL**, determines the combined share of every day's emissions that its two venues receive. Vaults producing more yield per dollar of capital command larger budgets for their venues. This rule comes first because it points incentives at the thing the whole system runs on: realized yield. As vaults grow or yields move, the budgets adjust with them.
 
-### Emissions allocation within a vault
+### The second layer: the venue split
 
-Within each vault, emissions are split between two venues: **PT staking** and **staked sWLP** (PT/STRIP liquidity). The split follows the published policy described in full on [Launch Phases](/launch-phases):
+The second layer divides each budget between the vault's two venues: **PT staking** and **staked sWLP** (PT/STRIP liquidity). This split never moves emissions between one vault's venues and another's; it only shapes how the budget that vault's performance earned is spent. The split follows the published policy described in full on [Launch Phases](/launch-phases):
 
 - **During the Accrual Period**, 100% flows to PT staking; the liquidity venue does not yet exist because no participant holds STRIP.
 - **In the absorption window after claims open**, the split moves to roughly half and half, tuned further toward liquidity if depth builds slower than expected.
-- **In steady state**, the split is governed by a depth target: emissions shift toward liquidity when STRIP-side pool depth falls below 10–15% of circulating STRIP, and back toward staking when depth exceeds it.
+- **In steady state**, the split is governed by a depth target: aggregate STRIP reserves across the canonical pools at or above the greater of roughly 21 days of realized claim flow, or 10% of circulating STRIP. When reserves fall materially below the target, individual vaults tilt their internal splits toward their LP venues; when reserves exceed it, splits tilt back toward staking. Vault-level budgets are never touched to chase depth.
 
-There are no hard caps on the split; the policy states where it should sit, and the depth target is the reason for every move. What is fixed is the process: **every emission-split change passes through the 24-hour timelock**, sitting visibly onchain for a full day before it can execute. Current weights, pending changes, and the full reallocation history are on the [transparency dashboard](/transparency). See [Trust Assumptions](/trust-assumptions).
+There are no hard caps on the split and no delay on moving it: steering among registered venues is an operational action, executed immediately and logged onchain. What is timelock-gated is the pool registry itself, adding or removing destinations for emissions, because that is the only place minted STRIP could be redirected outside the system. Current weights and the full reallocation history are on the [transparency dashboard](/transparency). See [Trust Assumptions](/trust-assumptions) and [Launch Phases](/launch-phases) for the full policy.
 
 ### The separation, summarized
 

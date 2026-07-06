@@ -43,23 +43,27 @@ Boost multiplies the STRIP emissions you claim, based on your sustained STRIP ex
 
 ## What counts toward my boost?
 
-Your STRIP exposure: STRIP held in your wallet, STRIP staked in stSTRIP, and the STRIP inside your staked sWLP position. Staking Principal Tokens earns you the emissions that boost multiplies, but the act of staking PT itself does not move the clock, and unclaimed rewards do not count either. Exposure starts when STRIP is claimed and kept. During the [Accrual Period](/launch-phases), before STRIP exists, the multiplier ramps from 1x toward 5x based on time staked, and the level you reach carries forward once claims open.
+Your STRIP exposure: STRIP held in your wallet, STRIP staked in stSTRIP, and the STRIP inside your staked sWLP positions across every vault's pool. Staking Principal Tokens earns you the emissions that boost multiplies, but the act of staking PT itself does not move the clock, and unclaimed rewards do not count either. Exposure starts when STRIP is claimed and kept. During the [Accrual Period](/launch-phases), before STRIP exists, the multiplier ramps from 1x toward 5x based on time staked, and the level you reach carries forward once claims open.
 
 ## What resets my boost?
 
-Dropping your sustained STRIP exposure below your floor: selling STRIP, transferring it to another wallet, unstaking sWLP or removing liquidity beyond your floor, or depositing STRIP or sWLP into third-party contracts (lending markets, bridges, exchanges) that the boost system does not recognize. Staking STRIP into stSTRIP does **not** reset your boost; neither does claiming rewards, and staking or unstaking Principal Tokens is boost-neutral. The full table is on [Lockless Boost](/lockless-boost).
+Dropping your sustained STRIP exposure below your floor: selling STRIP, transferring it to another wallet, unstaking sWLP or removing liquidity beyond your floor, or depositing STRIP or sWLP into contracts the boost system does not recognize (lending markets, bridges, exchanges, and the STRIP/USDC convenience pool, which is not an alignment venue). Staking STRIP into stSTRIP does **not** reset your boost; neither does claiming rewards, and staking or unstaking Principal Tokens is boost-neutral. The full table is on [Lockless Boost](/lockless-boost).
 
 ## How are emissions allocated?
 
-Across vaults by productivity: **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. Within each vault, the split between PT staking and PT/STRIP liquidity follows the published policy on [Launch Phases](/launch-phases): all-staking during the Accrual Period, roughly half-and-half while claimed STRIP builds market depth, then a depth-targeted split in steady state. Every split change passes through a 24-hour timelock before it can take effect.
+In two layers, and emissions only ever flow to staking venues, never to vaults themselves. First, each vault's performance, **APR × TVL**, measures the combined share of emissions its two venues receive, so the vaults earning the most yield for the system command the largest budgets. Then that budget splits between the vault's PT staking and PT/STRIP liquidity venues following the published policy on [Launch Phases](/launch-phases): all-staking during the Accrual Period, roughly half-and-half while claimed STRIP builds market depth, then a depth-targeted split in steady state. The second layer never moves emissions between one vault's venues and another's. Split changes among registered venues execute immediately and are logged onchain; adding or removing pools requires a 24-hour timelock.
 
 ## What is PT/STRIP liquidity?
 
-Each vault has a corresponding PT/STRIP pool connecting the principal side of Strip to the token side. All liquidity flows through the PoolWrapper, which issues sWLP, the only LP position on the canonical pool. Staked sWLP earns STRIP emissions and is eligible for boost. See [PT/STRIP Liquidity](/pt-strip-liquidity).
+Every vault has its own PT/STRIP pool connecting the principal side of Strip to the token side; we say PT/STRIP for simplicity. All liquidity in each pool flows through that pool's PoolWrapper, which issues its own sWLP, the only LP position on that pool. Staked sWLP earns STRIP emissions and is eligible for boost, with exposure summed across pools onto one alignment clock. See [PT/STRIP Liquidity](/pt-strip-liquidity).
 
 ## How do liquidity providers earn?
 
 Three paths: the LP share of swap fees (10%, through pool reserves), STRIP emissions and boost (by staking sWLP), and the 70% stSTRIP fee flow (by staking earned or acquired STRIP into stSTRIP). The stSTRIP flow is not automatic; it must be captured by staking STRIP.
+
+## Is there a STRIP/USDC pool?
+
+Yes, a small one, seeded by the treasury at launch as unstaked protocol-owned liquidity. It exists for aggregator routing and price visibility: a stable-quoted pair gives indexers a clean USD reference. It is deliberately outside the incentive system: no hook, no fee split, no emissions, and providing liquidity there does not count toward [Lockless Boost](/lockless-boost). The canonical, incentivized venues are the PT/STRIP pools.
 
 ## What is stSTRIP?
 
@@ -75,7 +79,7 @@ Not today. STRIP and Principal Tokens are built on a cross-chain token standard 
 
 ## Can the team change the core rules?
 
-No. The 50/50 yield split, the emission decay curve, the boost bounds and claim-time enforcement, and Principal Token redemption mechanics are fixed in code and cannot be changed without redeploying the protocol. Boost *values* are computed offchain under published rules and attested onchain per epoch; see [Trust Assumptions](/trust-assumptions) for exactly what that requires you to trust. Operational roles exist for routine execution and safety, pass sensitive changes, including every emission-split change, through a 24-hour timelock, and cannot custody user principal.
+No. The 50/50 yield split, the emission decay curve, the boost bounds and claim-time enforcement, and Principal Token redemption mechanics are fixed in code and cannot be changed without redeploying the protocol. Boost *values* are computed offchain under published rules and attested onchain per epoch; see [Trust Assumptions](/trust-assumptions) for exactly what that requires you to trust. Operational roles exist for routine execution and safety, pass sensitive changes such as adding or removing emission pools through a 24-hour timelock, and cannot custody user principal.
 
 ## What are the main risks?
 

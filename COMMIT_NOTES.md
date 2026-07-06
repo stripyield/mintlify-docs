@@ -31,10 +31,16 @@ Not a docs page (not in docs.json navigation); delete after reading or keep in r
 - Diff current risks.mdx and faq.mdx tails against these versions (source snippets may have been truncated)
 - supply-dynamics.mdx references /images/schedule.png; confirm the image exists
 
+## Multi-vault + STRIP/USDC notes (this round)
+- Multiple vaults at launch, each with its own PT/STRIP pool, PoolWrapper, and sWLP token; docs pluralized accordingly
+- Allocation hierarchy made explicit: emissions flow only to staking venues, never to vaults. Layer 1 = each vault's APR x TVL measures the combined budget its two venues receive (primary, untouchable); layer 2 = that budget's split between the vault's PT staking and sWLP venues. Depth target measured in aggregate but pursued only via layer-2 tilts, never by moving budget between vaults
+- Small STRIP/USDC convenience pool seeded by treasury at launch: no hook, no fee split, NO emissions, NOT an alignment venue, never used as an oracle
+
 ## Dev follow-ups (code must match docs)
 - initializeEmissions with E0 = 900,000/day, lambda = 0.001 (update README + deploy script from 1.35M/0.0015)
-- Remove maxPoolAllocBps / maxDeltaBps / minUpdateInterval; gate setAllocPoints behind onlyTimelock
+- Remove maxPoolAllocBps / maxDeltaBps / minUpdateInterval; setAllocPoints stays operator/signer-executable with no delay (pool add/remove remains timelocked)
 - Keep contract boost range at 0.05-1.0 (do NOT upgrade MAX_BOOST to 20e18); 1x-20x is presentation layer
 - Keeper: accrual epochs ramp 1x to 5x on time staked; whitelist floors as max(ramp, floor); carry-forward at claims-enable with the keep >= 50% of cumulative claimed STRIP rule; exclude unclaimed rewards from exposure (explicit spec line)
 - Set claimsEnabledTimestamp at deployment (launch + 30 days)
-- Do not register the sWLP pool in the EmissionsController until claims-enable
+- Do not register the sWLP pools in the EmissionsController until claims-enable; never register the STRIP/USDC pool
+- Keeper: sWLP exposure anchors sum across all pools onto one clock; STRIP/USDC LP positions must NOT count as exposure
