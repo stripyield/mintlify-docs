@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Strip",
   "colors": {
-    "primary": "#FE2B00",
-    "light": "#FE2B00",
-    "dark": "#FE2B00"
+    "primary": "#4C6FFF",
+    "light": "#4C6FFF",
+    "dark": "#4C6FFF"
   },
   "navigation": {
     "pages": [
@@ -91,6 +91,6 @@
     "strict": false
   },
   "thumbnails": {
-    "background": "/images/background1.png"
+    "background": "/images/og-image.png"
   }
 }
