@@ -82,7 +82,10 @@
       "discord": "https://discord.stripyield.com"
     }
   },
-  "logo": "/images/STRIP-LOGOTYPE-BEIGE.png",
+  "logo": {
+    "light": "/images/strip-logo-dark-2048w.png",
+    "dark": "/images/strip-logo-on-dark-2048w.png"
+  },
   "appearance": {
     "default": "system",
     "strict": false
