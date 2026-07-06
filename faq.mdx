@@ -19,15 +19,15 @@ The honest arithmetic: the position makes sense while your emissions, valued at 
 
 ## When can I claim my STRIP?
 
-Claims open at a fixed timestamp stored onchain, at the end of the 30-day [Accrual Period](/launch-phases). During the Accrual Period, emissions accrue to staked positions exactly as they always will, with a boost that ramps from 1x toward 5x based on time staked; only claiming waits. The date is set at deployment and verifiable by anyone: it is a schedule, not an announcement.
+Claims open at a fixed timestamp stored onchain, at the end of the 30-day [Genesis](/launch-phases). During Genesis, emissions accrue to staked positions exactly as they always will, with a boost that ramps from 1x toward 5x based on time staked; only claiming waits. The date is set at deployment and verifiable by anyone: it is a schedule, not an announcement.
 
 ## How is APR shown before STRIP has a price?
 
-During the Accrual Period there is no STRIP market, so there is no market price to compute an APR from. The app shows your accrued STRIP directly and lets you set an assumed fully-diluted valuation; the APR displayed is derived from your assumption and labeled as hypothetical. The accrued amounts underneath are onchain and identical for everyone regardless of assumption.
+During Genesis there is no STRIP market, so there is no market price to compute an APR from. The app shows your accrued STRIP directly and lets you set an assumed fully-diluted valuation; the APR displayed is derived from your assumption and labeled as hypothetical. The accrued amounts underneath are onchain and identical for everyone regardless of assumption.
 
-## Why does the Accrual Period ramp stop at 5x when boost goes to 20x?
+## Why does Genesis ramp stop at 5x when boost goes to 20x?
 
-Because the Accrual Period is already the best-paid month in the schedule, and the boost curve certifies something a tokenless month cannot show. Accrual participants take real risk, routing away all of their underlying yield for rewards that cannot yet be claimed or priced, and they are compensated through the richest per-dollar emission share the protocol will ever pay: the highest daily rate of the curve, divided among the smallest staked base. The 5x carry is a second payment on top, a head start no later participant gets. The path from 5x to 20x is reserved for demonstrated token holding, which can only be shown by keeping STRIP through real market exposure once it trades. See [Launch Phases](/launch-phases).
+Because Genesis is already the best-paid month in the schedule, and the boost curve certifies something a tokenless month cannot show. Genesis participants take real risk, routing away all of their underlying yield for rewards that cannot yet be claimed or priced, and they are compensated through the richest per-dollar emission share the protocol will ever pay: the highest daily rate of the curve, divided among the smallest staked base. The 5x carry is a second payment on top, a head start no later participant gets. The path from 5x to 20x is reserved for demonstrated token holding, which can only be shown by keeping STRIP through real market exposure once it trades. See [Launch Phases](/launch-phases).
 
 ## Where does STRIP demand come from?
 
@@ -43,7 +43,7 @@ Boost multiplies the STRIP emissions you claim, based on your sustained STRIP ex
 
 ## What counts toward my boost?
 
-Your STRIP exposure: STRIP held in your wallet, STRIP staked in stSTRIP, and the STRIP inside your staked sWLP positions across every vault's pool. Staking Principal Tokens earns you the emissions that boost multiplies, but the act of staking PT itself does not move the clock, and unclaimed rewards do not count either. Exposure starts when STRIP is claimed and kept. During the [Accrual Period](/launch-phases), before STRIP exists, the multiplier ramps from 1x toward 5x based on time staked, and the level you reach carries forward once claims open.
+Your STRIP exposure: STRIP held in your wallet, STRIP staked in stSTRIP, and the STRIP inside your staked sWLP positions across every vault's pool. Staking Principal Tokens earns you the emissions that boost multiplies, but the act of staking PT itself does not move the clock, and unclaimed rewards do not count either. Exposure starts when STRIP is claimed and kept. During [Genesis](/launch-phases), before STRIP exists, the multiplier ramps from 1x toward 5x based on time staked, and the level you reach carries forward once claims open.
 
 ## What resets my boost?
 
@@ -51,7 +51,7 @@ Dropping your sustained STRIP exposure below your floor: selling STRIP, transfer
 
 ## How are emissions allocated?
 
-In two layers, and emissions only ever flow to staking venues, never to vaults themselves. First, each vault's performance, **APR × TVL**, measures the combined share of emissions its two venues receive, so the vaults earning the most yield for the system command the largest budgets. Then that budget splits between the vault's PT staking and PT/STRIP liquidity venues following the published policy on [Launch Phases](/launch-phases): all-staking during the Accrual Period, roughly half-and-half while claimed STRIP builds market depth, then a depth-targeted split in steady state. The second layer never moves emissions between one vault's venues and another's. Split changes among registered venues execute immediately and are logged onchain; adding or removing pools requires a 24-hour timelock.
+In two layers. First, each vault's performance, **APR × TVL**, sets the combined share of emissions its two venues receive, so the vaults earning the most yield for the system command the largest budgets. Then that budget splits between the vault's PT staking and PT/STRIP liquidity venues following the published policy on [Launch Phases](/launch-phases): all-staking during Genesis, roughly half-and-half while claimed STRIP builds market depth, then a depth-targeted split in steady state. Split changes among registered venues execute immediately and are logged onchain; adding or removing pools requires a 24-hour timelock.
 
 ## What is PT/STRIP liquidity?
 
@@ -83,4 +83,4 @@ No. The 50/50 yield split, the emission decay curve, the boost bounds and claim-
 
 ## What are the main risks?
 
-Collateral risk, yield risk, liquidity risk, smart contract risk, oracle and rate risk, keeper execution risk, market and incentive risk, and Accrual Period risk. The protocol makes the economic flows visible, but visibility is not the same as certainty; read [Risks](/risks) in full before participating.
+Collateral risk, yield risk, liquidity risk, smart contract risk, oracle and rate risk, keeper execution risk, market and incentive risk, and Genesis risk. The protocol makes the economic flows visible, but visibility is not the same as certainty; read [Risks](/risks) in full before participating.

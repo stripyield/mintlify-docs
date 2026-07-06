@@ -1,13 +1,13 @@
 ---
 title: "Launch Phases"
-description: "How Strip launches: a 30-day Accrual Period, an onchain claims date, and a published emission-split policy."
+description: "How Strip launches: the 30-day Genesis window, an onchain claims date, and a published emission-split policy."
 ---
 
 Strip launches in phases. The rules for each phase are set onchain before the phase begins, so the launch is a schedule, not a series of announcements.
 
-### Phase 1: The Accrual Period (days 0-30)
+### Phase 1: Genesis (days 0-30)
 
-For the first **30 days**, the protocol is fully live except for one thing: STRIP claims.
+Genesis is the first **30 days**. The protocol is fully live except for one thing: STRIP claims.
 
 - **Deposits are open.** Vaults accept collateral, Principal Tokens are issued, and principal remains withdrawable at all times.
 - **Yield routing runs from day one.** Realized yield is harvested and split: half compounds into the vault, half accumulates for STRIP buybacks.
@@ -16,31 +16,31 @@ For the first **30 days**, the protocol is fully live except for one thing: STRI
 
 The claims date is not discretionary. It is stored onchain in the EmissionsController as `claimsEnabledTimestamp`, set at deployment, and displayed in the app and on [Contract Addresses](/contract-addresses). Anyone can verify it. When the timestamp passes, claiming works; no further action from the team is required to open it.
 
-### Boost during the Accrual Period
+### Boost during Genesis
 
-[Lockless Boost](/lockless-boost) normally measures sustained STRIP exposure, and during the Accrual Period no STRIP circulates yet. So the launch phase runs on the only alignment signal that exists before the token does: **time staked**.
+[Lockless Boost](/lockless-boost) normally measures sustained STRIP exposure, and during Genesis no STRIP circulates yet. So the launch phase runs on the only alignment signal that exists before the token does: **time staked**.
 
 Every participant's multiplier ramps from **1x toward 5x** across the 30 days. The ramp is applied per epoch and epoch-locked: rewards earned on day 3 carry day 3's multiplier permanently, rewards earned on day 29 carry day 29's. Joining earlier is worth more in both directions, a larger share of the highest emissions the schedule will ever pay, and a higher multiplier on every epoch of it.
 
-The multiplier **carries forward**. Whatever level you reach during the Accrual Period is your starting point when claims open, not a bonus that expires. From that moment the standard rules take over: claim your STRIP, keep it aligned, and your multiplier keeps climbing from where it stands toward the 20x maximum. Break alignment and it resets to 1x, the same rule that applies to everyone, forever. Early participation is never punished; only exit resets the clock.
+The multiplier **carries forward**. Whatever level you reach during Genesis is your starting point when claims open, not a bonus that expires. From that moment the standard rules take over: claim your STRIP, keep it aligned, and your multiplier keeps climbing from where it stands toward the 20x maximum. Break alignment and it resets to 1x, the same rule that applies to everyone, forever. Early participation is never punished; only exit resets the clock.
 
-**Why the ramp tops out at 5x and not higher.** On the standard 60-day ramp, 30 days would be worth roughly 10x, and Accrual Period participants take real risk: they route away their entire underlying yield for rewards that cannot yet be claimed or priced. That risk is compensated deliberately, through the richest channel the protocol has. The Accrual Period pays the highest daily emissions the schedule will ever produce, divided among the smallest staked base the protocol will ever have; no later month comes close on a per-dollar basis. Granting full clock credit on top would pay the same month twice.
+**Why the ramp tops out at 5x and not higher.** On the standard 60-day ramp, 30 days would be worth roughly 10x, and Genesis participants take real risk: they route away their entire underlying yield for rewards that cannot yet be claimed or priced. That risk is compensated deliberately, through the richest channel the protocol has. Genesis pays the highest daily emissions the schedule will ever produce, divided among the smallest staked base the protocol will ever have; no later month comes close on a per-dollar basis. Granting full clock credit on top would pay the same month twice.
 
-The boost curve also certifies something that accrual staking cannot yet demonstrate. A multiplier near 20x is the protocol's strongest statement about a participant: this address held STRIP through real market exposure and did not sell. Accrual staking demonstrates conviction in the protocol, and the 5x carry credits it, but only holding the token once it trades can demonstrate the behavior the upper half of the curve exists to certify. Accrual participants are compensated twice, once through the richest emission share of the schedule and once through the carried head start; the path from 5x to 20x is reserved for demonstrated token holding, the one thing a tokenless month cannot show.
+The boost curve also certifies something that accrual staking cannot yet demonstrate. A multiplier near 20x is the protocol's strongest statement about a participant: this address held STRIP through real market exposure and did not sell. Staking during Genesis demonstrates conviction in the protocol, and the 5x carry credits it, but only holding the token once it trades can demonstrate the behavior the upper half of the curve exists to certify. Genesis participants are compensated twice, once through the richest emission share of the schedule and once through the carried head start; the path from 5x to 20x is reserved for demonstrated token holding, the one thing a tokenless month cannot show.
 
-### Why an Accrual Period
+### Why Genesis
 
-The Accrual Period exists so that price discovery starts *after* the loop is running, not before.
+Genesis exists so that price discovery starts *after* the loop is running, not before.
 
 During the 30 days, the productive base builds and realized yield accumulates. The first buybacks are executed against that accumulated yield, so when STRIP becomes claimable and tradeable, the token launches with a burn history already visible on the [transparency dashboard](/transparency), and with a structural bid already in place. Emissions during this window also flow entirely to the participants building the base, rather than to trading activity that does not yet exist.
 
-### APR during the Accrual Period
+### APR during Genesis
 
-An APR display requires a STRIP price, and during the Accrual Period there is none: STRIP is not yet transferable and no market for it exists.
+An APR display requires a STRIP price, and during Genesis there is none: STRIP is not yet transferable and no market for it exists.
 
 Rather than inventing a price, the app shows your accrued STRIP directly and lets **you set an assumed fully-diluted valuation (FDV)**. The APR displayed is computed from your assumption, not from a market. It is a hypothetical, and it is labeled as one. Two users with different FDV assumptions will see different APRs on the same position; the accrued STRIP amounts underneath are identical and onchain.
 
-### Emissions during the Accrual Period
+### Emissions during Genesis
 
 During Phase 1, **100% of emissions flow to PT staking**, with each launch vault's staking pool receiving the share set by the standard productivity rule (that vault's APR × TVL). The sWLP liquidity venues are not yet registered as emissions pools, for a simple reason: no participant holds STRIP yet, so no participant could provide PT/STRIP liquidity. Registering LP venues before claims open would route emissions to venues only the protocol itself could occupy.
 
@@ -50,14 +50,14 @@ When `claimsEnabledTimestamp` passes:
 
 1. **The canonical PT/STRIP pools are seeded**, one per vault, and their [sWLP](/pt-strip-liquidity) venues are registered for emissions. STRIP has a market for the first time. A small STRIP/USDC convenience pool is also seeded for aggregator routing and price visibility; it is not an emissions venue and does not count toward boost.
 2. **Claims open.** Accrued rewards are claimable per epoch, each at the multiplier it was earned with. See [Claim Rewards](/guides/claim-rewards).
-3. **Carried multipliers keep climbing.** Participants who claim and keep their STRIP aligned continue from their Accrual Period level toward 20x; newcomers start at 1x.
+3. **Carried multipliers keep climbing.** Participants who claim and keep their STRIP aligned continue from their Genesis level toward 20x; newcomers start at 1x.
 4. **The emission split in each vault moves to half PT staking, half sWLP staking** for an absorption window of approximately 6-8 weeks, tuned further toward liquidity if depth builds slower than expected.
 
 The absorption window is deliberate. Freshly claimed STRIP needs a productive destination, and the highest-yield destination in this window is the pools themselves: pairing claimed STRIP with any vault's PT into that pool's sWLP deepens the market, and every sWLP position is 90% PT, so liquidity provision is itself demand for principal claims. Heavy LP incentives at exactly this moment convert the claim unlock into depth formation, and carried multipliers reward the STRIP that stays.
 
 ### Phase 3: Steady state and the depth-target policy
 
-Allocation is layered, and the first layer never changes: **each vault's performance, APR × TVL, sets the share of emissions its venues receive**. Emissions never flow to a vault itself; the vault is the measuring stick. Its realized productivity determines the combined budget for its two venues, PT staking and sWLP staking, so the vaults earning the most yield for the system command the largest budgets. Everything below governs only the second layer: how that combined budget divides between the two venues. After the absorption window, that split follows a published policy rather than discretion:
+Allocation is layered, and the first layer never changes: **each vault's performance, APR × TVL, sets the combined share of emissions its PT staking and sWLP venues receive**, so the vaults earning the most yield for the system command the largest budgets. Everything below governs only the second layer: how that combined budget divides between the two venues. After the absorption window, that split follows a published policy rather than discretion:
 
 | Parameter | Value |
 |---|---|

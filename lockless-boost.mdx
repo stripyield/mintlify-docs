@@ -50,11 +50,11 @@ Three properties follow:
 
 Boost values are computed offchain against these published rules and attested onchain; the contracts verify inclusion and cap the multiplier at the maximum. See [Trust Assumptions](/trust-assumptions) for exactly what this does and does not require you to trust.
 
-### The Accrual Period: time staked, carried forward
+### Genesis: time staked, carried forward
 
-During the [Accrual Period](/launch-phases), no STRIP circulates and unclaimed rewards do not count as exposure, so the clock runs on the one alignment signal that exists before the token does: time staked. Every participant's multiplier ramps from **1x toward 5x** across the 30 days, applied per epoch and epoch-locked like all boost.
+During [Genesis](/launch-phases), no STRIP circulates and unclaimed rewards do not count as exposure, so the clock runs on the one alignment signal that exists before the token does: time staked. Every participant's multiplier ramps from **1x toward 5x** across the 30 days, applied per epoch and epoch-locked like all boost.
 
-The level you reach **carries forward** when claims open. It becomes your starting multiplier, and from there the standard exposure rules take over: keep at least half of your cumulative claimed STRIP aligned (held, staked in stSTRIP, or inside staked sWLP) and your multiplier keeps climbing from where it stands toward 20x. Drop below that and the clock resets to 1x, the same rule as always. The Accrual Period gives early participants a head start; only breaking alignment takes it away.
+The level you reach **carries forward** when claims open. It becomes your starting multiplier, and from there the standard exposure rules take over: keep at least half of your cumulative claimed STRIP aligned (held, staked in stSTRIP, or inside staked sWLP) and your multiplier keeps climbing from where it stands toward 20x. Drop below that and the clock resets to 1x, the same rule as always. Genesis gives early participants a head start; only breaking alignment takes it away.
 
 ### The design intent
 

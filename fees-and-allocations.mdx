@@ -29,13 +29,13 @@ Liquidity earns STRIP. Staked STRIP captures protocol fee flow. This adds a laye
 
 ### The first layer: vault performance sets each budget
 
-Allocation is layered, and emissions only ever flow to staking venues, never to vaults themselves. The first layer is a measurement: each vault's productivity, **APR × TVL**, determines the combined share of every day's emissions that its two venues receive. Vaults producing more yield per dollar of capital command larger budgets for their venues. This rule comes first because it points incentives at the thing the whole system runs on: realized yield. As vaults grow or yields move, the budgets adjust with them.
+The first layer is a measurement: each vault's productivity, **APR × TVL**, determines the combined share of every day's emissions that its two venues receive. Vaults producing more yield per dollar of capital command larger budgets for their venues. This rule comes first because it points incentives at the thing the whole system runs on: realized yield. As vaults grow or yields move, the budgets adjust with them.
 
 ### The second layer: the venue split
 
 The second layer divides each budget between the vault's two venues: **PT staking** and **staked sWLP** (PT/STRIP liquidity). This split never moves emissions between one vault's venues and another's; it only shapes how the budget that vault's performance earned is spent. The split follows the published policy described in full on [Launch Phases](/launch-phases):
 
-- **During the Accrual Period**, 100% flows to PT staking; the liquidity venue does not yet exist because no participant holds STRIP.
+- **During Genesis**, 100% flows to PT staking; the liquidity venues do not yet exist because no participant holds STRIP.
 - **In the absorption window after claims open**, the split moves to roughly half and half, tuned further toward liquidity if depth builds slower than expected.
 - **In steady state**, the split is governed by a depth target: aggregate STRIP reserves across the canonical pools at or above the greater of roughly 21 days of realized claim flow, or 10% of circulating STRIP. When reserves fall materially below the target, individual vaults tilt their internal splits toward their LP venues; when reserves exceed it, splits tilt back toward staking. Vault-level budgets are never touched to chase depth.
 

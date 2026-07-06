@@ -15,13 +15,13 @@ Not a docs page (not in docs.json navigation); delete after reading or keep in r
 - system-architecture.mdx: wrapper-only liquidity, timelocked emission split
 - fees-and-allocations.mdx: venue split policy, no hard caps, 24h timelock on split changes
 - trust-assumptions.mdx: rate-limit table replaced by timelock, boost computation honesty section
-- risks.mdx: oracle liveness (withdrawals included), emergency pro-rata withdrawals, HWM reset, market/incentive risk, Accrual Period risk
+- risks.mdx: oracle liveness (withdrawals included), emergency pro-rata withdrawals, HWM reset, market/incentive risk, Genesis risk
 - principal-tokens.mdx: the depositor's trade (breakeven) section
-- faq.mdx: Accrual Period, APR before price, boost counts/resets, why 5x, cross-chain, timelocked split
+- faq.mdx: Genesis, APR before price, boost counts/resets, why 5x, cross-chain, timelocked split
 - guides/deposit-and-withdraw.mdx: PT unstaking boost-neutral, oracle note
 - guides/stake-principal-tokens.mdx: boost from STRIP exposure, unstaking boost-neutral
 - guides/provide-liquidity.mdx: wrapper-only, sWLP unstake exposure note
-- guides/claim-rewards.mdx: Accrual Period info box, fail-safe 1x baseline
+- guides/claim-rewards.mdx: Genesis info box, fail-safe 1x baseline
 
 ## Not changed (still current)
 - why-strip-exists.mdx, how-strip-works.mdx, yield-routing.mdx, st-strip.mdx,
