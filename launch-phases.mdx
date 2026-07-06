@@ -32,7 +32,7 @@ The boost curve also certifies something that accrual staking cannot yet demonst
 
 Genesis exists so that price discovery starts *after* the loop is running, not before.
 
-During the 30 days, the productive base builds and realized yield accumulates. The first buybacks are executed against that accumulated yield, so when STRIP becomes claimable and tradeable, the token launches with a burn history already visible on the [transparency dashboard](/transparency), and with a structural bid already in place. Emissions during this window also flow entirely to the participants building the base, rather than to trading activity that does not yet exist.
+During the 30 days, the productive base builds and realized yield accumulates. Buybacks cannot execute yet, because buying STRIP requires a market and none exists during Genesis. That is the point: the entire month of routed yield banks in the BuybackBurner as accumulated firepower. When trading opens, STRIP does not launch on a promise of future demand; it launches into a month of banked demand, deployed as the first buybacks and burns once the market exists, each one visible on the [transparency dashboard](/transparency). Emissions during this window also flow entirely to the participants building the base, rather than to trading activity that does not yet exist.
 
 ### APR during Genesis
 
@@ -78,4 +78,5 @@ There are no hard caps on where the split can move, and no delay on moving it: s
 - **Your accrued rewards:** per-epoch accrual is onchain in the staking contracts.
 - **The emission schedule:** initialized once, immutable; see [Supply Dynamics](/supply-dynamics).
 - **The current emission split:** pool allocation points onchain, with every change logged as an event.
-- **The first burns:** the BuybackBurner's execution log, before and after claims open.
+- **The banked yield:** the yield shares accumulating in the BuybackBurner during Genesis, onchain throughout.
+- **The first burns:** the BuybackBurner's execution log once trading opens, deploying the yield banked during Genesis.

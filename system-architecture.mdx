@@ -34,33 +34,3 @@ The BuybackBurner is the destination for routed value. It redeems harvested yiel
 STRIP emissions are allocated in two layers. First, each vault's productivity, **APR × TVL**, sets the combined share of emissions its two venues receive, so vaults producing more yield per dollar of capital command larger budgets. Second, that budget splits between the vault's PT staking pool and its sWLP staking pool following the published policy described in [Launch Phases](/launch-phases). Split changes execute immediately and are logged onchain, while adding or removing pools is timelock-gated.
 
 [Lockless Boost](/lockless-boost) modifies distribution, not custody. Users can exit, liquidity can move, and capital is never trapped; boost only changes how efficiently sustained participants compete for STRIP incentives.
-
-### StripVaults
-
-Each supported asset has its own StripVault. A vault accepts one yield-bearing asset, issues that asset's Principal Token, and applies the protocol's yield routing rules. The depositor receives PT equal to the value of the deposit at entry.
-
-The Principal Token is the user's claim. The yield is the system's input. As yield accrues, the vault harvests it and routes it through two fixed flows: half compounds back into the vault, and half routes to STRIP buyback and burn.
-
-### PT/STRIP pools
-
-Each vault is paired with its own PT/STRIP liquidity pool, weighted **90/10 in favor of PT**. The weighting anchors the market around principal value while creating liquidity between the deposited asset's claim and STRIP.
-
-The pool runs through a custom **Uniswap v4 hook**. The hook implements the weighted curve directly; Uniswap v4 acts as the routing shell, and the 90/10 weight is enforced by the curve math itself, not by active rebalancing.
-
-Every trade pays a fixed swap fee, split inside the hook: one portion remains in pool reserves for LPs, one portion routes to STRIP stakers, and one portion routes to operations. See [Fees & Allocations](/fees-and-allocations) for the exact split.
-
-### PoolWrapper and sWLP
-
-A separate PoolWrapper owns the canonical LP position and issues **sWLP**, the fungible ERC-20 share token LPs hold and stake to earn STRIP emissions and boost. Deposits through the wrapper are proportional to the current pool ratio.
-
-Direct LPs can still interact with the underlying Uniswap pool at any weighting they choose. They earn their share of pool fees like any other LP, but they do not receive sWLP and do not earn STRIP emissions unless they use the wrapper path.
-
-### BuybackBurner
-
-The BuybackBurner is the destination for routed value. It redeems harvested yield, swaps it to STRIP, and burns it. It also receives the protocol's share of swap fees and forwards them to [stSTRIP](/st-strip). Vault yield funds the burn; trading fees fund stakers.
-
-### Emissions and Boost
-
-STRIP emissions are distributed across vaults by productivity: allocation follows **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. As vaults grow or yields shift, allocation adjusts within rate-limited bounds.
-
-[Lockless Boost](/lockless-boost) modifies distribution, not custody. Users can exit, liquidity can move, and capital is never trapped; boost only changes how efficiently sustained participants compete for STRIP incentives.
