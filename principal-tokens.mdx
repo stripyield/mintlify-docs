@@ -3,7 +3,9 @@ title: "Principal Tokens"
 description: "A liquid claim on principal, with the yield routed through the system."
 ---
 
-When a user deposits supported collateral into Strip, they receive **Principal Tokens (PT)** representing their deposited value. The Principal Token is the user's claim on principal: nothing more, and nothing less.
+Strip separates principal from yield. \
+\
+When a depositor deposits supported collateral into Strip, they receive Principal Tokens representing their deposited value. Each vault issues its own Principal Token. PTs are vault-specific and never pooled across different underlyings. The Principal Token is the user’s claim on the principal. It is not a lockup. It is not a maturity product. It is not a withdrawal queue. When a user deposits supported collateral into Strip, they receive **Principal Tokens (PT)** representing their deposited value. The Principal Token is the user's claim on principal: nothing more, and nothing less.
 
 ### What a Principal Token is
 
@@ -19,16 +21,26 @@ When a user deposits supported collateral into Strip, they receive **Principal T
 
 ### The depositor's trade, stated plainly
 
-Holding a PT means routing 100% of your collateral's yield into the loop and competing for STRIP emissions instead. The arithmetic every depositor should run is simple: the position makes sense while the value of your emissions, at a STRIP price *you* consider realistic, exceeds the underlying yield you are forgoing.
+Holding a PT means routing 100% of your collateral's yield into the loop and competing for STRIP emissions instead. The arithmetic every depositor should run is simple: the position makes sense while the value of your emissions, at a STRIP price _you_ consider realistic, exceeds the underlying yield you are forgoing.
 
 Two things move that comparison in the depositor's favor: [Lockless Boost](/lockless-boost), which can multiply an aligned participant's share of emissions up to 20x over 60 days, and the decaying emission schedule, which concentrates distribution on early, sustained participants. One thing moves against it: STRIP's market price is not guaranteed. See [Risks](/risks) for how this trade behaves when markets move.
 
 Strip's position is that this trade should be legible, not obscured. The docs state it; the app shows accrued rewards directly; and during [Genesis](/launch-phases), when STRIP has no market price, the APR you see is computed from a valuation you set yourself.
 
+### The depositor's trade, stated plainly
+
+Holding a PT means routing 100% of your collateral's yield into the loop and competing for STRIP emissions instead. The arithmetic every depositor should run is simple: the position makes sense while the value of your emissions, at a STRIP price _you_ consider realistic, exceeds the underlying yield you are forgoing.
+
+Two things move that comparison in the depositor's favor: [Lockless Boost](/lockless-boost), which can multiply an aligned participant's share of emissions up to 20x over 60 days, and the decaying emission schedule, which concentrates distribution on early, sustained participants. One thing moves against it: STRIP's market price is not guaranteed. See [Risks](/risks) for how this trade behaves when markets move.
+
+Strip's position is that this trade should be legible, not obscured. The docs state it; the app shows accrued rewards directly; and during the [Accrual Period](/launch-phases), when STRIP has no market price, the APR you see is computed from a valuation you set yourself.
+
 ### The core distinction
 
-Most yield systems ask users to deposit capital and wait for the payout. Strip inverts this: the depositor keeps a liquid claim on principal, and the *output* of that capital is routed into the STRIP loop: half to buyback and burn, half compounding the collateral base.
+Most yield systems ask users to deposit capital and wait for the payout. Strip inverts this: the depositor keeps a liquid claim on principal, and the _output_ of that capital is routed into the STRIP loop: half to buyback and burn, half compounding the collateral base.
 
 In exchange for routing their yield, PT holders compete for STRIP emissions. Staked PTs earn emissions directly; PTs supplied as [PT/STRIP liquidity](/pt-strip-liquidity) deepen the market around deposited collateral and STRIP.
 
-The principal claim remains intact. The yield does the work.
+The principal claim remains intact. The yield does the work.\
+\
+ The principal claim remains intact. The yield does the work.
