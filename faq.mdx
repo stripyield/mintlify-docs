@@ -13,7 +13,21 @@ Your principal is represented by [Principal Tokens](/principal-tokens): a liquid
 
 ## Am I giving up my yield?
 
-You are choosing where the yield goes. In a normal yield system, realized yield is paid directly to the depositor. In Strip, it is routed into the protocol loop: half compounds the vault, half buys and burns STRIP. In return, you compete for STRIP emissions through PT staking and PT/STRIP liquidity, amplified by [Lockless Boost](/lockless-boost) if you stay aligned.
+You are choosing where the yield goes. In a normal yield system, realized yield is paid directly to the depositor. In Strip, it is routed into the protocol loop: half compounds the vault, half buys and burns STRIP. In return, you compete for STRIP emissions through PT staking and PT/STRIP liquidity, amplified by [Lockless Boost](/lockless-boost) if you build and sustain STRIP exposure.
+
+The honest arithmetic: the position makes sense while your emissions, valued at a STRIP price you consider realistic, exceed the underlying yield you are routing. See [Principal Tokens](/principal-tokens) for the trade stated plainly.
+
+## When can I claim my STRIP?
+
+Claims open at a fixed timestamp stored onchain, at the end of the 30-day [Accrual Period](/launch-phases). During the Accrual Period, emissions accrue to staked positions exactly as they always will, with a boost that ramps from 1x toward 5x based on time staked; only claiming waits. The date is set at deployment and verifiable by anyone: it is a schedule, not an announcement.
+
+## How is APR shown before STRIP has a price?
+
+During the Accrual Period there is no STRIP market, so there is no market price to compute an APR from. The app shows your accrued STRIP directly and lets you set an assumed fully-diluted valuation; the APR displayed is derived from your assumption and labeled as hypothetical. The accrued amounts underneath are onchain and identical for everyone regardless of assumption.
+
+## Why does the Accrual Period ramp stop at 5x when boost goes to 20x?
+
+Because the Accrual Period is already the best-paid month in the schedule, and the boost curve certifies something a tokenless month cannot show. Accrual participants take real risk, routing away all of their underlying yield for rewards that cannot yet be claimed or priced, and they are compensated through the richest per-dollar emission share the protocol will ever pay: the highest daily rate of the curve, divided among the smallest staked base. The 5x carry is a second payment on top, a head start no later participant gets. The path from 5x to 20x is reserved for demonstrated token holding, which can only be shown by keeping STRIP through real market exposure once it trades. See [Launch Phases](/launch-phases).
 
 ## Where does STRIP demand come from?
 
@@ -25,19 +39,23 @@ No. Strip uses no lockups, withdrawal queues, or maturity dates. Users exit thro
 
 ## How does Lockless Boost work?
 
-Eligible positions start at 1x. As alignment continues, the multiplier grows, reaching the maximum of 20x after 60 days of sustained alignment. If alignment breaks, the boost resets to 1x. The point is to reward continuity without forcing lockups; see [Lockless Boost](/lockless-boost).
+Boost multiplies the STRIP emissions you claim, based on your sustained STRIP exposure. Everyone starts at 1x; sustained exposure grows the multiplier to a maximum of 20x after 60 days. Dropping below your sustained exposure floor resets it to 1x. The point is to reward continuity without forcing lockups; see [Lockless Boost](/lockless-boost).
 
-## What counts as alignment?
+## What counts toward my boost?
 
-Maintaining exposure in the parts of the system that receive incentives: staking Principal Tokens, providing canonical PT/STRIP liquidity through sWLP, staking STRIP into stSTRIP, or simply holding STRIP. There is one alignment clock per user, applied across every incentive venue.
+Your STRIP exposure: STRIP held in your wallet, STRIP staked in stSTRIP, and the STRIP inside your staked sWLP position. Staking Principal Tokens earns you the emissions that boost multiplies, but the act of staking PT itself does not move the clock, and unclaimed rewards do not count either. Exposure starts when STRIP is claimed and kept. During the [Accrual Period](/launch-phases), before STRIP exists, the multiplier ramps from 1x toward 5x based on time staked, and the level you reach carries forward once claims open.
+
+## What resets my boost?
+
+Dropping your sustained STRIP exposure below your floor: selling STRIP, transferring it to another wallet, unstaking sWLP or removing liquidity beyond your floor, or depositing STRIP or sWLP into third-party contracts (lending markets, bridges, exchanges) that the boost system does not recognize. Staking STRIP into stSTRIP does **not** reset your boost; neither does claiming rewards, and staking or unstaking Principal Tokens is boost-neutral. The full table is on [Lockless Boost](/lockless-boost).
 
 ## How are emissions allocated?
 
-Across vaults by productivity: **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. Within each vault, emissions flow to that vault's incentive venues: PT staking and PT/STRIP liquidity. Allocation updates are rate-limited onchain.
+Across vaults by productivity: **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. Within each vault, the split between PT staking and PT/STRIP liquidity follows the published policy on [Launch Phases](/launch-phases): all-staking during the Accrual Period, roughly half-and-half while claimed STRIP builds market depth, then a depth-targeted split in steady state. Every split change passes through a 24-hour timelock before it can take effect.
 
 ## What is PT/STRIP liquidity?
 
-Each vault has a corresponding PT/STRIP pool connecting the principal side of Strip to the token side. Canonical liquidity is provided through the PoolWrapper, which issues sWLP; staked sWLP earns STRIP emissions and is eligible for boost. See [PT/STRIP Liquidity](/pt-strip-liquidity).
+Each vault has a corresponding PT/STRIP pool connecting the principal side of Strip to the token side. All liquidity flows through the PoolWrapper, which issues sWLP, the only LP position on the canonical pool. Staked sWLP earns STRIP emissions and is eligible for boost. See [PT/STRIP Liquidity](/pt-strip-liquidity).
 
 ## How do liquidity providers earn?
 
@@ -49,12 +67,16 @@ The staking layer for STRIP. PT/STRIP pools charge a fixed 0.3% swap fee, and 70
 
 ## Is STRIP supply fixed?
 
-The maximum supply is fixed at 1,000,000,000 STRIP. What changes over time is circulating supply: scheduled emissions increase it, and buyback-and-burn reduces it. The important number is net circulating supply; see [Supply Dynamics](/supply-dynamics).
+The maximum supply is fixed at 1,000,000,000 STRIP. What changes over time is circulating supply: scheduled emissions increase it, and buyback-and-burn reduces it. Realized emissions can only ever be at or below the schedule, because claims are scaled by boost and the difference is never minted. The important number is net circulating supply; see [Supply Dynamics](/supply-dynamics).
+
+## Is Strip cross-chain?
+
+Not today. STRIP and Principal Tokens are built on a cross-chain token standard (LayerZero OFT) so that future multi-chain deployment is possible, but no bridging is live and there are currently no active cross-chain plans. The protocol operates on Arbitrum One.
 
 ## Can the team change the core rules?
 
-No. The 50/50 yield split, the emission decay curve, the boost range, and Principal Token redemption mechanics are fixed in code and cannot be changed without redeploying the protocol. Operational roles exist for routine execution and safety, pass sensitive changes through a 24-hour timelock, and cannot custody user principal. See [Trust Assumptions](/trust-assumptions).
+No. The 50/50 yield split, the emission decay curve, the boost bounds and claim-time enforcement, and Principal Token redemption mechanics are fixed in code and cannot be changed without redeploying the protocol. Boost *values* are computed offchain under published rules and attested onchain per epoch; see [Trust Assumptions](/trust-assumptions) for exactly what that requires you to trust. Operational roles exist for routine execution and safety, pass sensitive changes, including every emission-split change, through a 24-hour timelock, and cannot custody user principal.
 
 ## What are the main risks?
 
-Collateral risk, yield risk, liquidity risk, smart contract risk, oracle and rate risk, keeper execution risk, and market risk. The protocol makes the economic flows visible, but visibility is not the same as certainty; read [Risks](/risks) in full before participating.
+Collateral risk, yield risk, liquidity risk, smart contract risk, oracle and rate risk, keeper execution risk, market and incentive risk, and Accrual Period risk. The protocol makes the economic flows visible, but visibility is not the same as certainty; read [Risks](/risks) in full before participating.

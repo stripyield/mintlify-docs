@@ -15,7 +15,7 @@ Strip depends on realized yield. Yield can rise, fall, pause, or disappear. A va
 
 ### Liquidity risk
 
-PT/STRIP liquidity can deepen or thin over time. Thin liquidity means worse execution, higher slippage, and more volatile pricing. Liquidity providers take exposure to both sides of the pool and may experience impermanent loss, price movement, or reduced fee income if volume is low. The 90/10 structure is designed to anchor liquidity around principal value, but it does not remove market risk.
+PT/STRIP liquidity can deepen or thin over time. Thin liquidity means worse execution, higher slippage, and more volatile pricing. Liquidity providers take exposure to both sides of the pool and may experience impermanent loss, price movement, or reduced fee income if volume is low. The 90/10 structure is designed to anchor liquidity around principal value, but it does not remove market risk, and the STRIP side of the pool is by design the thinner side, so STRIP price is more sensitive to flow than PT.
 
 ### Smart contract risk
 
@@ -23,16 +23,22 @@ Strip relies on vault contracts, Principal Tokens, the routing layer, the Buybac
 
 ### Oracle and rate risk
 
-Principal Token pricing depends on redemption mechanics, vault accounting, and rate data. The system uses rate-protection bounds and high-water-mark pricing to reduce the impact of temporary distortions, but pricing still depends on accurate inputs. If an oracle, rate source, or accounting feed behaves incorrectly, vault activity may pause or pricing may be affected until the issue is resolved.
+Principal Token pricing depends on a live redemption-rate feed, and this dependency should be understood precisely. Vault operations, **including withdrawals**, require a fresh oracle price; if the feed goes stale or updates stop, deposits and withdrawals revert until the price is updated. The redemption guarantee is user-controlled, but its liveness depends on the oracle's.
+
+Rate-protection bounds and high-water-mark pricing reduce the impact of temporary distortions, with two consequences worth knowing. If rate data moves outside the protection bounds, vault activity pauses until the anomaly is resolved. And because the high-water mark only rises, a genuine, sustained decline in the underlying asset's value (such as a depeg) leaves the mark above the real rate, halting normal operations until a timelocked reset adjusts it.
+
+The protocol also has an **emergency mode**: if the vault is paused, withdrawals remain possible on a pro-rata basis. Deposits stop; exit does not.
 
 ### Keeper and execution risk
 
-Some actions require routine offchain execution: publishing boost roots, triggering buybacks, redeeming yield, distributing emissions, and updating allocation points. If keepers are delayed or fail, rewards, buybacks, or boost data may lag until execution resumes. Keeper permissions are rate-limited onchain and revocable by the multisig (see [Trust Assumptions](/trust-assumptions)), but delayed execution is still a form of degraded service.
+Some actions require routine offchain execution: keeping the price feed fresh, publishing boost roots, triggering buybacks, redeeming yield, distributing emissions, and updating allocation points. If keepers are delayed or fail, rewards, buybacks, or boost data may lag until execution resumes, and a stalled price feed pauses vault activity entirely, as described above. Boost data outages are fail-safe: claims proceed at the 1x baseline, never zero. See [Trust Assumptions](/trust-assumptions).
 
-### Incentive and market risk
+### Market and incentive risk
 
-STRIP is a market-traded asset. Its price can move independently of protocol activity, and emissions received by participants can gain or lose value accordingly. The buyback mechanism creates recurring demand tied to yield; it does not set or defend a price.
+A Principal Token earns nothing on its own; the yield it would have produced is routed into the loop. A PT holder's compensation is STRIP emissions, which means the position's return depends on the value of STRIP, an asset with a market price that can fall as well as rise. If STRIP's price declines, the effective return on staked PT declines with it, and the trade of routing yield for emissions becomes less attractive.
 
----
+This creates a reflexive dynamic that users should see clearly: weaker STRIP demand can reduce deposits, which reduces realized yield, which reduces buybacks. The protocol's design counters this with real, external yield funding the burn and with emissions that decay on a fixed schedule, but design does not repeal market risk. Participants should evaluate the position at STRIP prices they consider realistic, not at the prices they hope for.
 
-The protocol makes the economic flows visible, but visibility is not the same as certainty. Users should understand the underlying collateral, the vault mechanics, the liquidity pools, and the STRIP market before participating. Nothing in these docs is financial advice.
+### Accrual Period risk
+
+During the [Accrual Period](/launch-phases), emissions accrue while claims are disabled until a fixed onchain timestamp. Rewards earned in this window cannot be transferred, priced, or sold until claims open, and their eventual value is unknown while they accrue. The claims date is verifiable onchain, but the value that arrives on that date is set by the market, not the protocol. Depositors forgo realized underlying yield during this period in exchange for accrued STRIP whose price does not yet exist.

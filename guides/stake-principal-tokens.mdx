@@ -3,7 +3,7 @@ title: "Stake Principal Tokens"
 description: "Earn STRIP emissions by supporting the productive base."
 ---
 
-Staked Principal Tokens earn STRIP emissions. Staking supports the productive base of the protocol and starts your alignment clock for [Lockless Boost](/lockless-boost).
+Staked Principal Tokens earn STRIP emissions. Staking supports the productive base of the protocol, and the rewards it earns are multiplied by whatever [Lockless Boost](/lockless-boost) you hold from your STRIP exposure.
 
 ## Stake
 
@@ -15,17 +15,17 @@ Staked Principal Tokens earn STRIP emissions. Staking supports the productive ba
     Each vault has its own PT staking pool. Select the pool, enter the amount, approve if prompted, and confirm.
   </Step>
   <Step title="Accrue emissions">
-    Emissions accrue continuously, bucketed into daily epochs. Your share depends on the pool's allocation (driven by APR × TVL across vaults), your stake relative to the pool, and your boost multiplier.
+    Emissions accrue continuously, bucketed into daily epochs. Your share depends on the pool's allocation, your stake relative to the pool, and your boost multiplier. During the [Accrual Period](/launch-phases), rewards accrue exactly the same way; only claiming waits for the onchain claims date.
   </Step>
 </Steps>
 
 ## What staking earns
 
-- **STRIP emissions** from the fixed decay schedule, allocated to your vault's pool by productivity. See [Supply Dynamics](/supply-dynamics).
-- **Boost growth.** Sustained alignment grows your multiplier from 1x toward the 20x maximum over 60 days, applied across all your aligned positions.
+- **STRIP emissions** from the fixed decay schedule, allocated to your vault's pool by the published policy. See [Supply Dynamics](/supply-dynamics) and [Launch Phases](/launch-phases).
+- **Boost applies to these rewards.** Your multiplier comes from sustained STRIP exposure (claimed STRIP you hold, stake in stSTRIP, or provide inside staked sWLP) and it scales what your staked PT position claims. Staking PT itself does not move the boost clock; it earns the rewards the clock multiplies. See [Lockless Boost](/lockless-boost).
 
 ## Unstaking
 
-Unstaking is instant: no cooldown, no queue. Be aware of the trade-off: unstaking breaks alignment and resets your boost to 1x. Your principal is never at risk from staking mechanics; only your reward efficiency is.
+Unstaking is instant: no cooldown, no queue, and it is **boost-neutral**. Staking or unstaking Principal Tokens does not affect your boost clock, which tracks STRIP exposure only. Your principal is never at risk from staking mechanics; unstaking simply stops emission accrual on the position.
 
 Claiming your accrued STRIP is a separate action; see [Claim Rewards](/guides/claim-rewards).

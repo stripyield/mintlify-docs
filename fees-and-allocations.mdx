@@ -27,11 +27,19 @@ The split creates a deliberate distinction. LPs earn the 10% reserve share throu
 
 Liquidity earns STRIP. Staked STRIP captures protocol fee flow. This adds a layer of alignment between liquidity provision, STRIP ownership, and protocol activity.
 
-### Emissions allocation
+### Emissions allocation across vaults
 
-STRIP emissions are allocated across vaults by productivity: **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. Within each vault, emissions flow to that vault's incentive venues: PT staking and PT/STRIP liquidity.
+STRIP emissions are allocated across vaults by productivity: **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. As vaults grow or yields move, allocation adjusts.
 
-Allocation updates are bounded by onchain safeguards: a single update can move allocation points by at most 20%, no pool can exceed 50% of emissions, and updates have a one-hour cooldown. See [Trust Assumptions](/trust-assumptions).
+### Emissions allocation within a vault
+
+Within each vault, emissions are split between two venues: **PT staking** and **staked sWLP** (PT/STRIP liquidity). The split follows the published policy described in full on [Launch Phases](/launch-phases):
+
+- **During the Accrual Period**, 100% flows to PT staking; the liquidity venue does not yet exist because no participant holds STRIP.
+- **In the absorption window after claims open**, the split moves to roughly half and half, tuned further toward liquidity if depth builds slower than expected.
+- **In steady state**, the split is governed by a depth target: emissions shift toward liquidity when STRIP-side pool depth falls below 10–15% of circulating STRIP, and back toward staking when depth exceeds it.
+
+There are no hard caps on the split; the policy states where it should sit, and the depth target is the reason for every move. What is fixed is the process: **every emission-split change passes through the 24-hour timelock**, sitting visibly onchain for a full day before it can execute. Current weights, pending changes, and the full reallocation history are on the [transparency dashboard](/transparency). See [Trust Assumptions](/trust-assumptions).
 
 ### The separation, summarized
 

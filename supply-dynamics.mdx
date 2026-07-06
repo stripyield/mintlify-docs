@@ -20,9 +20,28 @@ E₀ = 900,000 STRIP per day
 
 The decay constant gives emissions a half-life of roughly **693 days**, and the integral of the curve equals the full 900,000,000 STRIP emissions allocation. The schedule is known in advance: participants competing to own the loop know exactly what is being distributed, and when.
 
+| Time | Daily rate | Cumulative | % of emissions supply |
+|---|---|---|---|
+| Day 0 | 900,000 | 0 | 0% |
+| Day 30 | ~873,000 | ~26.6M | 3.0% |
+| Day 90 | ~823,000 | ~77.5M | 8.6% |
+| Year 1 | ~625,000 | ~275M | 30.6% |
+| Day 693 | ~450,000 | ~450M | 50% |
+| Year 5 | ~145,000 | ~755M | 83.9% |
+
 <Frame>
   ![Emission schedule](/images/schedule.png)
 </Frame>
+
+Emissions begin accruing at launch. For the first 30 days, the [Accrual Period](/launch-phases), rewards accrue onchain while claims are disabled until a fixed, verifiable timestamp.
+
+### The schedule is a ceiling, not a promise of circulation
+
+Scheduled emissions define the **maximum** that can enter circulation, for two reasons.
+
+First, STRIP is only minted at claim time; nothing sits pre-minted waiting to move. Second, every claim is scaled by the boost the claimant held during the epoch the rewards were earned. A participant below maximum boost claims proportionally less than their scheduled maximum, and the difference is **never minted**. It does not roll over to other users or later epochs; it simply never enters circulation.
+
+Realized emission is therefore always at or below the curve, and the gap is set by how much of the system's stake is held by participants with sustained alignment. Sustained alignment is what converts the schedule into supply.
 
 ### The burn
 
@@ -32,7 +51,7 @@ Burn is not scheduled; it is **driven by realized yield**. As supported collater
 
 The interaction of a decaying, scheduled distribution with a growing, yield-driven burn produces a supply path in four phases:
 
-1. **Coordination.** Emissions distribute STRIP to early aligned participants (PT stakers and PT/STRIP liquidity providers) and establish the productive base.
+1. **Coordination.** Emissions distribute STRIP to early aligned participants (PT stakers and PT/STRIP liquidity providers) and establish the productive base. The [Accrual Period](/launch-phases) is the opening act of this phase: the base builds and the first buybacks execute before price discovery begins.
 2. **Competition.** STRIP enters circulation and users compete across PT staking, PT/STRIP liquidity, and stSTRIP. Boost matters most here: participants with similar capital earn different reward shares depending on sustained alignment.
 3. **Crossover.** Routed yield becomes large enough to meaningfully offset new emissions. STRIP is still being distributed, but it is also being consistently bought and burned.
 4. **Scarcity.** Emissions decline toward residual levels and burn can become the stronger force. If burn exceeds new emissions, net circulating supply contracts.

@@ -5,6 +5,10 @@ description: "How emissions accrue, how boost applies, and how claiming works."
 
 STRIP emissions accrue continuously to staked PT and staked sWLP positions, bucketed into daily epochs. Each epoch's rewards are claimed with that epoch's boost: the multiplier you had when the rewards were earned, not the one you have when you claim.
 
+<Info>
+During the [Accrual Period](/launch-phases), the first 30 days after launch, rewards accrue exactly as described here, but claiming is disabled until the onchain claims timestamp passes. Boost during this window ramps from 1x toward 5x based on time staked, applied per epoch, and the level you reach carries forward as your starting multiplier once claims open. See [Launch Phases](/launch-phases).
+</Info>
+
 ## Claim
 
 <Steps>
@@ -24,6 +28,7 @@ STRIP emissions accrue continuously to staked PT and staked sWLP positions, buck
 Boost is computed offchain after each daily epoch closes and published onchain as an immutable Merkle root. When you claim, the proof attests the boost you held during each specific epoch:
 
 - **Epoch-locked.** Rewards earned in an epoch can only ever use that epoch's boost. Waiting to claim cannot retroactively improve past rewards.
+- **Fail-safe.** If boost data is unavailable for an epoch, for any reason, claiming still works at the 1x baseline, the same rate as a new participant. Missing data can only cost the boost benefit, never your base rewards.
 - **Verifiable.** Every published root appears on the [transparency dashboard](/transparency), so you can check that your claimed boost matches the protocol's attested data.
 
 ## stSTRIP claims

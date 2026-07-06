@@ -5,7 +5,7 @@ description: "What is fixed in code, what privileged roles can do, and how to ve
 
 ### The core rules are fixed
 
-Strip fixes its core economic rules in code. The 50/50 yield split, the emission decay curve, the boost range, and the Principal Token redemption mechanics cannot be changed without redeploying the protocol. These are not governance parameters; they are part of the system's operating structure.
+Strip fixes its core economic rules in code. The 50/50 yield split, the emission decay curve, the boost bounds and claim-time enforcement, and the Principal Token redemption mechanics cannot be changed without redeploying the protocol. These are not governance parameters; they are part of the system's operating structure.
 
 Vault deposits and withdrawals are user-controlled contract interactions. Admins do not custody user principal, approve individual deposits, gate withdrawals, or decide who can exit. Once a user holds Principal Tokens, the principal claim is theirs to redeem through the vault mechanics.
 
@@ -20,33 +20,39 @@ The owner is a multisig. It can manage operator and signer permissions and confi
 The most sensitive parameter changes pass through a **24-hour timelock**:
 
 - Adding or removing emission pools
-- Changing allocation point bounds
+- **Changing the emission split between staking pools**
 - Adjusting Principal Token rate-protection parameters
 - Resetting the high-water mark
 - Approving allocation signers
 
 The multisig proposes the change; anyone can execute it after the delay. The point of the delay is visibility: sensitive changes sit onchain for a full day before they can take effect.
 
+The emission split deserves emphasis because it is the lever participants care about most. There are no hard caps on where the split can move; the [published policy](/launch-phases) governs where it *should* move, but no change can take effect without 24 hours of onchain notice. Flexibility in destination, zero flexibility in visibility.
+
 ### Keepers
 
 Two automated keepers handle routine execution:
 
-- **The boost keeper** publishes per-epoch Merkle roots to the BoostController.
-- **The operator keeper** handles regular system actions: triggering buybacks, burning STRIP, redeeming yield into the BuybackBurner, forwarding trading fees to stSTRIP, running emissions distribution, and updating allocation points.
+- **The boost keeper** computes and publishes per-epoch boost data (see below).
+- **The operator keeper** handles regular system actions: triggering buybacks, burning STRIP, redeeming yield into the BuybackBurner, forwarding trading fees to stSTRIP, and running emissions distribution.
 
-Allocation updates are rate-limited onchain, independent of the keeper:
+Keepers execute routine flows; they do not set the emission split, which is timelock-gated as described above. Both keepers can be revoked or replaced by the multisig.
 
-| Safeguard | Bound |
-|---|---|
-| Maximum change per update | 20% of allocation points |
-| Maximum allocation per pool | 50% of emissions |
-| Cooldown between updates | 1 hour |
+### Boost computation
 
-These limits ensure that even a compromised keeper cannot sharply redirect emissions in a single move. Both keepers can be revoked or replaced by the multisig.
+Boost deserves its own honesty. The multiplier you receive is **computed offchain** by the boost keeper, following the published rules described on [Lockless Boost](/lockless-boost), and **attested onchain** as an immutable per-epoch Merkle root. The contracts do not recompute your alignment; they verify that your claimed boost is included in the epoch's root and cap the multiplier at the maximum.
+
+What this means in practice:
+
+- **What is fixed in code:** the boost bounds, the per-epoch immutability of published roots, and the fact that claims are capped so no pool can ever mint beyond its scheduled allocation.
+- **What is operational:** the computation of each user's boost value, per epoch, against the published rules.
+- **The failure mode is bounded:** if the keeper misses an epoch or boost data is unavailable, claims still work at the 1x baseline. Missing data can reduce a boost benefit; it can never block base rewards or take principal.
+
+Every published root is visible on the [transparency dashboard](/transparency), so the keeper's output is public the moment it exists.
 
 ### Signer redundancy
 
-Approved offchain signers provide a fallback path for allocation updates, subject to the same rate limits as the keeper. Adding or removing approved signers requires a timelocked owner action.
+Approved offchain signers provide a fallback path for emission-split updates, subject to the same timelock visibility. Adding or removing approved signers requires a timelocked owner action.
 
 ### Verification
 

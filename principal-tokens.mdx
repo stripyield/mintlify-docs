@@ -17,6 +17,14 @@ When a user deposits supported collateral into Strip, they receive **Principal T
 - **Not a maturity product.** There is no fixed term and nothing to roll over.
 - **Not a yield-bearing wrapper.** While the collateral continues to generate yield inside the system, that yield is separated from the principal and routed through Strip; it does not accrue to the PT.
 
+### The depositor's trade, stated plainly
+
+Holding a PT means routing 100% of your collateral's yield into the loop and competing for STRIP emissions instead. The arithmetic every depositor should run is simple: the position makes sense while the value of your emissions, at a STRIP price *you* consider realistic, exceeds the underlying yield you are forgoing.
+
+Two things move that comparison in the depositor's favor: [Lockless Boost](/lockless-boost), which can multiply an aligned participant's share of emissions up to 20x over 60 days, and the decaying emission schedule, which concentrates distribution on early, sustained participants. One thing moves against it: STRIP's market price is not guaranteed. See [Risks](/risks) for how this trade behaves when markets move.
+
+Strip's position is that this trade should be legible, not obscured. The docs state it; the app shows accrued rewards directly; and during the [Accrual Period](/launch-phases), when STRIP has no market price, the APR you see is computed from a valuation you set yourself.
+
 ### The core distinction
 
 Most yield systems ask users to deposit capital and wait for the payout. Strip inverts this: the depositor keeps a liquid claim on principal, and the *output* of that capital is routed into the STRIP loop: half to buyback and burn, half compounding the collateral base.

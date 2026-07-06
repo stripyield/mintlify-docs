@@ -3,7 +3,7 @@ title: "Provide Liquidity"
 description: "Supply canonical PT/STRIP liquidity through the PoolWrapper and stake sWLP."
 ---
 
-PT/STRIP liquidity providers deepen the market between principal claims and STRIP. The incentivized path runs through the **PoolWrapper**, which issues **sWLP**, the fungible, stakeable LP token. Only wrapper liquidity earns STRIP emissions and boost.
+PT/STRIP liquidity providers deepen the market between principal claims and STRIP. All liquidity flows through the **PoolWrapper**, which issues **sWLP**, the fungible, stakeable LP token and the only LP position that exists on the canonical pool.
 
 ## Provide canonical liquidity
 
@@ -23,17 +23,13 @@ PT/STRIP liquidity providers deepen the market between principal claims and STRI
 
 | Income | Source | Requirement |
 |---|---|---|
-| LP share of swap fees | 10% of the 0.3% fee, accruing in pool reserves | Hold the LP position |
+| LP share of swap fees | 10% of the 0.3% fee, accruing in pool reserves | Hold sWLP |
 | STRIP emissions + boost | Emission schedule | Stake sWLP |
 | stSTRIP fee flow | 70% of the fee | Stake earned STRIP into [stSTRIP](/guides/stake-strip) |
 
 ## Exit
 
-Unstake your sWLP (this resets boost to 1x) and redeem it through the wrapper. sWLP redeems back into PT and STRIP at the prevailing pool ratio.
-
-## Direct LPs
-
-You can provide liquidity to the underlying Uniswap v4 pool directly, at any weighting you choose. Direct LPs earn their share of pool fees like any other LP, but receive no sWLP, no emissions, and no boost. If you want the incentivized path, use the wrapper.
+Unstake your sWLP and redeem it through the wrapper; sWLP redeems back into PT and STRIP at the prevailing pool ratio. Note that unstaking sWLP reduces your tracked STRIP exposure (the STRIP inside the position stops counting); if that drops you below your sustained floor, your [Lockless Boost](/lockless-boost) resets to 1x. Holding the redeemed STRIP in your wallet keeps it counting.
 
 <Warning>
 LP positions carry two-sided market exposure, including impermanent loss. Read [Risks](/risks) before providing liquidity.

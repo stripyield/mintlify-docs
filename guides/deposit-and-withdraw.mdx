@@ -28,7 +28,7 @@ Once deposited, your collateral keeps producing yield inside the system. That yi
 
 <Steps>
   <Step title="Unstake if needed">
-    If your PTs are staked, unstake them first. Note that unstaking breaks alignment and resets your [Lockless Boost](/lockless-boost) to 1x.
+    If your PTs are staked, unstake them first. Unstaking Principal Tokens is boost-neutral: your [Lockless Boost](/lockless-boost) clock tracks STRIP exposure, not PT positions. It simply stops emission accrual on the position.
   </Step>
   <Step title="Redeem">
     In the vault view, enter the amount of PT to redeem and confirm. Redemption goes through the vault mechanics directly, with no admin approval and no queue.
@@ -39,4 +39,4 @@ Once deposited, your collateral keeps producing yield inside the system. That yi
 
 - **Withdrawals are user-controlled.** Admins cannot gate, delay, or approve redemptions. See [Trust Assumptions](/trust-assumptions).
 - **PTs are transferable.** You can also exit by selling PT into the [PT/STRIP pool](/pt-strip-liquidity) instead of redeeming, subject to pool pricing and liquidity.
-- **Vault activity can pause on oracle anomalies.** Rate-protection bounds may temporarily pause deposits and withdrawals if rate data behaves incorrectly. See [Risks](/risks).
+- **Vault activity depends on a live rate feed.** Deposits and withdrawals require a fresh oracle price, and rate-protection bounds can pause vault activity if rate data behaves incorrectly. If the vault is paused, emergency pro-rata withdrawals remain available. See [Risks](/risks).

@@ -21,9 +21,9 @@ Every trade pays a fixed swap fee, split inside the hook: one portion remains in
 
 ### PoolWrapper and sWLP
 
-A separate PoolWrapper owns the canonical LP position and issues **sWLP**, the fungible ERC-20 share token LPs hold and stake to earn STRIP emissions and boost. Deposits through the wrapper are proportional to the current pool ratio.
+The PoolWrapper owns the pool's single canonical liquidity position and issues **sWLP**, the fungible ERC-20 share token LPs hold and stake to earn STRIP emissions and boost. Deposits through the wrapper are proportional to the current pool ratio.
 
-Direct LPs can still interact with the underlying Uniswap pool at any weighting they choose. They earn their share of pool fees like any other LP, but they do not receive sWLP and do not earn STRIP emissions unless they use the wrapper path.
+**All liquidity flows through the wrapper.** The hook authorizes only the PoolWrapper to add or remove liquidity; sWLP is the only LP position that exists on the canonical pool. This is a solvency boundary: the hook keeps its own reserve accounting for the weighted curve, and gating liquidity through one atomic path guarantees that accounting always matches what the pool actually holds. Independent PT/STRIP pools can exist elsewhere, but they are not canonical, earn no emissions, and sit outside the protocol's fee routing.
 
 ### BuybackBurner
 
@@ -31,19 +31,6 @@ The BuybackBurner is the destination for routed value. It redeems harvested yiel
 
 ### Emissions and Boost
 
-STRIP emissions are distributed across vaults by productivity: allocation follows **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. As vaults grow or yields shift, allocation adjusts within rate-limited bounds.
+STRIP emissions are distributed across vaults by productivity: allocation follows **APR × TVL**, so vaults producing more yield per dollar of capital receive a larger share. Within each vault, the split between PT staking and sWLP staking follows the published policy described in [Launch Phases](/launch-phases); every split change passes through a 24-hour timelock before it can take effect.
 
 [Lockless Boost](/lockless-boost) modifies distribution, not custody. Users can exit, liquidity can move, and capital is never trapped; boost only changes how efficiently sustained participants compete for STRIP incentives.
-
-### Component summary
-
-| Component | Role |
-|---|---|
-| StripVaults | Hold supported collateral and manage yield routing |
-| Principal Tokens | Represent notional deposited value; liquid, vault-specific claims |
-| PT/STRIP pools | Liquidity and price discovery between principal claims and STRIP |
-| Uniswap v4 hook | Enforces the 90/10 weighted curve and splits swap fees |
-| PoolWrapper / sWLP | Canonical, fungible, stakeable liquidity |
-| BuybackBurner | Routes harvested yield into STRIP burn; forwards fees to stSTRIP |
-| EmissionsController | Allocates STRIP across vaults by APR × TVL on a fixed decay schedule |
-| Lockless Boost | Adjusts reward share based on sustained alignment |

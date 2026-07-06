@@ -9,7 +9,7 @@ Principal Tokens make deposited collateral liquid. PT/STRIP liquidity makes that
 
 Strip has two markets to strengthen. One is the **productive base**: collateral enters, yield is harvested, and Principal Tokens represent the claim on deposited value. The other is **STRIP**: yield is routed into buybacks, emissions are distributed to aligned participants, and supply is removed through burn.
 
-PT/STRIP liquidity providers supply both sides of the loop at once. They deepen the market around Principal Tokens and STRIP, make entry and exit more efficient, and help the system price the relationship between deposited collateral and the token absorbing its yield.
+PT/STRIP liquidity providers supply both sides of the loop at once. They deepen the market around Principal Tokens and STRIP, make entry and exit more efficient, and help the system price the relationship between deposited collateral and the token absorbing its yield. And because each position is 90% PT, providing liquidity is itself demand for principal claims: LPs grow the productive base while they deepen the market around it.
 
 ### The 90/10 pool
 
@@ -17,20 +17,20 @@ Each pool is weighted 90/10 in favor of PT, enforced by a custom Uniswap v4 hook
 
 Every trade pays a fixed 0.3% swap fee, split by the hook between STRIP stakers, operations, and LP reserves. See [Fees & Allocations](/fees-and-allocations).
 
-### sWLP: canonical liquidity
+### sWLP: the only LP position
 
-**sWLP** is the ERC-20 share token issued by the PoolWrapper for canonical PT/STRIP liquidity. Deposits through the wrapper are proportional to the current pool ratio, and sWLP redeems back into PT and STRIP at the prevailing ratio.
+**sWLP** is the ERC-20 share token issued by the PoolWrapper. All liquidity in the canonical pool flows through the wrapper: it is the sole address authorized to add or remove liquidity, enforced by the hook itself. There is no separate or "direct" LP position on this pool; sWLP **is** the LP position.
 
-sWLP is the incentivized path: staked sWLP earns STRIP emissions and is eligible for [Lockless Boost](/lockless-boost).
+This is a solvency boundary, not a toll. The hook maintains its own reserve accounting for the 90/10 curve, and the wrapper is the single, atomic path through which that accounting changes. One canonical position, fungible shares, no parallel liquidity that the pool's math cannot see.
 
-### Direct LPs
+Deposits through the wrapper are proportional to the current pool ratio, and sWLP redeems back into PT and STRIP at the prevailing ratio. Staked sWLP earns STRIP emissions and is eligible for [Lockless Boost](/lockless-boost).
 
-Users can still provide liquidity directly to the underlying Uniswap pool at any weighting they choose. Direct LPs earn their share of pool fees like any other LP, but they do not receive sWLP, do not earn STRIP emissions, and do not receive boost. Emissions are reserved for the canonical wrapper path.
+Anyone remains free to create independent PT/STRIP pools elsewhere (Uniswap is permissionless), but such pools are not canonical: they receive no emissions, do not feed the protocol fee split, and are not part of the system described in these docs.
 
 ### How LPs earn
 
 | Path | Source | Requirement |
 |---|---|---|
-| LP share of swap fees | Pool reserves (10% of each fee) | Provide PT/STRIP liquidity |
-| STRIP emissions + boost | Emission schedule | Provide via PoolWrapper and stake sWLP |
+| LP share of swap fees | Pool reserves (10% of each fee) | Hold sWLP |
+| STRIP emissions + boost | Emission schedule | Stake sWLP |
 | stSTRIP fee flow | 70% of each swap fee | Stake earned or acquired STRIP into [stSTRIP](/st-strip) |

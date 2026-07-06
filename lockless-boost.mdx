@@ -3,38 +3,61 @@ title: "Lockless Boost"
 description: "Time becomes advantage without capital becoming a hostage."
 ---
 
-Strip does not use lockups to force alignment. Lockups trap capital: they make commitment visible, but they also make exit artificial. Strip uses a different signal: **sustained participation**.
+Strip does not use lockups to force alignment. Lockups trap capital: they make commitment visible, but they make exit artificial. Strip uses a different signal.
 
-### The mechanic
+Alignment is measured by sustained participation. Every participant starts at a **1x** boost. As alignment continues, the multiplier increases, reaching the maximum of **20x after 60 days** of sustained alignment. Capital can always leave, but when alignment breaks, the boost resets to 1x. The system does not punish exit by locking capital. It rewards continuity by making time valuable.
 
-- Every eligible position starts at a **1x** boost.
-- As alignment continues, the multiplier grows over time.
-- After **60 days** of sustained alignment, the position reaches the maximum boost of **20x**.
-- If alignment breaks, the boost resets to **1x**.
+### What the clock measures
 
-Boost applies to STRIP incentive distribution. A user with sustained alignment competes far more efficiently for emissions than a user who enters briefly, extracts rewards, and leaves. Capital can always exit, but the accumulated multiplier does not follow it out.
+Your alignment clock tracks one thing: your **sustained STRIP exposure**. Three forms of exposure count, all attributed to your address:
 
-### What counts as alignment
+- STRIP held in your wallet
+- STRIP staked in [stSTRIP](/st-strip)
+- The STRIP inside your staked [sWLP](/pt-strip-liquidity) position
 
-Alignment means maintaining exposure in the parts of the system that receive incentives:
+The clock records the lowest level of exposure you have sustained (your **floor**) and counts the consecutive days you have held it. Growing your exposure raises what your floor can become; dropping below your sustained floor resets the clock to 1x. Adding to positions never hurts you, and taking profits above your floor never hurts you; only reducing your sustained exposure resets you.
 
-- Staking Principal Tokens
-- Providing canonical PT/STRIP liquidity through staked sWLP
-- Staking STRIP into [stSTRIP](/st-strip)
-- Holding STRIP
+Two things deliberately do **not** count. Staking Principal Tokens earns you STRIP emissions, but the act of staking PT contributes nothing to the multiplier: the clock measures STRIP exposure, not position size. And **unclaimed rewards do not count**: exposure means holding something you could sell and choosing not to, and a claim that cannot yet be sold involves no such choice. Exposure begins when STRIP is claimed and kept.
 
-There is **one alignment clock per user**, applied across every venue where that user is exposed to STRIP. Moving STRIP between aligned positions, such as staking wallet STRIP into stSTRIP, does not break alignment.
+### Where the boost applies
 
-### Deliberately unforgiving
+There is **one alignment clock per user**, and the multiplier it produces applies across all of your emission-earning positions: STRIP claims on staked PT and STRIP claims on staked sWLP are both scaled by the same boost. A participant with sustained STRIP exposure competes more efficiently for emissions everywhere they stake.
 
-The mechanic is simple on purpose. Alignment grows over time and resets instantly. The path to maximum boost is clear: stay aligned. The cost of breaking alignment is equally clear: return to 1x and start over.
+### What preserves alignment, and what resets it
 
-This creates a different incentive structure from lockups. Users are not rewarded for being *unable* to exit; they are rewarded for *choosing not to*. Liquidity stays free, and advantage compounds around behavior that stays aligned with the system.
+| Preserves alignment | Resets to 1x |
+|---|---|
+| Holding STRIP in your wallet | Selling STRIP below your sustained floor |
+| Staking STRIP into stSTRIP (does not read as a wallet drop) | Transferring STRIP to another wallet or an unrecognized contract |
+| Holding staked sWLP | Unstaking sWLP or removing liquidity, to the extent it drops your STRIP exposure below your floor |
+| Claiming rewards and keeping the STRIP aligned | Depositing STRIP or sWLP into third-party contracts (lending markets, bridges, exchange deposits) |
+| Adding to any position | |
+| Staking or unstaking Principal Tokens (boost-neutral: PT positions earn emissions but do not move the clock) | |
 
-### Verification
+<Warning>
+Assets held by third-party contracts are outside the boost system. If you deposit STRIP or sWLP into a lending market, bridge, or exchange, that exposure is no longer attributed to your address, and your clock treats it as a reduction. Integrations may be recognized in the future; until one is explicitly listed, assume it is not.
+</Warning>
 
-Boost is computed offchain from onchain exposure data and published onchain as a per-epoch Merkle root. Every published root is visible on the [transparency dashboard](/transparency), so users can verify that their claimed boost matches the data attested by the protocol.
+### How boost is computed and enforced
 
-<Note>
-The 1x to 20x boost curve described here is the target Lockless Boost mechanic. During the initial rollout, boost is computed proportionally from total STRIP exposure; the full 60-day sustained-alignment curve activates with the boost keeper upgrade.
-</Note>
+Boost is computed per **daily epoch**. After each epoch closes, the boost values for that epoch are published onchain as an immutable Merkle root in the BoostController. When you claim, your boost for each epoch is verified against that epoch's root and applied to that epoch's rewards.
+
+Three properties follow:
+
+- **Epoch-locked.** Rewards earned in an epoch use that epoch's boost, permanently. Waiting to claim cannot retroactively improve past rewards, and a published root cannot be edited.
+- **Fail-safe, not fail-punitive.** If boost data is unavailable for an epoch, for any reason, claims still work at the **1x baseline**. Missing data can only cost you the boost benefit, never your base rewards.
+- **Verifiable.** Every published root appears on the [transparency dashboard](/transparency), and the rules used to compute boost are published. You can check that your claimed boost matches the attested data.
+
+Boost values are computed offchain against these published rules and attested onchain; the contracts verify inclusion and cap the multiplier at the maximum. See [Trust Assumptions](/trust-assumptions) for exactly what this does and does not require you to trust.
+
+### The Accrual Period: time staked, carried forward
+
+During the [Accrual Period](/launch-phases), no STRIP circulates and unclaimed rewards do not count as exposure, so the clock runs on the one alignment signal that exists before the token does: time staked. Every participant's multiplier ramps from **1x toward 5x** across the 30 days, applied per epoch and epoch-locked like all boost.
+
+The level you reach **carries forward** when claims open. It becomes your starting multiplier, and from there the standard exposure rules take over: keep at least half of your cumulative claimed STRIP aligned (held, staked in stSTRIP, or inside staked sWLP) and your multiplier keeps climbing from where it stands toward 20x. Drop below that and the clock resets to 1x, the same rule as always. The Accrual Period gives early participants a head start; only breaking alignment takes it away.
+
+### The design intent
+
+Users are not rewarded for being unable to exit. They are rewarded for choosing not to. The mechanic is deliberately unforgiving in one direction only: alignment grows over time and resets instantly, because the reset is what makes the accumulated time *worth* something. The path to maximum boost is clear: stay aligned. The cost of breaking it is equally clear: return to 1x.
+
+Lockless Boost turns time into advantage without turning capital into a hostage.
