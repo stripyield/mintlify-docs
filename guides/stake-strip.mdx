@@ -1,32 +1,23 @@
 ---
 title: "Stake STRIP"
-description: "Stake STRIP into stSTRIP to capture the protocol's swap-fee flow."
+description: "Share in trading fees without a farming ramp."
 ---
 
-Staking STRIP into **stSTRIP** captures the protocol's share of PT/STRIP swap fees: 70% of the fixed 0.3% fee on every trade routes to stSTRIP and is distributed to staked STRIP holders, paid in STRIP. See [Staked STRIP](/st-strip) for the full mechanism.
+1. Acquire STRIP or claim eligible farming rewards after claims open.
+2. Open STRIP staking in the app.
+3. Approve the amount and confirm staking.
+4. Accrue your proportional share of the staking fee distribution.
 
-## Stake
+STRIP stakers share **40% of supported PT/STRIP trading fees**. Payouts arrive in the respective PTs and STRIP, as collected.
 
-<Steps>
-  <Step title="Hold STRIP">
-    Earn STRIP through PT staking or LP emissions, or acquire it directly through the [PT/STRIP pool](/pt-strip-liquidity).
-  </Step>
-  <Step title="Stake into stSTRIP">
-    In the app's stSTRIP view, enter the amount, approve if prompted, and confirm. Staking is instant: no minimum, no cooldown, no queue.
-  </Step>
-  <Step title="Accrue fee flow">
-    Rewards accrue pro-rata to your staked share as swap activity generates fees. Claiming is a single transaction with no proofs required; stSTRIP has no epochs and no boost gating on claims.
-  </Step>
-</Steps>
+There is no farming boost ramp or 75% retention rule on this staking position. Anyone can stake, and reward accounting follows their stake during accrual.
 
-## Boost interaction
+## Claim your fee rewards
 
-Staking STRIP into stSTRIP does **not** break alignment. Your total STRIP exposure (wallet balance plus stSTRIP-staked balance) counts toward one alignment clock, so moving STRIP from your wallet into stSTRIP does not reset your [Lockless Boost](/lockless-boost) on your other positions.
+Select the reward assets you want to claim and confirm. You can leave other balances unclaimed. Rewards are not automatically converted or restaked.
 
-## Unstake
+Optional conversion through the interface is planned for later. Until then, claimed assets can be used or traded through available routes.
 
-Unstaking is instant. Note that reducing your total STRIP exposure can affect your alignment across venues; the boost clock tracks sustained exposure, not any single position.
+STRIP held unclaimed in farming custody is separate from this position. Claiming it to stake may reset farming eligibility if that claim exceeds your allowance.
 
-## Where the rewards come from
-
-stSTRIP rewards are real tokens funded by trading activity, not emissions. The fee keeper forwards collected fees (converting any PT-denominated fees to STRIP through the v4 pool) and the contract only ever distributes rewards that are fully backed by transferred STRIP. Vault yield, by contrast, funds the buyback and burn; the two flows never mix.
+[STRIP staking explained](/st-strip) · [Fees](/fees-and-allocations)

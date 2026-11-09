@@ -1,63 +1,48 @@
 ---
-title: "Lockless Boost"
-description: "Time becomes advantage without capital becoming a hostage."
+title: "Farming rewards"
+description: "Build eligibility with each deposit. Retain rewards to keep it."
 ---
 
-Strip does not use lockups to force alignment. Lockups trap capital: they make commitment visible, but they make exit artificial. Strip uses a different signal.
+PT staking and LP staking earn STRIP. Two rules determine how much you earn and how much you can claim while preserving your farming eligibility.
 
-Alignment is measured by sustained participation. Every participant starts at a **1x** boost. As alignment continues, the multiplier increases, reaching the maximum of **20x after 60 days** of sustained alignment. Capital can always leave, but when alignment breaks, the boost resets to 1x. The system does not punish exit by locking capital. It rewards continuity by making time valuable.
+## Each deposit earns its own age
 
-### What the clock measures
+| Time continuously staked since entry or reset | Reward eligibility |
+| --- | --- |
+| Entry | 5% |
+| 30 days | 52.5% |
+| 60 days and beyond | 100% |
 
-Your alignment clock tracks one thing: your **sustained STRIP exposure**. Three forms of exposure count, all attributed to your address:
+Eligibility rises linearly. The 1x–20x presentation means the same thing: 5%–100% of your deposit's full pro-rata reward allocation, not twenty times an uncapped reward budget.
 
-- STRIP held in your wallet
-- STRIP staked in [stSTRIP](/st-strip)
-- The STRIP inside your staked [sWLP](/pt-strip-liquidity) positions, summed across every vault's pool
+Adding capital starts a separate ramp for the new deposit. Existing deposits keep their age. Withdrawn capital loses its age entitlement; staking it again starts fresh.
 
-The clock records the lowest level of exposure you have sustained (your **floor**) and counts the consecutive days you have held it. Growing your exposure raises what your floor can become; dropping below your sustained floor resets the clock to 1x. Adding to positions never hurts you, and taking profits above your floor never hurts you; only reducing your sustained exposure resets you.
+Eligibility applies as rewards accrue. Reaching 100% later does not upgrade rewards from earlier days. The ineligible portion is minted and burned when the allocation is settled.
 
-Two things deliberately do **not** count. Staking Principal Tokens earns you STRIP emissions, but the act of staking PT contributes nothing to the multiplier: the clock measures STRIP exposure, not position size. And **unclaimed rewards do not count**: exposure means holding something you could sell and choosing not to, and a claim that cannot yet be sold involves no such choice. Exposure begins when STRIP is claimed and kept.
+## Retain 75% to preserve eligibility
 
-### Where the boost applies
+Your account has one retention rule across all its PT and LP farming pools.
 
-There is **one alignment clock per user**, and the multiplier it produces applies across all of your emission-earning positions: STRIP claims on staked PT and STRIP claims on staked sWLP are both scaled by the same boost. A participant with sustained STRIP exposure competes more efficiently for emissions everywhere they stake.
+**Keep 75% of eligible rewards earned in the current earning cycle unclaimed.** The remaining 25% can be claimed without resetting, once claims open. The requirement grows as you earn more.
 
-### What preserves alignment, and what resets it
+For example, after earning 1,000 eligible STRIP:
 
-| Preserves alignment | Resets to 1x |
-|---|---|
-| Holding STRIP in your wallet | Selling STRIP below your sustained floor |
-| Staking STRIP into stSTRIP (does not read as a wallet drop) | Transferring STRIP to another wallet or an unrecognized contract |
-| Holding staked sWLP | Unstaking sWLP or removing liquidity, to the extent it drops your STRIP exposure below your floor |
-| Claiming rewards and keeping the STRIP aligned | Depositing STRIP or sWLP into third-party contracts (lending markets, bridges, exchange deposits) |
-| Adding to any position | |
-| Staking or unstaking Principal Tokens (boost-neutral: PT positions earn emissions but do not move the clock) | |
+- Keep 750 unclaimed.
+- Claim up to 250 without resetting.
+- After earning another 400, another 100 becomes available without resetting.
 
-<Warning>
-Assets held by contracts outside the recognized venues do not count. If you deposit STRIP or sWLP into a lending market, bridge, or exchange, that exposure is no longer attributed to your address, and your clock treats it as a reduction. This includes the protocol-seeded STRIP/USDC convenience pool: it exists for routing and visibility, not alignment, and STRIP moved into it reads as a reduction. Integrations may be recognized in the future; until one is explicitly listed, assume it is not.
-</Warning>
+STRIP in your wallet, STRIP staking or an LP position does not count toward this unclaimed-reward balance.
 
-### How boost is computed and enforced
+## Want to claim more?
 
-Boost is computed per **daily epoch**. After each epoch closes, the boost values for that epoch are published onchain as an immutable Merkle root in the BoostController. When you claim, your boost for each epoch is verified against that epoch's root and applied to that epoch's rewards.
+Choose the explicit claim-and-reset option.
 
-Three properties follow:
+All remaining PT and LP farming deposits in your account restart at 5% eligibility. A new earning cycle starts with a fresh retention floor. Your old earned rewards remain withdrawable separately and cannot qualify the new cycle.
 
-- **Epoch-locked.** Rewards earned in an epoch use that epoch's boost, permanently. Waiting to claim cannot retroactively improve past rewards, and a published root cannot be edited.
-- **Fail-safe, not fail-punitive.** If boost data is unavailable for an epoch, for any reason, claims still work at the **1x baseline**. Missing data can only cost you the boost benefit, never your base rewards.
-- **Verifiable.** Every published root appears on the [transparency dashboard](/transparency), and the rules used to compute boost are published. You can check that your claimed boost matches the attested data.
+This reset affects future farming eligibility. It does not confiscate already-earned rewards or withdraw your principal.
 
-Boost values are computed offchain against these published rules and attested onchain; the contracts verify inclusion and cap the multiplier at the maximum. See [Trust Assumptions](/trust-assumptions) for exactly what this does and does not require you to trust.
+## STRIP staking is separate
 
-### Genesis: time staked, carried forward
+Staking STRIP earns trading fees without this ramp or retention rule. Claimed farming rewards can be transferred, sold, supplied as liquidity or staked as STRIP.
 
-During [Genesis](/launch-phases), no STRIP circulates and unclaimed rewards do not count as exposure, so the clock runs on the one alignment signal that exists before the token does: time staked. Every participant's multiplier ramps from **1x toward 5x** across the 30 days, applied per epoch and epoch-locked like all boost.
-
-The level you reach **carries forward** when claims open. It becomes your starting multiplier, and from there the standard exposure rules take over: keep at least half of your cumulative claimed STRIP aligned (held, staked in stSTRIP, or inside staked sWLP) and your multiplier keeps climbing from where it stands toward 20x. Drop below that and the clock resets to 1x, the same rule as always. Genesis gives early participants a head start; only breaking alignment takes it away.
-
-### The design intent
-
-Users are not rewarded for being unable to exit. They are rewarded for choosing not to. The mechanic is deliberately unforgiving in one direction only: alignment grows over time and resets instantly, because the reset is what makes the accumulated time *worth* something. The path to maximum boost is clear: stay aligned. The cost of breaking it is equally clear: return to 1x.
-
-Lockless Boost turns time into advantage without turning capital into a hostage.
+[Claiming guide](/guides/claim-rewards) · [STRIP staking](/st-strip)

@@ -1,26 +1,27 @@
 ---
-title: "Yield Routing"
-description: "Strip does not create yield. It controls where realized yield goes."
+title: "Where the yield goes"
+description: "Half retained. Half allocated to STRIP buybacks."
 ---
 
-Supported collateral produces output over time. When that output is harvested, Strip routes it through a fixed split: one half into STRIP demand, one half back into the collateral base. The rule is set in code and applies identically to every vault.
+Strip separates underlying yield from the user's principal position.
 
-### Half buys and burns STRIP
+| Share of harvested underlying surplus | Destination |
+| --- | --- |
+| 50% | Retained in the system's productive assets |
+| 50% | Allocated to STRIP buybacks and burns |
 
-50% of realized yield is used to buy STRIP from the market and burn it. This turns productive collateral into recurring demand for the token: yield is no longer only a payout; it becomes buy pressure, then supply reduction.
+The team receives its direct revenue share from trading fees, not a separate cut of this underlying-yield split.
 
-The buyback is executed by the BuybackBurner, which redeems accumulated yield, swaps it to STRIP through whitelisted routes, and burns the result. Every execution is recorded onchain and surfaced on the [transparency dashboard](/transparency).
+## Retained yield
 
-### Half compounds
+Retained assets can continue earning yield. They are accounted for separately from the buyback budget, so an ordinary buyback spends only its assigned funds.
 
-The other 50% is retained inside the vault. The collateral base grows, future yield capacity increases, and the next harvest starts from a larger foundation. This is the part of the loop that makes the demand recurring rather than one-off: a vault that compounds produces more routed output every cycle.
+Retention is an operating policy, not a promise that those assets are permanently immovable. Authorized treasury actions remain subject to the deployed contracts' permissions. Retained assets are not a redemption reserve promised to STRIP holders.
 
-### Why the split is fixed
+## Buybacks
 
-Routing is what connects collateral to STRIP. A discretionary split would make the connection a governance decision; a fixed split makes it a property of the system. Different collateral types can produce different kinds of yield, but the destination is unified: every supported asset feeds the same demand path.
+Buyback execution uses accumulated funds to purchase STRIP and burn it. Purchases depend on available liquidity, valid prices and execution limits; they need not happen immediately after each harvest.
 
-The 50/50 rule cannot be changed without redeploying the protocol. See [Trust Assumptions](/trust-assumptions).
+A burn permanently removes tokens under the lifetime issuance limit. Buybacks create market purchases, but do not guarantee a token price or that burns exceed emissions.
 
-### What routing runs on
-
-Strip runs on **realized** yield, not projected APR. A harvest only routes what the collateral actually produced. If underlying yields fall, routed output falls with them; see [Risks](/risks) for how yield risk propagates through the system.
+[Supply and burns](/supply-dynamics) · [Permissions](/trust-assumptions)

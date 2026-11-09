@@ -11,46 +11,57 @@
     "pages": [
       "welcome",
       {
-        "group": "Start Here",
+        "group": "Start here",
         "pages": [
-          "why-strip-exists",
           "how-strip-works",
+          "why-strip-exists",
           "launch-phases"
         ]
       },
       {
-        "group": "Mechanism Design",
+        "group": "Earn and participate",
         "pages": [
-          "system-architecture",
-          "yield-routing",
-          "principal-tokens",
-          "strip-token",
-          "supply-dynamics",
-          "pt-strip-liquidity",
-          "st-strip",
-          "lockless-boost"
-        ]
-      },
-      {
-        "group": "Guides",
-        "pages": [
-          "guides/deposit-and-withdraw",
           "guides/stake-principal-tokens",
           "guides/provide-liquidity",
           "guides/stake-strip",
-          "guides/claim-rewards"
+          "guides/claim-rewards",
+          "guides/deposit-and-withdraw"
         ]
       },
       {
-        "group": "Reference",
+        "group": "Rewards and token",
         "pages": [
+          "lockless-boost",
           "fees-and-allocations",
-          "transparency",
-          "trust-assumptions",
+          "st-strip",
+          "strip-token",
+          "supply-dynamics",
+          "emissions-allocation"
+        ]
+      },
+      {
+        "group": "Understand the system",
+        "pages": [
+          "principal-tokens",
+          "pt-strip-liquidity",
+          "yield-routing"
+        ]
+      },
+      {
+        "group": "Before you participate",
+        "pages": [
+          "faq",
           "risks",
-          "contract-addresses",
+          "trust-assumptions",
+          "transparency",
           "audits-and-security",
-          "faq"
+          "contract-addresses"
+        ]
+      },
+      {
+        "group": "Technical reference",
+        "pages": [
+          "system-architecture"
         ]
       }
     ]
@@ -59,7 +70,7 @@
     "links": [],
     "primary": {
       "type": "button",
-      "label": "Launch App",
+      "label": "Open app",
       "href": "https://app.stripyield.com"
     }
   },
@@ -92,5 +103,9 @@
   },
   "thumbnails": {
     "background": "/images/og-image.png"
+  },
+  "banner": {
+    "content": "Pre-launch · Explore Strip's launch design. [Launch information](/launch-phases)",
+    "dismissible": false
   }
 }

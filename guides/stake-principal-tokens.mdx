@@ -1,31 +1,17 @@
 ---
-title: "Stake Principal Tokens"
-description: "Earn STRIP emissions by supporting the productive base."
+title: "Stake PT"
+description: "Farm STRIP with a single principal-token position."
 ---
 
-Staked Principal Tokens earn STRIP emissions. Staking supports the productive base of the protocol, and the rewards it earns are multiplied by whatever [Lockless Boost](/lockless-boost) you hold from your STRIP exposure.
+1. Deposit into a supported vault or acquire its PT.
+2. Choose the corresponding PT staking pool.
+3. Review its allocation, your deposit's eligibility and the reward-retention rule.
+4. Approve and stake your PT.
 
-## Stake
+Each deposit begins at 5% eligibility and reaches 100% over 60 days. Adding PT creates a new ramp for the addition and leaves earlier deposits' ages intact.
 
-<Steps>
-  <Step title="Hold Principal Tokens">
-    Deposit supported collateral to receive PTs; see [Deposit & Withdraw](/guides/deposit-and-withdraw). If you're depositing fresh capital, the app can deposit and stake in one transaction via the DepositRouter.
-  </Step>
-  <Step title="Stake into the vault's staking pool">
-    Each vault has its own PT staking pool. Select the pool, enter the amount, approve if prompted, and confirm.
-  </Step>
-  <Step title="Accrue emissions">
-    Emissions accrue continuously, bucketed into daily epochs. Your share depends on the pool's allocation, your stake relative to the pool, and your boost multiplier. During [Genesis](/launch-phases), rewards accrue exactly the same way; only claiming waits for the onchain claims date.
-  </Step>
-</Steps>
+Once claims open, keep 75% of eligible farming rewards unclaimed to preserve eligibility. Claiming beyond the available allowance resets every PT/LP farming deposit in your account.
 
-## What staking earns
+The app's hypothetical dollar returns depend on its displayed valuation assumption or market price. Neither token rewards nor their value are a fixed interest rate.
 
-- **STRIP emissions** from the fixed decay schedule, allocated to your vault's pool by the published policy. See [Supply Dynamics](/supply-dynamics) and [Launch Phases](/launch-phases).
-- **Boost applies to these rewards.** Your multiplier comes from sustained STRIP exposure (claimed STRIP you hold, stake in stSTRIP, or provide inside staked sWLP) and it scales what your staked PT position claims. Staking PT itself does not move the boost clock; it earns the rewards the clock multiplies. See [Lockless Boost](/lockless-boost).
-
-## Unstaking
-
-Unstaking is instant: no cooldown, no queue, and it is **boost-neutral**. Staking or unstaking Principal Tokens does not affect your boost clock, which tracks STRIP exposure only. Your principal is never at risk from staking mechanics; unstaking simply stops emission accrual on the position.
-
-Claiming your accrued STRIP is a separate action; see [Claim Rewards](/guides/claim-rewards).
+[Full reward rules](/lockless-boost) · [Claiming](/guides/claim-rewards)

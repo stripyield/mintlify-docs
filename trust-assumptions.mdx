@@ -1,60 +1,26 @@
 ---
-title: "Trust Assumptions"
-description: "What is fixed in code, what privileged roles can do, and how to verify both."
+title: "Permissions"
+description: "What the protocol automates and what the team operates."
 ---
 
-### The core rules are fixed
+Strip combines on-chain reward rules with team-operated allocation and maintenance.
 
-Strip fixes its core economic rules in code. The 50/50 yield split, the emission decay curve, the boost bounds and claim-time enforcement, and the Principal Token redemption mechanics cannot be changed without redeploying the protocol. These are not governance parameters; they are part of the system's operating structure.
+## On-chain rules
 
-Vault deposits and withdrawals are user-controlled contract interactions. Admins do not custody user principal, approve individual deposits, gate withdrawals, or decide who can exit. Once a user holds Principal Tokens, the principal claim is theirs to redeem through the vault mechanics.
+Deposit age, eligible farming accrual, retention coverage, claims and cycle resets are enforced by contracts. These rules do not require a service to watch your wallet or decide whether you sold STRIP.
 
-The protocol does have privileged roles. They exist for operation, safety, and routine execution, not to rewrite the economic rules or control user principal.
+The lifetime issuance ceiling must cover all new issuance, including farming and non-farming allocations. Burns do not reopen that capacity.
 
-### Owner (multisig)
+## Team-operated decisions
 
-The owner is a multisig. It can manage operator and signer permissions and configure supported operational settings. These powers exist so the protocol can rotate permissions, maintain infrastructure, and respond to issues. They do not give the owner custody over user principal or control over Principal Token redemption.
+The team announces claim opening, configures supported assets and venues, and adjusts PT/LP allocations using liquidity and participation information. Operational runners update observations, harvest yield, submit allocations and execute protected buybacks.
 
-### Owner + timelock
+Retained yield is accounted for separately from buyback spending, but it is not promised to be permanently inaccessible to authorized treasury actions.
 
-The most sensitive parameter changes pass through a **24-hour timelock**:
+## Deployment permissions
 
-- **Adding or removing emission pools**
-- Adjusting Principal Token rate-protection parameters
-- Resetting the high-water mark
-- Approving allocation signers
+Final owner, treasury, upgrade, pause and scheduling permissions will be published with verified contract addresses. Any timelocks or limits should be verified against that deployment rather than assumed from a general description.
 
-The multisig proposes the change; anyone can execute it after the delay. The point of the delay is visibility: sensitive changes sit onchain for a full day before they can take effect.
+The team's intention not to stake its STRIP allocation is a commitment, not an on-chain prohibition.
 
-The pool registry is timelocked for a precise reason: it is the only place emissions could be redirected outside the system. A new pool is a new destination for minted STRIP, so no destination can be added without a full day of onchain notice.
-
-The **split between registered pools** is deliberately not timelocked. Steering emissions among registered venues is an operational action, executed immediately and logged onchain the moment it happens. The worst a wrong or malicious split change can do is misallocate rewards among PT staking and sWLP staking venues; it cannot move emissions anywhere else, it is publicly visible in the same block, and it is reversible just as fast. The [published policy](/launch-phases) governs where the split should sit; the event log shows where it does.
-
-### Keepers
-
-Two automated keepers handle routine execution:
-
-- **The boost keeper** computes and publishes per-epoch boost data (see below).
-- **The operator keeper** handles regular system actions: triggering buybacks, burning STRIP, redeeming yield into the BuybackBurner, forwarding trading fees to stSTRIP, running emissions distribution, and executing emission-split updates under the published policy.
-
-Keepers execute routine flows; they cannot add or remove pools, which is timelock-gated as described above. Both keepers can be revoked or replaced by the multisig.
-
-### Boost computation
-
-Boost deserves its own honesty. The multiplier you receive is **computed offchain** by the boost keeper, following the published rules described on [Lockless Boost](/lockless-boost), and **attested onchain** as an immutable per-epoch Merkle root. The contracts do not recompute your alignment; they verify that your claimed boost is included in the epoch's root and cap the multiplier at the maximum.
-
-What this means in practice:
-
-- **What is fixed in code:** the boost bounds, the per-epoch immutability of published roots, and the fact that claims are capped so no pool can ever mint beyond its scheduled allocation.
-- **What is operational:** the computation of each user's boost value, per epoch, against the published rules.
-- **The failure mode is bounded:** if the keeper misses an epoch or boost data is unavailable, claims still work at the 1x baseline. Missing data can reduce a boost benefit; it can never block base rewards or take principal.
-
-Every published root is visible on the [transparency dashboard](/transparency), so the keeper's output is public the moment it exists.
-
-### Signer redundancy
-
-Approved offchain signers provide a fallback path for emission-split updates if the operator keeper is unavailable. Adding or removing approved signers requires a timelocked owner action.
-
-### Verification
-
-Every action across every privileged role emits an onchain event, and the [transparency dashboard](/transparency) surfaces these events in real time. Users do not have to trust that the roles behave; they can watch them.
+[Contract addresses](/contract-addresses) · [Risks](/risks)

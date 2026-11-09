@@ -1,58 +1,30 @@
 ---
-title: "How Strip Works"
-description: "From deposit to burn: the lifecycle of capital inside Strip."
+title: "How Strip works"
+description: "From a deposit to farming rewards, trading fees and buybacks."
 ---
 
-Strip is deliberately direct: keep principal liquid, route yield into STRIP demand, compound part of the output, and distribute incentives to the users who reinforce the system. This page walks the full lifecycleStrip is deliberately direct: keep principal liquid, route yield into STRIP demand, compound part of the output, and distribute incentives to the users who reinforce the system. This page walks the full lifecycle.
+## 1. Deposit a supported asset
 
-### 1. Deposit
+Strip issues a vault-specific Principal Token, or PT. PT represents your principal position; the underlying yield is routed through Strip rather than paid to you.
 
-A supported yield-bearing asset enters a StripVault. The depositor receives **Principal Tokens (PT)** representing the deposited value. Principal remains withdrawable through the vault at any time. The collateral remains productive inside the systemA supported yield-bearing asset enters a StripVault. The depositor receives **Principal Tokens (PT)** representing the deposited value. Principal remains withdrawable through the vault at any time. The collateral remains productive inside the system.
+## 2. Put your PT to work
 
-### 2. Yield is stripped
+Stake PT directly to farm STRIP, or combine PT and STRIP in a supported liquidity pool and stake the LP receipt. Liquidity providers also receive a share of trading fees.
 
-As the collateral earns, the vault harvests the realized yield and separates it from principal. The depositor's claim on principal is untouched; the yield becomes the system's inputAs the collateral earns, the vault harvests the realized yield and separates it from principal. The depositor's claim on principal is untouched; the yield becomes the system's input.
+## 3. Build your farming eligibility
 
-### 3. Yield is routed 50/50
+Each new staking deposit starts at 5% eligibility and reaches 100% after 60 days. Adding capital starts a new ramp for that addition; existing deposits keep their age.
 
-Every harvest follows the same fixed split:Every harvest follows the same fixed split:
+Your eligible rewards are earned at the eligibility applicable when they accrue. Waiting to claim does not increase earlier rewards.
 
-- **Buyback and burn.** Half of realized yield buys STRIP from the market and burns it. Productive collateral becomes a recurring source of buy pressure and supply reduction.
-- **Compounding.** Half is retained in the vault, growing the productive base so the next cycle harvests more yield from a larger foundation. Growth is not only distributed; it is retained.
+## 4. Retain rewards to preserve eligibility
 
-See [Yield Routing](/yield-routing) for the full mechanics.
+Keep 75% of your eligible farming rewards unclaimed within your current earning cycle. Once claims open, the remaining 25% can be claimed without resetting.
 
-### 4. Participants compete for emissions
+Claim beyond that allowance and all your PT/LP farming deposits restart their eligibility ramps. Your already-earned rewards remain yours. [Reward examples](/lockless-boost).
 
-STRIP emissions distribute ownership of the loop to the users who strengthen it:
+## 5. Yield and trading create separate flows
 
-- **PT stakers** support the productive base and earn STRIP emissions.
-- **PT/STRIP liquidity providers** deepen the market between principal claims and STRIP, earning emissions through staked [sWLP](/pt-strip-liquidity).
-- **STRIP stakers** stake into [stSTRIP](/st-strip) to capture the protocol's share of swap fees.
+Half of harvested underlying surplus stays in the system; half is allocated to buybacks and burns. Trading fees are split **20% to LPs, 40% to STRIP stakers and 40% to the team**.
 
-### 5. Alignment is rewarded, not enforced
-
-Strip does not rely on lockups to hold capital in place. Capital can leave at any time. [Lockless Boost](/lockless-boost) multipliers reward the behavior of staying aligned, not the state of being trapped. Sustained participants compete more efficiently for the same emissions; leaving resets the advantage, not the principal.
-
-### The loop, end to end
-
-- **Buyback and burn.** Half of realized yield buys STRIP from the market and burns it. Productive collateral becomes a recurring source of buy pressure and supply reduction.
-- **Compounding.** Half is retained in the vault, growing the productive base so the next cycle harvests more yield from a larger foundation. Growth is not only distributed; it is retained.
-
-See [Yield Routing](/yield-routing) for the full mechanics.
-
-### 4. Participants compete for emissions
-
-STRIP emissions distribute ownership of the loop to the users who strengthen it:
-
-- **PT stakers** support the productive base and earn STRIP emissions.
-- **PT/STRIP liquidity providers** deepen the market between principal claims and STRIP, earning emissions through staked [sWLP](/pt-strip-liquidity).
-- **STRIP stakers** stake into [stSTRIP](/st-strip) to capture the protocol's share of swap fees.
-
-### 5. Alignment is rewarded, not enforced
-
-Strip does not rely on lockups to hold capital in place. Capital can leave at any time. [Lockless Boost](/lockless-boost) multipliers reward the behavior of staying aligned, not the state of being trapped. Sustained participants compete more efficiently for the same emissions; leaving resets the advantage, not the principal.
-
-### The loop, end to end
-
-Productive collateral generates yield → routed yield creates STRIP demand and burns supply → compounded yield enlarges the base → incentives direct participation back into the parts of the system that keep the loop turningProductive collateral generates yield → routed yield creates STRIP demand and burns supply → compounded yield enlarges the base → incentives direct participation back into the parts of the system that keep the loop turning.
+STRIP staking has no farming ramp or farming retention requirement. [Stake STRIP](/st-strip).

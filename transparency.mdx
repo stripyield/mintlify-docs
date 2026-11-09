@@ -1,40 +1,23 @@
 ---
-title: "Transparency"
-description: "The accounting surface of the protocol."
+title: "What to track"
+description: "Follow productive assets, fees, allocations and actual burns."
 ---
 
-Strip publishes its operating data so anyone can verify what the protocol is doing, not only what the docs say it does. The live transparency dashboards at [prime.stripyield.com/transparency](https://prime.stripyield.com/transparency) and [frontier.stripyield.com/transparency](https://frontier.stripyield.com/transparency) are the source of truth for protocol activity.
+The useful measures connect what enters Strip with what participants receive.
 
-The dashboard follows the same path as the system itself: collateral enters vaults, yield is stripped, yield is routed, STRIP is bought and burned, emissions are allocated, and boost data is published.
+| Measure | What it tells you |
+| --- | --- |
+| Productive capital and underlying yield | The assets and income supporting the system |
+| Retained assets and available buyback funds | Where harvested surplus is allocated |
+| Current PT/LP farming allocations | Which venues receive scheduled rewards |
+| Trading fees and their distribution | Income for LPs, STRIP stakers and the team |
+| Buyback spend and buyback burns | Actual market purchases and tokens destroyed |
+| Reward-allocation burns | Tokens destroyed through the eligibility discount |
+| Eligible unclaimed rewards | Rewards owed to farmers but still in custody |
+| Lifetime issuance and outstanding supply | Consumed issuance capacity and tokens remaining |
 
-### Yieldstripping events
+Total economic burns should show buyback and reward-allocation burns separately. Multiplying allocation burns by a market price does not measure buyback expenditure.
 
-Every yield harvest is recorded. Each entry shows the vault that harvested, the dollar value of yield stripped, the yield shares minted in exchange, the redemption rate at the time of the strip, and the transaction hash linking the event to a block explorer. This is the raw input to everything downstream: without realized yield, there is no routed output and no yield-driven buyback.
+STRIP staking payouts should identify each reward asset. PT payouts have their own underlying exposure; STRIP payouts retain STRIP price exposure.
 
-### Yield routing
-
-Shows where stripped yield went after harvest: half compounding into the vault as growth, half routing to buybacks. The two paths are meant to be read together: one increases future yield capacity, the other turns realized yield into STRIP demand and supply reduction.
-
-### Buyback & burn
-
-A log of every buyback executed by the protocol: execution path, STRIP burned, and yield shares consumed, with a contract link to the BuybackBurner where the same data can be verified onchain. This is where the core thesis becomes measurable: the burn log shows when routed demand actually reached the token.
-
-### Total yield stripped
-
-The cumulative dollar value of all yield harvested across every vault: the headline measure of protocol output. TVL alone does not show what Strip is doing; stripped yield is the realized output that feeds compounding and buybacks.
-
-### Vault parameters
-
-The current operating state of each vault: status, total deposit value, PT supply, high-water-mark redemption rate, oracle address, and rate-protection bounds. These matter because PT pricing depends on the redemption rate: the high-water mark is used by the v4 hook to price PT in value space, and rate bounds help detect oracle anomalies and pause vault activity if needed.
-
-### Emission routing history and pool weights
-
-Emission routing history records every reallocation of STRIP emissions: when, how much, and at which block. Pool weights show the current allocation point distribution across staking pools: the operational view of how today's emissions are split between PT staking and PT/STRIP liquidity.
-
-### Boost snapshots
-
-Boost is computed offchain and published onchain as a per-epoch Merkle root. The snapshot history records every published root; the status section shows the current epoch and any pending publications. Users can verify that their claimed boost matches the data attested by the protocol.
-
----
-
-Transparency is not a marketing layer. It is the accounting surface of the protocol. Users should be able to see the productive base, the yield it produced, the STRIP it bought, the STRIP it burned, the emissions it distributed, and the boost data used to allocate rewards. Strip's mechanism is only valuable if its output can be observed.
+Verified contracts and reporting links will be listed as deployments become available. [Contract addresses](/contract-addresses).

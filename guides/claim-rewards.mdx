@@ -1,41 +1,35 @@
 ---
-title: "Claim Rewards"
-description: "How emissions accrue, how boost applies, and how claiming works."
+title: "Claim farming rewards"
+description: "Choose how much to claim and see whether eligibility resets."
 ---
 
-STRIP emissions accrue continuously to staked PT and staked sWLP positions, bucketed into daily epochs. Each epoch's rewards are claimed with that epoch's boost: the multiplier you had when the rewards were earned, not the one you have when you claim.
+## Before claims open
 
-<Info>
-During [Genesis](/launch-phases), the first 30 days after launch, rewards accrue exactly as described here, but claiming is disabled until the onchain claims timestamp passes. Boost during this window ramps from 1x toward 5x based on time staked, applied per epoch, and the level you reach carries forward as your starting multiplier once claims open. See [Launch Phases](/launch-phases).
-</Info>
+During accumulation, farming rewards accrue but cannot be claimed. The team will announce opening through official channels; there is no committed opening date or maximum accumulation duration yet.
 
-## Claim
+[Launch information](/launch-phases)
 
-<Steps>
-  <Step title="Open your positions">
-    In the app, your claimable STRIP is shown per staking pool, along with the boost applied to each unclaimed epoch.
-  </Step>
-  <Step title="Claim">
-    Confirm the claim transaction. The app automatically fetches the boost proofs for each epoch you're claiming; no manual proof handling is required. You can claim multiple epochs in one transaction.
-  </Step>
-  <Step title="Receive STRIP">
-    STRIP is minted directly to your wallet at claim time. Claimed STRIP can be held, staked into [stSTRIP](/guides/stake-strip), or used for [PT/STRIP liquidity](/guides/provide-liquidity), all of which count as continued alignment.
-  </Step>
-</Steps>
+## Claim without resetting
 
-## How boost applies to claims
+Your account must retain **75% of eligible rewards earned in its active cycle**, across all PT/LP farming pools.
 
-Boost is computed offchain after each daily epoch closes and published onchain as an immutable Merkle root. When you claim, the proof attests the boost you held during each specific epoch:
+After earning 1,000 eligible STRIP, 250 is ordinarily claimable. If you already claimed 100, another 150 remains available without resetting. Earning another 400 adds 100 to that allowance.
 
-- **Epoch-locked.** Rewards earned in an epoch can only ever use that epoch's boost. Waiting to claim cannot retroactively improve past rewards.
-- **Fail-safe.** If boost data is unavailable for an epoch, for any reason, claiming still works at the 1x baseline, the same rate as a new participant. Missing data can only cost the boost benefit, never your base rewards.
-- **Verifiable.** Every published root appears on the [transparency dashboard](/transparency), so you can check that your claimed boost matches the protocol's attested data.
+Check the claim preview and choose the ordinary claim action.
 
-## stSTRIP claims
+## Claim more and reset
 
-Claims from stSTRIP are simpler: no epochs, no proofs, no boost gating. A single claim pays your full pro-rata accrual of fee-funded STRIP.
+Choose the explicit reset option to claim beyond the allowance.
 
-## Good to know
+- Every remaining PT/LP farming deposit in your account restarts at 5% eligibility.
+- A fresh earning cycle begins, with a fresh retention floor.
+- Old earned rewards remain separately withdrawable and do not count toward the new cycle.
+- Your principal remains staked unless you separately withdraw it.
 
-- **Claiming doesn't break alignment.** Claiming rewards is not an exit; your boost clock continues as long as your aligned exposure is maintained.
-- **Unclaimed rewards are safe.** Rewards are allocated per epoch and wait for you; claiming later just batches more epochs into one transaction.
+Claiming or staking STRIP-staking fee rewards is separate from this farming rule.
+
+## A later claim does not improve old rewards
+
+Eligibility is applied when farming rewards accrue. At settlement, the ineligible share is minted and burned; the eligible share is held for you. Your claim transfers that eligible balance.
+
+[How eligibility grows](/lockless-boost)

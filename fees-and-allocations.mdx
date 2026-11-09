@@ -1,46 +1,24 @@
 ---
-title: "Fees & Allocations"
-description: "No protocol fee on yield. Swap fees are split by the hook, automatically."
+title: "Fees"
+description: "One trading-fee split: 20% LPs, 40% stakers, 40% team."
 ---
 
-### No fees on deposits, withdrawals, or yield
+The launch trading-fee split is:
 
-Strip does not charge a protocol fee on deposits, withdrawals, or harvested yield. There is no management fee and no performance fee. Principal enters through StripVaults, Principal Tokens represent deposited value, and realized yield follows the fixed routing rule: half compounds back into the vault, half buys and burns STRIP.
+| Recipient | Share of collected trading fees | How it is received |
+| --- | --- | --- |
+| Liquidity providers | **20%** | Remains in the corresponding pool's reserves |
+| STRIP stakers | **40%** | Claimable fee rewards in the collected PTs and STRIP |
+| Team | **40%** | Direct revenue in the collected assets |
 
-Yield is not taxed at the protocol level; it is routed. The treasury earns only when the system generates market activity.
+The reference pool swap fee is **0.3% of a trade**. At that rate, a 1,000-unit input collects 3 units of fees: 0.6 for LPs, 1.2 for stakers and 1.2 for the team. Price impact is separate from the fee.
 
-### Swap fees
+The split applies to trading fees, not to deposited principal, STRIP farming rewards or harvested underlying yield. Check the pool's displayed fee before trading.
 
-PT/STRIP pools charge a fixed **0.3% swap fee** on every trade. The v4 hook splits the fee inside the pool, on every swap, with no manual claiming and no governance distribution step:
+## Separate economic flows
 
-| Share | Destination | Purpose |
-|---|---|---|
-| 70% | [stSTRIP](/st-strip) | Distributed to staked STRIP holders |
-| 20% | Team treasury | Protocol operations and ongoing development |
-| 10% | Pool reserves | Accrues to liquidity providers |
+- **Underlying yield:** 50% retained, 50% allocated to buybacks.
+- **Trading fees:** 20% LPs, 40% STRIP stakers, 40% team.
+- **Farming rewards:** 75% of eligible rewards stays unclaimed to preserve eligibility; up to 25% is ordinarily claimable after opening.
 
-Fees are routed the moment activity happens. The split is enforced by the hook; there is nothing for the protocol to decide later. This split applies to the canonical PT/STRIP pools. The protocol-seeded STRIP/USDC convenience pool is a plain pool with no hook: its fees accrue to the position itself, and it receives no emissions. See [PT/STRIP Liquidity](/pt-strip-liquidity).
-
-### Two income paths for liquidity providers
-
-The split creates a deliberate distinction. LPs earn the 10% reserve share through their PT/STRIP liquidity, and their staked sWLP competes for STRIP emissions and [Lockless Boost](/lockless-boost). But LPs are **not** automatically entitled to the 70% stSTRIP flow by providing liquidity alone; they capture it by staking earned or acquired STRIP into stSTRIP.
-
-Liquidity earns STRIP. Staked STRIP captures protocol fee flow. This adds a layer of alignment between liquidity provision, STRIP ownership, and protocol activity.
-
-### The first layer: vault performance sets each budget
-
-The first layer is a measurement: each vault's productivity, **APR × TVL**, determines the combined share of every day's emissions that its two venues receive. Vaults producing more yield per dollar of capital command larger budgets for their venues. This rule comes first because it points incentives at the thing the whole system runs on: realized yield. As vaults grow or yields move, the budgets adjust with them.
-
-### The second layer: the venue split
-
-The second layer divides each budget between the vault's two venues: **PT staking** and **staked sWLP** (PT/STRIP liquidity). This split never moves emissions between one vault's venues and another's; it only shapes how the budget that vault's performance earned is spent. The split follows the published policy described in full on [Launch Phases](/launch-phases):
-
-- **During Genesis**, 100% flows to PT staking; the liquidity venues do not yet exist because no participant holds STRIP.
-- **In the absorption window after claims open**, the split moves to roughly half and half, tuned further toward liquidity if depth builds slower than expected.
-- **In steady state**, the split is governed by a depth target: aggregate STRIP reserves across the canonical pools at or above the greater of roughly 21 days of realized claim flow, or 10% of circulating STRIP. When reserves fall materially below the target, individual vaults tilt their internal splits toward their LP venues; when reserves exceed it, splits tilt back toward staking. Vault-level budgets are never touched to chase depth.
-
-There are no hard caps on the split and no delay on moving it: steering among registered venues is an operational action, executed immediately and logged onchain. What is timelock-gated is the pool registry itself, adding or removing destinations for emissions, because that is the only place minted STRIP could be redirected outside the system. Current weights and the full reallocation history are on the [transparency dashboard](/transparency). See [Trust Assumptions](/trust-assumptions) and [Launch Phases](/launch-phases) for the full policy.
-
-### The separation, summarized
-
-Each flow has one job. Deposits create principal claims. Yield creates STRIP demand and collateral growth. Swap activity creates fees for STRIP stakers, liquidity providers, and operations. Emissions allocate STRIP to the users strengthening the system.
+Farming emissions are allocated between supported assets and then between PT and LP staking. [How allocations work](/emissions-allocation).

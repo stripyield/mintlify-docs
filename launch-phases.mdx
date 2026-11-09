@@ -1,82 +1,30 @@
 ---
-title: "Launch Phases"
-description: "How Strip launches: the 30-day Genesis window, an onchain claims date, and a published emission-split policy."
+title: "Launch"
+description: "Accumulate rewards first. Claim and trade when opening is announced."
 ---
 
-Strip launches in phases. The rules for each phase are set onchain before the phase begins, so the launch is a schedule, not a series of announcements.
+Strip launches with an accumulation phase followed by the opening of claims and trading.
 
-### Phase 1: Genesis (days 0-30)
+## Accumulation
 
-Genesis is the first **30 days**. The protocol is fully live except for one thing: STRIP claims.
+When deposits open, you can deposit supported assets and stake PT to accrue STRIP rewards. The same emission schedule runs through accumulation and trading; accumulation has no separate farming budget.
 
-- **Deposits are open.** Vaults accept collateral, Principal Tokens are issued, and principal remains withdrawable at all times.
-- **Yield routing runs from day one.** Realized yield is harvested and split: half compounds into the vault, half accumulates for STRIP buybacks.
-- **Emissions accrue onchain.** Staked PT positions earn STRIP emissions from the fixed decay schedule, bucketed into daily epochs, exactly as they will forever after.
-- **Claims are disabled** until a fixed timestamp.
+Your farming eligibility grows with each deposit's age. Earned STRIP is recorded but cannot be claimed during this phase. Before claims and trading open, STRIP rewards have no established market price.
 
-The claims date is not discretionary. It is stored onchain in the EmissionsController as `claimsEnabledTimestamp`, set at deployment, and displayed in the app and on [Contract Addresses](/contract-addresses). Anyone can verify it. When the timestamp passes, claiming works; no further action from the team is required to open it.
+The app's FDV calculator lets you explore a valuation you choose. Its dollar returns are scenarios, not a promised launch price.
 
-### Boost during Genesis
+Underlying yield is harvested and allocated between retained assets and the buyback budget. Buyback funds can accumulate until trading and valid execution are available.
 
-[Lockless Boost](/lockless-boost) normally measures sustained STRIP exposure, and during Genesis no STRIP circulates yet. So the launch phase runs on the only alignment signal that exists before the token does: **time staked**.
+## Opening claims and trading
 
-Every participant's multiplier ramps from **1x toward 5x** across the 30 days. The ramp is applied per epoch and epoch-locked: rewards earned on day 3 carry day 3's multiplier permanently, rewards earned on day 29 carry day 29's. Joining earlier is worth more in both directions, a larger share of the highest emissions the schedule will ever pay, and a higher multiplier on every epoch of it.
+**The team will announce claim opening through official Strip channels. No opening date or maximum accumulation duration is committed at this stage.**
 
-The multiplier **carries forward**. Whatever level you reach during Genesis is your starting point when claims open, not a bonus that expires. From that moment the standard rules take over: claim your STRIP, keep it aligned, and your multiplier keeps climbing from where it stands toward the 20x maximum. Break alignment and it resets to 1x, the same rule that applies to everyone, forever. Early participation is never punished; only exit resets the clock.
+The plan is for the team to seed initial liquidity as claims open. Other participants can then provide liquidity. Initial liquidity is not a guarantee of trading depth or execution price.
 
-**Why the ramp tops out at 5x and not higher.** On the standard 60-day ramp, 30 days would be worth roughly 10x, and Genesis participants take real risk: they route away their entire underlying yield for rewards that cannot yet be claimed or priced. That risk is compensated deliberately, through the richest channel the protocol has. Genesis pays the highest daily emissions the schedule will ever produce, divided among the smallest staked base the protocol will ever have; no later month comes close on a per-dollar basis. Granting full clock credit on top would pay the same month twice.
+After opening, you can claim within your available allowance while preserving farming eligibility, or explicitly claim more and reset. Your deposit ages and earned rewards carry across opening; opening itself does not restart your ramp.
 
-The boost curve also certifies something that accrual staking cannot yet demonstrate. A multiplier near 20x is the protocol's strongest statement about a participant: this address held STRIP through real market exposure and did not sell. Staking during Genesis demonstrates conviction in the protocol, and the 5x carry credits it, but only holding the token once it trades can demonstrate the behavior the upper half of the curve exists to certify. Genesis participants are compensated twice, once through the richest emission share of the schedule and once through the carried head start; the path from 5x to 20x is reserved for demonstrated token holding, the one thing a tokenless month cannot show.
+## What you can withdraw
 
-### Why Genesis
+The claim restriction applies to STRIP farming rewards. It is separate from unstaking PT and redeeming principal through the vault. Redemptions remain subject to the underlying asset, available liquidity, oracle operation and contract conditions.
 
-Genesis exists so that price discovery starts *after* the loop is running, not before.
-
-During the 30 days, the productive base builds and realized yield accumulates. Buybacks cannot execute yet, because buying STRIP requires a market and none exists during Genesis. That is the point: the entire month of routed yield banks in the BuybackBurner as accumulated firepower. When trading opens, STRIP does not launch on a promise of future demand; it launches into a month of banked demand, deployed as the first buybacks and burns once the market exists, each one visible on the [transparency dashboard](/transparency). Emissions during this window also flow entirely to the participants building the base, rather than to trading activity that does not yet exist.
-
-### APR during Genesis
-
-An APR display requires a STRIP price, and during Genesis there is none: STRIP is not yet transferable and no market for it exists.
-
-Rather than inventing a price, the app shows your accrued STRIP directly and lets **you set an assumed fully-diluted valuation (FDV)**. The APR displayed is computed from your assumption, not from a market. It is a hypothetical, and it is labeled as one. Two users with different FDV assumptions will see different APRs on the same position; the accrued STRIP amounts underneath are identical and onchain.
-
-### Emissions during Genesis
-
-During Phase 1, **100% of emissions flow to PT staking**, with each launch vault's staking pool receiving the share set by the standard productivity rule (that vault's APR × TVL). The sWLP liquidity venues are not yet registered as emissions pools, for a simple reason: no participant holds STRIP yet, so no participant could provide PT/STRIP liquidity. Registering LP venues before claims open would route emissions to venues only the protocol itself could occupy.
-
-### Phase 2: Claims open (day 30 onward)
-
-When `claimsEnabledTimestamp` passes:
-
-1. **The canonical PT/STRIP pools are seeded**, one per vault, and their [sWLP](/pt-strip-liquidity) venues are registered for emissions. STRIP has a market for the first time. A small STRIP/USDC convenience pool is also seeded for aggregator routing and price visibility; it is not an emissions venue and does not count toward boost.
-2. **Claims open.** Accrued rewards are claimable per epoch, each at the multiplier it was earned with. See [Claim Rewards](/guides/claim-rewards).
-3. **Carried multipliers keep climbing.** Participants who claim and keep their STRIP aligned continue from their Genesis level toward 20x; newcomers start at 1x.
-4. **The emission split in each vault moves to half PT staking, half sWLP staking** for an absorption window of approximately 6-8 weeks, tuned further toward liquidity if depth builds slower than expected.
-
-The absorption window is deliberate. Freshly claimed STRIP needs a productive destination, and the highest-yield destination in this window is the pools themselves: pairing claimed STRIP with any vault's PT into that pool's sWLP deepens the market, and every sWLP position is 90% PT, so liquidity provision is itself demand for principal claims. Heavy LP incentives at exactly this moment convert the claim unlock into depth formation, and carried multipliers reward the STRIP that stays.
-
-### Phase 3: Steady state and the depth-target policy
-
-Allocation is layered, and the first layer never changes: **each vault's performance, APR × TVL, sets the combined share of emissions its PT staking and sWLP venues receive**, so the vaults earning the most yield for the system command the largest budgets. Everything below governs only the second layer: how that combined budget divides between the two venues. After the absorption window, that split follows a published policy rather than discretion:
-
-| Parameter | Value |
-|---|---|
-| Objective | The canonical pools can absorb the flow of newly claimed STRIP and provide stock liquidity at acceptable price impact |
-| Target | Aggregate STRIP reserves across all canonical pools at or above the **greater** of: roughly 21 days of realized claim flow, or 10% of circulating STRIP |
-| Rule | Materially below target → shift emissions toward sWLP staking. Materially above → shift toward PT staking. |
-| Review | Steered weekly; the calibration itself is reviewed as the market matures |
-
-The target has two legs because the pool has two jobs that dominate at different times. Early, when emissions are at their highest and claims are the main source of sell flow, the pool's job is absorption, so reserves are sized against realized claim flow (STRIP actually claimed per day, measurable onchain). Later, as emissions decay and circulating supply grows, the pool's job becomes stock liquidity, and the floor of 10% of circulating takes over. The target is measured in aggregate: STRIP depth across all canonical pools together, against total circulating supply. But it is pursued strictly within the second layer: closing a depth gap means tilting individual vaults' internal splits toward their LP venues, never moving budget between vaults, which belongs to the productivity rule alone. Depth therefore concentrates naturally in the most productive vaults' pools, since they hold the largest budgets to tilt. That is the intended shape: concentration absorbs better than fragmentation, arbitrage plus aggregator routing keep STRIP pricing consistent across pools, and a pool that stays thin because its vault earns little is the signal working, not the policy failing. The numbers are the current calibration, not a constitutional constant: the objective is the commitment, and the calibration is expected to relax as the market matures. Every input is public: daily claimed STRIP, pool reserves, and circulating supply are all onchain and shown on the [transparency dashboard](/transparency).
-
-The logic behind routing the remainder to staking: both venues hold Principal Tokens (an sWLP position is 90% PT), so both grow demand for the productive base. What distinguishes them is that sWLP additionally supplies STRIP-side market depth. The policy allocates to liquidity exactly as much as the depth objective requires, measured rather than guessed, and routes the rest to PT staking, the lowest-friction venue for new capital entering the system.
-
-There are no hard caps on where the split can move, and no delay on moving it: steering emissions among registered venues is an operational action, executed immediately and logged onchain the moment it happens. The worst a wrong move can do is misallocate among legitimate venues, and it is visible and reversible just as fast. What passes through the 24-hour timelock is changing **which pools exist**, because the pool registry is the only place emissions could be redirected outside the system. See [Trust Assumptions](/trust-assumptions).
-
-### What you can verify yourself
-
-- **The claims date:** read `claimsEnabledTimestamp` on the EmissionsController.
-- **Your accrued rewards:** per-epoch accrual is onchain in the staking contracts.
-- **The emission schedule:** initialized once, immutable; see [Supply Dynamics](/supply-dynamics).
-- **The current emission split:** pool allocation points onchain, with every change logged as an event.
-- **The banked yield:** the yield shares accumulating in the BuybackBurner during Genesis, onchain throughout.
-- **The first burns:** the BuybackBurner's execution log once trading opens, deploying the yield banked during Genesis.
+See [Claim rewards](/guides/claim-rewards) and [Risks](/risks).

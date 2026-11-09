@@ -1,59 +1,30 @@
 ---
-title: "Supply Dynamics"
-description: "Scheduled emissions, yield-driven burn, and the path to earned scarcity."
+title: "Supply and burns"
+description: "A declining farming schedule and two distinct sources of burns."
 ---
 
-STRIP supply is shaped by two forces. **Emissions** distribute STRIP to the users who strengthen the system. **Buyback and burn** routes realized yield back into STRIP and removes it from circulation.
+## Farming emissions
 
-The important number is neither force alone; it is **net supply**. If emissions exceed burn, circulating supply expands. If burn offsets emissions, supply stabilizes. If burn exceeds emissions, net supply contracts.
+The farming schedule starts at **900,000 STRIP per day** and declines exponentially at **0.001 per day**, within a **900 million STRIP farming budget**. The rate halves approximately every 693 days.
 
-### The emission schedule
+The emission clock runs through accumulation and trading. Closing claims changes when rewards can be withdrawn, not the underlying emission schedule.
 
-STRIP emissions follow a fixed exponential decay, set at deployment and unchangeable thereafter:
+A pool's allocation is not the same as the tokens a user earns: farming eligibility determines the earned portion.
 
-```text
-E(t) = E₀ × exp(−λ × t)
+## Two types of burns
 
-E₀ = 900,000 STRIP per day
-λ  = 0.001 per day
-```
+**Buyback burns:** protocol funds purchase STRIP from the market and destroy it.
 
-The decay constant gives emissions a half-life of roughly **693 days**, and the integral of the curve equals the full 900,000,000 STRIP emissions allocation. The schedule is known in advance: participants competing to own the loop know exactly what is being distributed, and when.
+**Reward-allocation burns:** when gross farming allocations settle, the protocol mints the allocation and immediately burns the portion excluded by historical eligibility. The earned remainder stays in custody for user claims.
 
-| Time | Daily rate | Cumulative | % of emissions supply |
-|---|---|---|---|
-| Day 0 | 900,000 | 0 | 0% |
-| Day 30 | ~873,000 | ~26.6M | 3.0% |
-| Day 90 | ~823,000 | ~77.5M | 8.6% |
-| Year 1 | ~625,000 | ~275M | 30.6% |
-| Day 693 | ~450,000 | ~450M | 50% |
-| Year 5 | ~145,000 | ~755M | 83.9% |
+For a 1,000 STRIP allocation at 40% eligibility, 600 is burned and 400 becomes the user's eligible reward. The 75% retention rule applies to that 400, not to the burned amount.
 
-<Frame>
-  ![Emission schedule](/images/schedule.png)
-</Frame>
+Both burns reduce maximum attainable outstanding supply under the lifetime issuance ceiling. Only buyback burns represent market purchases.
 
-Emissions begin accruing at launch. For the first 30 days, [Genesis](/launch-phases), rewards accrue onchain while claims are disabled until a fixed, verifiable timestamp.
+## Reading the numbers
 
-### The schedule is a ceiling, not a promise of circulation
+Total economic STRIP burned combines both categories, with the breakdown shown separately. Outstanding supply includes minted rewards still held for users; it is not the same as freely circulating supply.
 
-Scheduled emissions define the **maximum** that can enter circulation, for two reasons.
+The lifetime ceiling remains 1 billion. A burn reduces the amount that can ever remain outstanding without reopening minting capacity.
 
-First, STRIP is only minted at claim time; nothing sits pre-minted waiting to move. Second, every claim is scaled by the boost the claimant held during the epoch the rewards were earned. A participant below maximum boost claims proportionally less than their scheduled maximum, and the difference is **never minted**. It does not roll over to other users or later epochs; it simply never enters circulation.
-
-Realized emission is therefore always at or below the curve, and the gap is set by how much of the system's stake is held by participants with sustained alignment. Sustained alignment is what converts the schedule into supply.
-
-### The burn
-
-Burn is not scheduled; it is **driven by realized yield**. As supported collateral generates output, Strip routes half of it into STRIP buybacks, and bought STRIP is burned. The burn rate therefore scales with the productive base: more collateral and higher realized yields mean more STRIP removed per cycle. Every burn is verifiable on the [transparency dashboard](/transparency).
-
-### The four phases
-
-The interaction of a decaying, scheduled distribution with a growing, yield-driven burn produces a supply path in four phases:
-
-1. **Coordination.** Emissions distribute STRIP to early aligned participants (PT stakers and PT/STRIP liquidity providers) and establish the productive base. [Genesis](/launch-phases) is the opening act of this phase: the base builds and a month of routed yield accumulates before price discovery begins, ready to deploy as buybacks once trading opens.
-2. **Competition.** STRIP enters circulation and users compete across PT staking, PT/STRIP liquidity, and stSTRIP. Boost matters most here: participants with similar capital earn different reward shares depending on sustained alignment.
-3. **Crossover.** Routed yield becomes large enough to meaningfully offset new emissions. STRIP is still being distributed, but it is also being consistently bought and burned.
-4. **Scarcity.** Emissions decline toward residual levels and burn can become the stronger force. If burn exceeds new emissions, net circulating supply contracts.
-
-Strip does not rely on fixed scarcity from day one. It creates a path toward **earned scarcity**: productive collateral generates yield, yield creates STRIP demand, demand removes supply, and incentives direct ownership toward the users who keep the loop turning.
+Burns do not promise net deflation in any particular period. Compare actual issuance and burns rather than assuming one outweighs the other.

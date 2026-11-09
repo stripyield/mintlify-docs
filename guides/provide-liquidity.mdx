@@ -1,36 +1,21 @@
 ---
-title: "Provide Liquidity"
-description: "Supply canonical PT/STRIP liquidity through the PoolWrapper and stake sWLP."
+title: "Provide liquidity"
+description: "Earn pool fees and stake your LP receipt to farm STRIP."
 ---
 
-PT/STRIP liquidity providers deepen the market between principal claims and STRIP. Every vault has its own PT/STRIP pool, and each pool's liquidity flows through that pool's **PoolWrapper**, which issues its own **sWLP**: the fungible, stakeable LP token and the only LP position that exists on that pool.
+1. Choose a supported PT/STRIP pool.
+2. Supply the required PT and STRIP through its wrapper, reviewing amounts and slippage.
+3. Receive the pool's LP receipt, shown as sWLP.
+4. Stake sWLP in its supported farming pool to earn STRIP.
 
-## Provide canonical liquidity
+LPs receive **20% of trading fees** through pool reserves. This fee share does not require a farming eligibility ramp or a separate STRIP stake.
 
-<Steps>
-  <Step title="Choose a pool and hold both sides">
-    Pick the vault whose pool you want to supply, then deposit that vault's PT and STRIP proportional to the current pool ratio. Every pool is weighted 90/10 in favor of PT. See [PT/STRIP Liquidity](/pt-strip-liquidity). Note that the STRIP/USDC convenience pool is not an emissions or boost venue; canonical liquidity means the PT/STRIP pools.
-  </Step>
-  <Step title="Deposit through the PoolWrapper">
-    In the app's liquidity view, enter your deposit. The wrapper takes both tokens at the prevailing ratio and mints sWLP representing your share of the canonical LP position.
-  </Step>
-  <Step title="Stake your sWLP">
-    Stake sWLP in the LP staking pool to earn STRIP emissions and become eligible for [Lockless Boost](/lockless-boost). Unstaked sWLP still represents your LP share and earns the LP portion of swap fees, but it does not earn emissions.
-  </Step>
-</Steps>
+Farming rewards do use deposit-specific eligibility and the account-wide **75% retention rule**. Only the LP receipt actually staked earns farming rewards.
 
-## What LP positions earn
+## Removing liquidity
 
-| Income | Source | Requirement |
-|---|---|---|
-| LP share of swap fees | 10% of the 0.3% fee, accruing in pool reserves | Hold sWLP |
-| STRIP emissions + boost | Emission schedule | Stake sWLP |
-| stSTRIP fee flow | 70% of the fee | Stake earned STRIP into [stSTRIP](/guides/stake-strip) |
+Unstake the relevant receipt, then redeem it through the wrapper. Review the PT and STRIP amounts before confirming: the pool's composition may have changed since you entered.
 
-## Exit
+Capital removed from farming loses its staking age. Earned rewards remain accounted for separately. Selling the withdrawn tokens is another trade at available market prices.
 
-Unstake your sWLP and redeem it through the wrapper; sWLP redeems back into PT and STRIP at the prevailing pool ratio. Note that unstaking sWLP reduces your tracked STRIP exposure (the STRIP inside the position stops counting); if that drops you below your sustained floor, your [Lockless Boost](/lockless-boost) resets to 1x. Holding the redeemed STRIP in your wallet keeps it counting.
-
-<Warning>
-LP positions carry two-sided market exposure, including impermanent loss. Read [Risks](/risks) before providing liquidity.
-</Warning>
+[LP mechanics and risks](/pt-strip-liquidity) · [Farming rules](/lockless-boost)
