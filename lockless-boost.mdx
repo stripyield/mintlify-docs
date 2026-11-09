@@ -3,19 +3,17 @@ title: "How farming rewards work"
 description: "Build your earning rate. Choose when to claim."
 ---
 
-When you stake PT or an LP receipt, your deposit earns a share of its pool's STRIP allocation. The percentage of that share you receive grows with time.
+When you stake PT or an LP receipt, your deposit earns a share of its pool's STRIP allocation. Your reward multiplier grows with the age of that deposit.
 
 ## Every deposit has its own ramp
 
-| Time staked since entry or reset | Percentage of the full reward allocation earned |
+| Time staked since entry or reset | Reward multiplier |
 | --- | --- |
-| Entry | 5% |
-| 30 days | 52.5% |
-| 60 days and beyond | 100% |
+| Entry | 1x |
+| 30 days | 10.5x |
+| 60 days and beyond | 20x |
 
-This percentage is called **reward eligibility**. It rises linearly between those points.
-
-You may also see the ramp described as 1x to 20x. That compares the starting 5% with the full 100%; it does not multiply the pool's reward budget twenty times.
+Your multiplier grows steadily between those points. At 20x, the same deposit earns twenty times its 1x reward rate under otherwise identical pool conditions. Actual rewards also depend on the pool's allocation and your share of its stake.
 
 Adding capital starts a new ramp for that addition. Earlier deposits keep their age. Capital you withdraw loses its age, so staking it again starts fresh.
 
@@ -35,7 +33,7 @@ STRIP you have already claimed no longer counts toward that balance, even if you
 
 You can claim beyond your allowance by choosing the explicit claim-and-reset option.
 
-That restarts every remaining PT and LP farming deposit in your account at 5%. A fresh earning cycle begins with a fresh retention requirement. Any rewards left from your old cycle remain separately withdrawable and do not count toward the new one.
+That restarts every remaining PT and LP farming deposit in your account at 1x. A fresh earning cycle begins with a fresh retention requirement. Any rewards left from your old cycle remain separately withdrawable and do not count toward the new one.
 
 Already-earned rewards remain yours. Your principal stays staked unless you separately withdraw it.
 
