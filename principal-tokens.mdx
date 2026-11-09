@@ -1,24 +1,22 @@
 ---
 title: "Principal Tokens"
-description: "Your principal position, separated from the underlying yield."
+description: "Keep a principal position while your yield works through Strip."
 ---
 
-Depositing a supported asset creates a vault-specific **Principal Token (PT)**. Each PT represents a principal position in its corresponding vault.
+A **Principal Token (PT)** is what you receive when you deposit a supported asset. Each vault has its own PT, representing a principal position in that vault.
 
-You can hold or transfer PT, stake it to earn STRIP, or supply it alongside STRIP as liquidity.
+Your asset continues generating yield inside Strip, but that yield goes through the protocol rather than to you. Staking PT gives you the opportunity to earn STRIP in return.
 
-## What you give up
+## What you can do with PT
 
-The underlying yield is routed through Strip. It does not accrue to you simply for holding PT. Farming rewards are the separate incentive for staking PT or a supported LP position.
+You can hold or transfer PT, stake it to farm STRIP, or combine it with STRIP to provide liquidity. Holding PT alone does not earn farming rewards or pass the underlying yield to you.
 
-Compare the STRIP you expect to earn with the yield you would otherwise receive, including the [eligibility and retention rules](/lockless-boost).
+PT received as a trading-fee payout works the same way as PT received from a deposit.
 
-## Redeeming principal
+## Getting your principal back
 
-PT has no fixed maturity date. Unstake any PT you want to redeem, then use the vault's withdrawal flow.
+PT has no fixed maturity date. If your PT is staked, unstake the amount you want to redeem and use the vault's withdrawal flow.
 
-PT is not insured principal or a guaranteed dollar value. Its redemption depends on the underlying asset and the vault's contract and oracle conditions. A PT bought or sold in a pool can trade at a different price from its redemption value.
+Redemption depends on the underlying asset, available liquidity and the vault's contract and oracle conditions. PT is not an insured or guaranteed dollar balance. Its market price in a trading pool may also differ from its redemption value.
 
-PT obtained from trading-fee payouts has the same characteristics as PT obtained through deposits.
-
-[Deposit and withdraw](/guides/deposit-and-withdraw)
+[Deposit and withdraw](/guides/deposit-and-withdraw) · [Earn STRIP with PT](/guides/stake-principal-tokens)

@@ -1,28 +1,30 @@
 ---
 title: "Where farming rewards go"
-description: "Productivity between assets. Liquidity needs within each asset."
+description: "Rewards follow productive capital and the need for liquidity."
 ---
 
-Farming allocations follow two stages.
+The farming schedule supplies a declining amount of STRIP. Two decisions determine which staking pools receive it.
 
-## 1. Between supported assets
+## First, compare the supported assets
 
-Each asset's allocation is based on its productive capital value multiplied by its underlying yield rate: **TVL × APR**.
+Each asset's share is based on the value of productive capital and the underlying yield it generates: **TVL multiplied by APR**.
 
-Values are normalized so different assets can be compared. Principal backing is counted once even when PT is represented inside an LP position.
+This gives more weight to assets contributing more yield. Values are made comparable across assets, and principal backing is counted once, including when PT sits inside an LP position.
 
-## 2. Between PT staking and LP staking
+## Then, divide each asset's share
 
-Each asset's allocation is divided between its PT staking pool and its LP staking pool.
+Each asset has a PT staking venue and, once active, an LP staking venue. Its allocation is divided between them.
 
-The team adjusts that split using trading depth and participation. Depth means the amount that can be traded within a chosen price-impact limit, considered alongside productive TVL and reward-release activity.
+The team adjusts this split using liquidity depth and participation. Depth measures how much someone can trade within a chosen price-impact limit. It is considered alongside productive TVL and reward-release activity.
 
-This gives the protocol a way to encourage additional liquidity where it is useful. It does not guarantee a particular depth, LP return or exit price.
+Giving LP staking a larger share can make providing liquidity more attractive. It does not guarantee a particular LP return or trading depth.
 
-Before an asset's LP venue is active, its active farming allocation goes to PT staking. LP allocations begin prospectively once the venue is funded and enabled.
+Before an asset's LP venue is funded and enabled, its active farming allocation goes to PT staking.
 
-## What changes your rewards?
+## What this means for your earnings
 
-Your pool's allocation, your share of stake and your deposit's eligibility all affect earnings. Allocation changes affect future rewards; previously earned rewards remain yours.
+Your rewards depend on the pool's allocation, your share of its stake and your deposit's eligibility. Allocation changes affect future rewards; rewards you have already earned remain yours.
 
-The allocation runner submits updates on-chain using validated observations. STRIP's market price does not automatically increase the emission schedule.
+Updates are submitted on-chain using validated observations. A falling STRIP price does not automatically increase the emission schedule.
+
+[How farming rewards work](/lockless-boost)

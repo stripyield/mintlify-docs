@@ -1,24 +1,28 @@
 ---
-title: "Fees"
-description: "One trading-fee split: 20% LPs, 40% stakers, 40% team."
+title: "How fees are shared"
+description: "20% to LPs. 40% to STRIP stakers. 40% to the team."
 ---
 
-The launch trading-fee split is:
+Every trade in a supported PT/STRIP pool generates a fee. That fee is shared among the people supplying liquidity, STRIP stakers and the team.
 
-| Recipient | Share of collected trading fees | How it is received |
+| Recipient | Share of trading fees | What happens to it |
 | --- | --- | --- |
-| Liquidity providers | **20%** | Remains in the corresponding pool's reserves |
-| STRIP stakers | **40%** | Claimable fee rewards in the collected PTs and STRIP |
-| Team | **40%** | Direct revenue in the collected assets |
+| Liquidity providers | **20%** | Stays in the pool's reserves for LPs |
+| STRIP stakers | **40%** | Distributed in the PTs and STRIP collected |
+| Team | **40%** | Received as direct revenue in the collected assets |
 
-The reference pool swap fee is **0.3% of a trade**. At that rate, a 1,000-unit input collects 3 units of fees: 0.6 for LPs, 1.2 for stakers and 1.2 for the team. Price impact is separate from the fee.
+## A simple example
 
-The split applies to trading fees, not to deposited principal, STRIP farming rewards or harvested underlying yield. Check the pool's displayed fee before trading.
+At the reference swap fee of **0.3%**, a trade with a 1,000-unit input collects 3 units of fees. Of those, 0.6 goes to LPs, 1.2 to STRIP stakers and 1.2 to the team.
 
-## Separate economic flows
+This split applies to the fee, not the whole trade or your deposited principal. Price impact is separate, and you should check the displayed fee before trading.
 
-- **Underlying yield:** 50% retained, 50% allocated to buybacks.
-- **Trading fees:** 20% LPs, 40% STRIP stakers, 40% team.
-- **Farming rewards:** 75% of eligible rewards stays unclaimed to preserve eligibility; up to 25% is ordinarily claimable after opening.
+## Three percentages, three different jobs
 
-Farming emissions are allocated between supported assets and then between PT and LP staking. [How allocations work](/emissions-allocation).
+Trading fees use the **20/40/40 split** above.
+
+Underlying yield uses a separate **50/50 split** between retained assets and the buyback budget.
+
+The **75% farming-retention rule** determines how much of your earned farming rewards you leave unclaimed to preserve eligibility. It does not change how trading fees are shared.
+
+[Stake STRIP for fees](/st-strip) · [Farming reward rules](/lockless-boost)

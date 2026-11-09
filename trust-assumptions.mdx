@@ -1,26 +1,28 @@
 ---
-title: "Permissions"
-description: "What the protocol automates and what the team operates."
+title: "Who controls what?"
+description: "Understand the contract rules and the team's role."
 ---
 
-Strip combines on-chain reward rules with team-operated allocation and maintenance.
+Some parts of Strip follow contract rules. Others need ongoing decisions and maintenance from the team.
 
-## On-chain rules
+## Your farming rewards
 
-Deposit age, eligible farming accrual, retention coverage, claims and cycle resets are enforced by contracts. These rules do not require a service to watch your wallet or decide whether you sold STRIP.
+Contracts track deposit age, calculate earned rewards and enforce the 75% retention rule. They also handle claims and cycle resets. A wallet-watching service does not decide whether you qualify.
 
-The lifetime issuance ceiling must cover all new issuance, including farming and non-farming allocations. Burns do not reopen that capacity.
+The lifetime issuance limit covers farming and other new issuance. Burning tokens does not reopen that capacity.
 
-## Team-operated decisions
+## The team's role
 
-The team announces claim opening, configures supported assets and venues, and adjusts PT/LP allocations using liquidity and participation information. Operational runners update observations, harvest yield, submit allocations and execute protected buybacks.
+The team announces claim opening, configures supported assets and venues, and adjusts PT/LP reward allocations using liquidity and participation information.
 
-Retained yield is accounted for separately from buyback spending, but it is not promised to be permanently inaccessible to authorized treasury actions.
+Operational services maintain rate observations, harvest yield, submit allocation updates and execute buybacks within their permitted limits.
 
-## Deployment permissions
+Retained yield is kept separate from buyback funds. It is not promised to be permanently inaccessible to authorized treasury actions.
 
-Final owner, treasury, upgrade, pause and scheduling permissions will be published with verified contract addresses. Any timelocks or limits should be verified against that deployment rather than assumed from a general description.
+## Check the launch deployment
 
-The team's intention not to stake its STRIP allocation is a commitment, not an on-chain prohibition.
+Final permissions for ownership, treasury actions, upgrades, pauses and claim scheduling will be published with verified contract addresses. Any timelocks or limits should be checked against those contracts.
+
+The team's intention not to stake its STRIP allocation is a commitment, not a contract-enforced prohibition.
 
 [Contract addresses](/contract-addresses) · [Risks](/risks)

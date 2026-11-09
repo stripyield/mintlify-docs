@@ -3,23 +3,25 @@ title: "Deposit and withdraw"
 description: "Receive PT when you deposit. Redeem it through its vault."
 ---
 
-## Deposit
+Depositing a supported yield-bearing asset gives you PT representing your principal position. Its underlying yield then goes through Strip.
 
-1. Open the Strip app and choose a supported vault.
+## Make a deposit
+
+1. Choose a supported vault in the Strip app.
 2. Review the asset, underlying yield and deposit preview.
-3. Approve the asset if required, then confirm the deposit.
-4. Receive PT representing your principal position.
+3. Approve the asset if required, then confirm.
+4. Receive your PT.
 
-Depositing routes the underlying yield through Strip. Holding PT alone does not farm STRIP; [stake PT](/guides/stake-principal-tokens) or use it in a supported LP position.
+To farm STRIP, [stake your PT](/guides/stake-principal-tokens) or use it in a supported LP position. Holding PT on its own does not earn farming rewards.
 
-## Withdraw
+## Withdraw your principal
 
-1. Unstake the PT you want to redeem, if necessary.
-2. Select the vault's withdrawal action.
+1. Unstake the PT you want to redeem, if it is staked.
+2. Select the corresponding vault's withdrawal action.
 3. Review the amount and asset you will receive, then confirm.
 
-Withdrawn staking capital loses its eligibility age. Any remaining staking deposits retain their age unless you trigger an account-wide claim reset.
+Capital you remove from staking loses its farming age. Deposits left staked preserve their age unless you trigger an account-wide claim reset.
 
-The STRIP claim-opening restriction does not itself lock principal. Vault withdrawals still depend on the underlying asset, liquidity, oracles and contract conditions. Earned STRIP remains subject to its own claim rules.
+Closed STRIP claims do not themselves lock principal. Vault redemption still depends on the underlying asset, liquidity, oracles and contract conditions. Earned STRIP follows its separate [claim rules](/guides/claim-rewards).
 
-[Principal Tokens](/principal-tokens) · [Claim rewards](/guides/claim-rewards)
+[What your PT represents](/principal-tokens)

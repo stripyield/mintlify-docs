@@ -1,30 +1,30 @@
 ---
 title: "Supply and burns"
-description: "A declining farming schedule and two distinct sources of burns."
+description: "How STRIP enters the system and how tokens are removed."
 ---
 
-## Farming emissions
+STRIP farming starts with higher emissions that decline over time. Burns remove tokens under a lifetime issuance ceiling that cannot be replenished by burning.
 
-The farming schedule starts at **900,000 STRIP per day** and declines exponentially at **0.001 per day**, within a **900 million STRIP farming budget**. The rate halves approximately every 693 days.
+## The farming schedule
 
-The emission clock runs through accumulation and trading. Closing claims changes when rewards can be withdrawn, not the underlying emission schedule.
+The schedule starts at **900,000 STRIP per day** and declines exponentially at **0.001 per day**, within a **900 million STRIP farming budget**. The daily rate halves approximately every 693 days.
 
-A pool's allocation is not the same as the tokens a user earns: farming eligibility determines the earned portion.
+The same clock runs during accumulation and after claims open. Claim restrictions affect when rewards can be withdrawn, not the emission schedule itself.
 
-## Two types of burns
+Your deposit earns a percentage of its full reward allocation based on its [farming eligibility](/lockless-boost).
 
-**Buyback burns:** protocol funds purchase STRIP from the market and destroy it.
+## Two ways STRIP is burned
 
-**Reward-allocation burns:** when gross farming allocations settle, the protocol mints the allocation and immediately burns the portion excluded by historical eligibility. The earned remainder stays in custody for user claims.
+**Buybacks:** the protocol uses its buyback funds to purchase STRIP from the market and destroy it.
 
-For a 1,000 STRIP allocation at 40% eligibility, 600 is burned and 400 becomes the user's eligible reward. The 75% retention rule applies to that 400, not to the burned amount.
+**Farming discounts:** when a farming allocation is settled, the gross amount is minted and the portion excluded by historical eligibility is immediately burned. Your earned portion stays in custody until you claim it.
 
-Both burns reduce maximum attainable outstanding supply under the lifetime issuance ceiling. Only buyback burns represent market purchases.
+For example, a 1,000 STRIP allocation at 40% eligibility produces 400 earned STRIP and a 600 STRIP burn. The 75% retention rule then applies to your 400 earned STRIP: 100 is ordinarily claimable once claims open, and 300 stays unclaimed to preserve eligibility.
 
-## Reading the numbers
+## What the burn counter tells you
 
-Total economic STRIP burned combines both categories, with the breakdown shown separately. Outstanding supply includes minted rewards still held for users; it is not the same as freely circulating supply.
+Both categories count toward total economic STRIP burned, with the breakdown shown separately. Only buyback burns involve market purchases.
 
-The lifetime ceiling remains 1 billion. A burn reduces the amount that can ever remain outstanding without reopening minting capacity.
+The lifetime issuance ceiling remains 1 billion STRIP. Each burn reduces how many tokens can ever remain outstanding. Tokens already minted and held for user claims still count as outstanding, even though they are not yet freely circulating.
 
-Burns do not promise net deflation in any particular period. Compare actual issuance and burns rather than assuming one outweighs the other.
+Supply can still grow when issuance exceeds burns. A burn counter alone does not tell you the net change.

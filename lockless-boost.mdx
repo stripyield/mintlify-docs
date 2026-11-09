@@ -1,48 +1,46 @@
 ---
-title: "Farming rewards"
-description: "Build eligibility with each deposit. Retain rewards to keep it."
+title: "How farming rewards work"
+description: "Build your earning rate. Choose when to claim."
 ---
 
-PT staking and LP staking earn STRIP. Two rules determine how much you earn and how much you can claim while preserving your farming eligibility.
+When you stake PT or an LP receipt, your deposit earns a share of its pool's STRIP allocation. The percentage of that share you receive grows with time.
 
-## Each deposit earns its own age
+## Every deposit has its own ramp
 
-| Time continuously staked since entry or reset | Reward eligibility |
+| Time staked since entry or reset | Percentage of the full reward allocation earned |
 | --- | --- |
 | Entry | 5% |
 | 30 days | 52.5% |
 | 60 days and beyond | 100% |
 
-Eligibility rises linearly. The 1x–20x presentation means the same thing: 5%–100% of your deposit's full pro-rata reward allocation, not twenty times an uncapped reward budget.
+This percentage is called **reward eligibility**. It rises linearly between those points.
 
-Adding capital starts a separate ramp for the new deposit. Existing deposits keep their age. Withdrawn capital loses its age entitlement; staking it again starts fresh.
+You may also see the ramp described as 1x to 20x. That compares the starting 5% with the full 100%; it does not multiply the pool's reward budget twenty times.
 
-Eligibility applies as rewards accrue. Reaching 100% later does not upgrade rewards from earlier days. The ineligible portion is minted and burned when the allocation is settled.
+Adding capital starts a new ramp for that addition. Earlier deposits keep their age. Capital you withdraw loses its age, so staking it again starts fresh.
 
-## Retain 75% to preserve eligibility
+Your earning rate applies as rewards accrue. Waiting until day 60 to claim does not upgrade rewards from day one. The portion excluded by eligibility is burned when the rewards are settled.
 
-Your account has one retention rule across all its PT and LP farming pools.
+## Keep 75% unclaimed to preserve your rate
 
-**Keep 75% of eligible rewards earned in the current earning cycle unclaimed.** The remaining 25% can be claimed without resetting, once claims open. The requirement grows as you earn more.
+Your account has one retention rule across all its PT and LP farming pools: **leave 75% of the eligible rewards earned in your current earning cycle unclaimed**.
 
-For example, after earning 1,000 eligible STRIP:
+Once claims open, the other 25% is available without resetting.
 
-- Keep 750 unclaimed.
-- Claim up to 250 without resetting.
-- After earning another 400, another 100 becomes available without resetting.
+For example, after earning 1,000 STRIP, you can claim 250 and leave 750 unclaimed. Earn another 400 and you can claim another 100 without resetting. The retained balance grows alongside your earnings.
 
-STRIP in your wallet, STRIP staking or an LP position does not count toward this unclaimed-reward balance.
+STRIP you have already claimed no longer counts toward that balance, even if you hold it, stake it or use it in an LP position.
 
-## Want to claim more?
+## Claim more when you choose
 
-Choose the explicit claim-and-reset option.
+You can claim beyond your allowance by choosing the explicit claim-and-reset option.
 
-All remaining PT and LP farming deposits in your account restart at 5% eligibility. A new earning cycle starts with a fresh retention floor. Your old earned rewards remain withdrawable separately and cannot qualify the new cycle.
+That restarts every remaining PT and LP farming deposit in your account at 5%. A fresh earning cycle begins with a fresh retention requirement. Any rewards left from your old cycle remain separately withdrawable and do not count toward the new one.
 
-This reset affects future farming eligibility. It does not confiscate already-earned rewards or withdraw your principal.
+Already-earned rewards remain yours. Your principal stays staked unless you separately withdraw it.
 
-## STRIP staking is separate
+## STRIP staking works differently
 
-Staking STRIP earns trading fees without this ramp or retention rule. Claimed farming rewards can be transferred, sold, supplied as liquidity or staked as STRIP.
+The ramp and retention rule apply to farming. [Staking STRIP for trading fees](/st-strip) has neither requirement.
 
-[Claiming guide](/guides/claim-rewards) · [STRIP staking](/st-strip)
+[How to claim your rewards](/guides/claim-rewards)

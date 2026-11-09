@@ -103,9 +103,5 @@
   },
   "thumbnails": {
     "background": "/images/og-image.png"
-  },
-  "banner": {
-    "content": "Pre-launch · Explore Strip's launch design. [Launch information](/launch-phases)",
-    "dismissible": false
   }
 }

@@ -1,27 +1,26 @@
 ---
-title: "PT/STRIP liquidity"
-description: "Earn trading fees and farm STRIP by providing liquidity."
+title: "Provide PT/STRIP liquidity"
+description: "Earn pool fees alongside STRIP farming rewards."
 ---
 
-Each supported vault has a canonical **90/10 PT/STRIP weighted pool**. The weights describe the pool design, not a promise that your position maintains a fixed dollar composition as markets move.
+Liquidity lets people trade between PT and STRIP. By supplying both assets, you earn a share of the fees from those trades.
 
-Provide PT and STRIP through the pool wrapper to receive its LP receipt, shown as sWLP. Stake supported sWLP to farm STRIP.
+Each supported vault has a **90/10 PT/STRIP weighted pool**. These weights describe the pool's design. Your position's token amounts and value can change as people trade and prices move.
 
-## Two sources of earnings
+## Two ways your position earns
 
-- **Pool fees:** 20% of trading fees stays with the pool's LPs through pool reserves.
-- **Farming rewards:** staked sWLP receives its share of the pool's STRIP allocation, subject to deposit age and the 75% reward-retention rule.
+**Trading fees start with liquidity provision.** Twenty percent of the pool's trading fees stays in its reserves for LPs. You do not need a mature farming deposit or a separate STRIP stake to earn this share.
 
-Your direct pool-fee share starts with liquidity provision. It does not depend on having already accumulated or staked STRIP rewards.
+**Farming rewards come from staking your LP receipt.** The pool wrapper gives you a receipt, shown as sWLP. Stake it in the supported farming pool to earn STRIP, using the same deposit-age ramp and 75% retention rule as PT farming.
 
-The remaining trading fees go to STRIP stakers and the team, 40% each. [Fee split](/fees-and-allocations).
+The remaining trading fees go to STRIP stakers and the team, 40% each.
 
-## What LPs take on
+## Understand the position you hold
 
-Trades change the inventory represented by your LP receipt. Your return can differ from simply holding PT and STRIP, and trading fees or farming rewards may not offset that difference.
+As trades happen, your LP receipt represents changing amounts of PT and STRIP. Your return can be lower than simply holding those assets separately, even after fees and farming rewards.
 
-Withdrawals and swaps use the available pool state. A sale may have substantial price impact in a shallow market. Strip does not guarantee an exit price or provide a buyer of last resort.
+Removing liquidity returns assets according to the pool's state. Selling them afterward is a separate trade, with its own price impact.
 
-The team plans to seed initial liquidity. Ongoing depth comes from participants who choose to provide it, supported by fees and LP farming allocations.
+The team plans to seed initial pools. Further depth comes from participants who choose to supply liquidity, supported by pool fees and farming allocations. Strip does not guarantee an exit price.
 
-[Provide liquidity](/guides/provide-liquidity) · [Emissions allocation](/emissions-allocation)
+[Provide liquidity step by step](/guides/provide-liquidity) · [How LP farming allocations work](/emissions-allocation)

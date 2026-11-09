@@ -1,27 +1,26 @@
 ---
-title: "Where the yield goes"
-description: "Half retained. Half allocated to STRIP buybacks."
+title: "Where your underlying yield goes"
+description: "Half keeps earning. Half funds STRIP buybacks."
 ---
 
-Strip separates underlying yield from the user's principal position.
+When you deposit through Strip, the underlying yield is separated from your principal position. Harvested surplus is split equally.
 
-| Share of harvested underlying surplus | Destination |
-| --- | --- |
-| 50% | Retained in the system's productive assets |
-| 50% | Allocated to STRIP buybacks and burns |
+**50% stays in the system's productive assets.** Those assets can continue earning, contributing to future yield.
 
-The team receives its direct revenue share from trading fees, not a separate cut of this underlying-yield split.
+**50% is allocated to buying and burning STRIP.** Funds can accumulate between purchases, which depend on available liquidity, valid prices and execution limits.
 
-## Retained yield
+The team earns its direct revenue share from trading fees. It does not receive a separate cut of this underlying-yield split.
 
-Retained assets can continue earning yield. They are accounted for separately from the buyback budget, so an ordinary buyback spends only its assigned funds.
+## What retained yield means
 
-Retention is an operating policy, not a promise that those assets are permanently immovable. Authorized treasury actions remain subject to the deployed contracts' permissions. Retained assets are not a redemption reserve promised to STRIP holders.
+Retained assets are accounted for separately from the buyback budget. An ordinary buyback spends only the funds assigned to it.
 
-## Buybacks
+Keeping those assets productive is the operating policy. They are not permanently immovable, and authorized treasury actions remain relevant. Holding STRIP does not give you a guaranteed right to redeem it against those assets.
 
-Buyback execution uses accumulated funds to purchase STRIP and burn it. Purchases depend on available liquidity, valid prices and execution limits; they need not happen immediately after each harvest.
+## What buybacks do
 
-A burn permanently removes tokens under the lifetime issuance limit. Buybacks create market purchases, but do not guarantee a token price or that burns exceed emissions.
+A buyback purchases STRIP from the market and destroys it. Under the lifetime issuance limit, burning those tokens does not make room to mint them again.
+
+Purchases create demand when executed, but they do not set a price floor or promise to outweigh emissions.
 
 [Supply and burns](/supply-dynamics) · [Permissions](/trust-assumptions)
