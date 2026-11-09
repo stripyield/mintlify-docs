@@ -1,17 +1,16 @@
 ---
-title: "Where farming rewards go"
-description: "Rewards follow productive capital and the need for liquidity."
+title: "Emissions allocation"
 ---
 
-The farming schedule supplies a declining amount of STRIP. Two decisions determine which staking pools receive it.
+Farming emissions are allocated between supported assets, then between each asset's PT and LP staking pools.
 
-## First, compare the supported assets
+## Asset allocation
 
 Each asset's share is based on the value of productive capital and the underlying yield it generates: **TVL multiplied by APR**.
 
 This gives more weight to assets contributing more yield. Values are made comparable across assets, and principal backing is counted once, including when PT sits inside an LP position.
 
-## Then, divide each asset's share
+## PT/LP allocation
 
 Each asset has a PT staking venue and, once active, an LP staking venue. Its allocation is divided between them.
 
@@ -21,7 +20,7 @@ Giving LP staking a larger share can make providing liquidity more attractive. I
 
 Before an asset's LP venue is funded and enabled, its active farming allocation goes to PT staking.
 
-## What this means for your earnings
+## Earnings
 
 Your rewards depend on the pool's allocation, your share of its stake and your deposit's eligibility. Allocation changes affect future rewards; rewards you have already earned remain yours.
 
