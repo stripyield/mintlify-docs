@@ -2,28 +2,28 @@
 title: "Emissions allocation"
 ---
 
-Farming emissions are allocated between supported assets, then between each asset's PT and LP staking pools.
+Farming emissions reward two contributions: the productive capital behind each asset and the liquidity needed to trade it.
+
+Allocations follow two stages. First, the protocol determines each supported asset's share. It then divides that share between PT staking and LP staking.
 
 ## Asset allocation
 
-Each asset's share is based on the value of productive capital and the underlying yield it generates: **TVL multiplied by APR**.
+Each asset's share is based on **productive TVL multiplied by underlying APR**. This gives more weight to assets contributing more yield.
 
-This gives more weight to assets contributing more yield. Values are made comparable across assets, and principal backing is counted once, including when PT sits inside an LP position.
+Values are normalized across assets, and principal backing is counted once, including when PT is held inside an LP position.
 
 ## PT/LP allocation
 
-Each asset has a PT staking venue and, once active, an LP staking venue. Its allocation is divided between them.
+Within each asset, the team adjusts the PT/LP split using liquidity depth and participation.
 
-The team adjusts this split using liquidity depth and participation. Depth measures how much someone can trade within a chosen price-impact limit. It is considered alongside productive TVL and reward-release activity.
+Depth measures how much can be traded within a chosen price-impact limit. It is considered alongside productive TVL and reward-release activity. Increasing the LP share can make supplying liquidity more attractive without changing the asset's overall allocation.
 
-Giving LP staking a larger share can make providing liquidity more attractive. It does not guarantee a particular LP return or trading depth.
+Before an asset's LP venue is funded and enabled, its active farming allocation goes to PT staking. Incentives support liquidity provision but do not guarantee depth or returns.
 
-Before an asset's LP venue is funded and enabled, its active farming allocation goes to PT staking.
+## Your earnings
 
-## Earnings
+Your rewards depend on the venue's allocation, your share of its stake and your deposit's multiplier. Updates affect future rewards; previously earned rewards remain yours.
 
-Your rewards depend on the pool's allocation, your share of its stake and your deposit's eligibility. Allocation changes affect future rewards; rewards you have already earned remain yours.
+Allocation updates are submitted on-chain using validated observations. STRIP's market price does not automatically increase the emission schedule.
 
-Updates are submitted on-chain using validated observations. A falling STRIP price does not automatically increase the emission schedule.
-
-[How farming rewards work](/lockless-boost)
+[Farming rewards](/lockless-boost)
